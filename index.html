@@ -449,7 +449,7 @@
    kcal_target 1900 → 2000（他定的数；分析建议过 2200）：那 18 天他日均吃 2105
    却正好按计划速度在掉，说明 1900 是照着偏低的 2300 算出来的、本来就定严了。 */
 var BUILD = {
-  version: "1.15.1",
+  version: "1.15.2",
   built: "2026-09-28",
   kcal_target: 2000,     // 减脂目标：晨重 82.5kg → 78kg，每周约 −0.4~0.5kg
   tdee: 2600,            // 校准常数，随周报更新；不是当日实测消耗
@@ -580,9 +580,13 @@ var FOOD_LIBRARY = [
   { id: "tesco-cheese-twist", name: "Tesco 芝士扭扭酥（Cheese Twist）", per_100g: { kcal: 415, protein: 12.5, fat: 23.6, carb: 36.8 },
     portions: [{ label: "1 个 80g", grams: 80 }], default_portion: "1 个 80g", confidence: "high",
     note: "Tesco 官网：每 100 克 415 千卡、脂肪 23.6、碳水 36.8，每个 332 千卡；蛋白按每个约 10 克折算。" },
-  { id: "tesco-pain-au-chocolat", name: "Tesco 黄油巧克力可颂（Pain au Chocolat）", per_100g: { kcal: 430, protein: 7.5, fat: 24.6, carb: 44.0 },
+  { id: "tesco-pain-au-chocolat", name: "Tesco 黄油巧克力可颂（Pain au Chocolat）", per_100g: { kcal: 430, protein: 7.8, fat: 24.6, carb: 42.9 },
     portions: [{ label: "1 个 76g", grams: 76 }, { label: "2 个 152g", grams: 152 }], default_portion: "1 个 76g", confidence: "high",
-    note: "Tesco 官网 All Butter Pain au Chocolat：每 100 克 430 千卡、脂肪 24.6，每个 327 千卡；蛋白和碳水按能量与同款旧版标签倒推。" }
+    note: "Tesco 官网 All Butter Pain au Chocolat：每 100 克 430 千卡、脂肪 24.6，每个 327 千卡；蛋白 7.8、碳水 42.9 是 9/29 你拍的包装标签读数（10/4 周报更新）。" },
+  /* 2026-10-04 周报从「我的食物」转正：一周用了 5 次，每 100 克与整包都是标签实读、双模型复核一致 */
+  { id: "boots-steak-onion-sandwich", name: "Boots 牛排香醋洋葱三明治", per_100g: { kcal: 207, protein: 12.0, fat: 5.2, carb: 27.0 },
+    portions: [{ label: "整包 195g", grams: 195 }, { label: "半个 98g", grams: 98 }], default_portion: "整包 195g", confidence: "high",
+    note: "Boots 包装标签：每 100 克 207 千卡、蛋白 12、脂肪 5.2、碳水 27；整包 404 千卡。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -612,7 +616,15 @@ var UF_SAME_AS = {
   "uf-mtojjb9f": "uf-mu044y37",             /* 提卡鸡肉扫了两遍，留重扫那条（数值更准） */
   /* 2026-09-27 周报新增 */
   "uf-mui6ei83": "uf-mucs1s7j",             /* 「宝宝李子番茄」和「小李子番茄」是同一样东西 */
-  "uf-mui6q82u": "whole-milk"               /* Co-op 全脂牛奶：四个数和库里「全脂牛奶」一样 */
+  "uf-mui6q82u": "whole-milk",              /* Co-op 全脂牛奶：四个数和库里「全脂牛奶」一样 */
+  /* 2026-10-04 周报新增 */
+  "uf-mumeelle": "tesco-pain-au-chocolat",  /* 9/29 拍成分表时照片没传上去，存成了全 0 的空条目；复核模型读到的就是这款 */
+  "uf-mumef1am": "tesco-pain-au-chocolat",  /* 同上，第二次 */
+  "uf-mumehqr31u8": "tesco-pain-au-chocolat", /* 文字估算建的同一款，数值和库里一样 */
+  "uf-mumxjm4x": "uf-mumxk7bc",             /* 巴沙鱼柳扫了两遍，留按生重算、用过的那条 */
+  "uf-mutyvlbt": "rosedene-gala-apple",     /* 扫码的 Tesco Gala 苹果，四个数和库里那条一样 */
+  "uf-mutyynq5wx8": "tesco-plums-suntrail", /* 文字估算的「李子」，库里已有 Tesco 李子 */
+  "uf-mupagmsc": "boots-steak-onion-sandwich"
 };
 var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
