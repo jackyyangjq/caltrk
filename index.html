@@ -449,7 +449,7 @@
    kcal_target 1900 → 2000（他定的数；分析建议过 2200）：那 18 天他日均吃 2105
    却正好按计划速度在掉，说明 1900 是照着偏低的 2300 算出来的、本来就定严了。 */
 var BUILD = {
-  version: "1.15.3",
+  version: "1.15.4",
   built: "2026-10-05",
   kcal_target: 2000,     // 减脂目标：晨重 82.5kg → 78kg，每周约 −0.4~0.5kg
   tdee: 2600,            // 校准常数，随周报更新；不是当日实测消耗
@@ -586,7 +586,10 @@ var FOOD_LIBRARY = [
   /* 2026-10-04 周报从「我的食物」转正：一周用了 5 次，每 100 克与整包都是标签实读、双模型复核一致 */
   { id: "boots-steak-onion-sandwich", name: "Boots 牛排香醋洋葱三明治", per_100g: { kcal: 207, protein: 12.0, fat: 5.2, carb: 27.0 },
     portions: [{ label: "整包 195g", grams: 195 }, { label: "半个 98g", grams: 98 }], default_portion: "整包 195g", confidence: "high",
-    note: "Boots 包装标签：每 100 克 207 千卡、蛋白 12、脂肪 5.2、碳水 27；整包 404 千卡。" }
+    note: "Boots 包装标签：每 100 克 207 千卡、蛋白 12、脂肪 5.2、碳水 27；整包 404 千卡。" },
+  { id: "tesco-melon-kiwi-strawberry", name: "Tesco 甜瓜猕猴桃草莓水果杯（250g）", per_100g: { kcal: 38, protein: 0.6, fat: 0.4, carb: 7.2 },
+    portions: [{ label: "整盒 250g", grams: 250 }, { label: "半盒 125g", grams: 125 }], default_portion: "整盒 250g", confidence: "high",
+    note: "Tesco 官网营养表：每 100 克 38 千卡；标签份量半盒 125g = 47 千卡，整盒约 95 千卡。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
