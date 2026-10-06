@@ -9,7 +9,18 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const dataset = JSON.parse(fs.readFileSync(path.join(path.dirname(require.resolve("tempo-food-db/package.json")), "data/tempolife-foods.json"), "utf8"));
-const usda = new Map(dataset.filter(r => r.source === "usda_sr_legacy").map(r => [r.name, r]));
+/* 同名的行可能有好几条（原库里去掉了区分用的后缀）：数值一样就随便取，不一样就要在 selection 里用 pick_kcal 指定 */
+const usda = new Map();
+for (const r of dataset) if (r.source === "usda_sr_legacy") (usda.get(r.name) || usda.set(r.name, []).get(r.name)).push(r);
+function pickRow(s, problems) {
+  const rows = usda.get(s.src);
+  if (!rows) { problems.push("not in USDA data: " + s.src); return null; }
+  const ks = rows.map(r => r.kcal_per_100g);
+  if (Math.max(...ks) - Math.min(...ks) <= Math.max(3, Math.min(...ks) * 0.03)) return rows[0];
+  const hit = rows.find(r => r.kcal_per_100g === s.pick_kcal);
+  if (!hit) problems.push(`ambiguous (${ks.join("/")} kcal), set pick_kcal: ` + s.src);
+  return hit || null;
+}
 
 const dir = path.join(ROOT, "scripts/generic-foods");
 const sel = fs.readdirSync(dir).filter(f => f.endsWith(".json")).sort().flatMap(f => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")));
@@ -18,8 +29,8 @@ function fnv(s) { let h = 0x811c9dc5; for (const c of Buffer.from(s, "utf8")) { 
 const r1 = x => Math.round((x || 0) * 10) / 10;
 const out = [], problems = [], seen = new Set(), names = new Set();
 for (const s of sel) {
-  const r = usda.get(s.src);
-  if (!r) { problems.push("not in USDA data: " + s.src); continue; }
+  const r = pickRow(s, problems);
+  if (!r) continue;
   if (seen.has(s.src)) { problems.push("duplicate: " + s.src); continue; }
   if (names.has(s.zh)) problems.push("duplicate Chinese name: " + s.zh);
   seen.add(s.src); names.add(s.zh);

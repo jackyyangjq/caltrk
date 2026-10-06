@@ -1,0 +1,2349 @@
+[
+ {
+  "src": "Oil, olive, salad or cooking",
+  "zh": "橄榄油",
+  "aliases": [
+   "初榨橄榄油",
+   "olive oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Oil, canola",
+  "zh": "菜籽油",
+  "aliases": [
+   "植物油",
+   "芥花油",
+   "rapeseed oil",
+   "vegetable oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Oil, sunflower, linoleic, (approx. 65%)",
+  "zh": "葵花籽油",
+  "aliases": [
+   "葵花油",
+   "sunflower oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Oil, soybean, salad or cooking",
+  "zh": "大豆油",
+  "aliases": [
+   "色拉油",
+   "豆油",
+   "soybean oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Oil, peanut, salad or cooking",
+  "zh": "花生油",
+  "aliases": [
+   "peanut oil",
+   "groundnut oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Oil, sesame, salad or cooking",
+  "zh": "芝麻油（香油）",
+  "aliases": [
+   "香油",
+   "麻油",
+   "sesame oil"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   },
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   }
+  ],
+  "default": "1 茶匙 5g"
+ },
+ {
+  "src": "Oil, coconut",
+  "zh": "椰子油",
+  "aliases": [
+   "coconut oil"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Lard",
+  "zh": "猪油",
+  "aliases": [
+   "荤油",
+   "lard"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 13g",
+    "grams": 13
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 13g"
+ },
+ {
+  "src": "Butter, light, stick, without salt",
+  "zh": "低脂黄油（无盐）",
+  "aliases": [
+   "淡味黄油",
+   "轻黄油",
+   "light butter"
+  ],
+  "portions": [
+   {
+    "label": "抹 1 片吐司 10g",
+    "grams": 10
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   },
+   {
+    "label": "1 汤匙 14g",
+    "grams": 14
+   }
+  ],
+  "default": "抹 1 片吐司 10g"
+ },
+ {
+  "src": "Margarine, 80% fat, composite, tub, without salt",
+  "zh": "人造黄油（80%脂肪）",
+  "aliases": [
+   "麦淇淋",
+   "植物奶油",
+   "margarine"
+  ],
+  "portions": [
+   {
+    "label": "抹 1 片吐司 10g",
+    "grams": 10
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   },
+   {
+    "label": "1 汤匙 14g",
+    "grams": 14
+   }
+  ],
+  "default": "抹 1 片吐司 10g"
+ },
+ {
+  "src": "Margarine-like vegetable-oil spread, stick/tub/bottle, 60% fat, with added vitamin D",
+  "zh": "植物黄油涂抹酱（60%脂肪）",
+  "aliases": [
+   "涂抹黄油",
+   "植物黄油",
+   "vegetable spread"
+  ],
+  "portions": [
+   {
+    "label": "抹 1 片吐司 10g",
+    "grams": 10
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   },
+   {
+    "label": "1 汤匙 14g",
+    "grams": 14
+   }
+  ],
+  "default": "抹 1 片吐司 10g"
+ },
+ {
+  "src": "Salad dressing, mayonnaise",
+  "zh": "蛋黄酱",
+  "aliases": [
+   "美乃滋",
+   "沙拉酱",
+   "mayonnaise",
+   "mayo"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 14g",
+    "grams": 14
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 14g"
+ },
+ {
+  "src": "Sauce, oyster, ready-to-serve",
+  "zh": "蚝油",
+  "aliases": [
+   "耗油",
+   "oyster sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 18g",
+    "grams": 18
+   },
+   {
+    "label": "1 茶匙 6g",
+    "grams": 6
+   }
+  ],
+  "default": "1 汤匙 18g"
+ },
+ {
+  "src": "Sauce, hoisin, ready-to-serve",
+  "zh": "海鲜酱",
+  "aliases": [
+   "烤鸭酱",
+   "hoisin sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 16g"
+ },
+ {
+  "src": "Sauce, fish, ready-to-serve",
+  "zh": "鱼露",
+  "aliases": [
+   "fish sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 18g",
+    "grams": 18
+   },
+   {
+    "label": "1 茶匙 6g",
+    "grams": 6
+   }
+  ],
+  "default": "1 汤匙 18g"
+ },
+ {
+  "src": "Sauce, hot chile, sriracha",
+  "zh": "是拉差辣椒酱",
+  "aliases": [
+   "辣椒酱",
+   "甜辣酱",
+   "sriracha",
+   "chilli sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 6g",
+    "grams": 6
+   },
+   {
+    "label": "1 汤匙 17g",
+    "grams": 17
+   }
+  ],
+  "default": "1 茶匙 6g"
+ },
+ {
+  "src": "Sauce, sweet and sour, ready-to-serve",
+  "zh": "糖醋酱",
+  "aliases": [
+   "酸甜酱",
+   "sweet and sour sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 17g",
+    "grams": 17
+   },
+   {
+    "label": "一份蘸酱 40g",
+    "grams": 40
+   }
+  ],
+  "default": "1 汤匙 17g"
+ },
+ {
+  "src": "Sauce, peanut, made from peanut butter, water, soy sauce",
+  "zh": "花生酱汁（沙爹酱）",
+  "aliases": [
+   "沙爹酱",
+   "花生酱汁",
+   "satay sauce",
+   "peanut sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   },
+   {
+    "label": "一份 40g",
+    "grams": 40
+   }
+  ],
+  "default": "1 汤匙 16g"
+ },
+ {
+  "src": "Sauce, pesto, ready-to-serve, refrigerated",
+  "zh": "青酱（罗勒松子酱）",
+  "aliases": [
+   "罗勒酱",
+   "pesto"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份（拌面）45g",
+    "grams": 45
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Sauce, pasta, spaghetti/marinara, ready-to-serve",
+  "zh": "意面番茄酱",
+  "aliases": [
+   "番茄意面酱",
+   "意粉酱",
+   "pasta sauce",
+   "marinara"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Sauce, barbecue",
+  "zh": "烧烤酱",
+  "aliases": [
+   "BBQ酱",
+   "barbecue sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 17g",
+    "grams": 17
+   },
+   {
+    "label": "2 汤匙 34g",
+    "grams": 34
+   }
+  ],
+  "default": "1 汤匙 17g"
+ },
+ {
+  "src": "Mustard, prepared, yellow",
+  "zh": "黄芥末酱",
+  "aliases": [
+   "芥末酱",
+   "黄芥末",
+   "mustard"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "1 茶匙 5g"
+ },
+ {
+  "src": "Vinegar, balsamic",
+  "zh": "意大利黑醋",
+  "aliases": [
+   "香醋",
+   "巴萨米克醋",
+   "balsamic vinegar"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 16g"
+ },
+ {
+  "src": "Honey",
+  "zh": "蜂蜜",
+  "aliases": [
+   "蜜糖",
+   "honey"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 7g",
+    "grams": 7
+   },
+   {
+    "label": "1 汤匙 21g",
+    "grams": 21
+   }
+  ],
+  "default": "1 茶匙 7g"
+ },
+ {
+  "src": "Jams and preserves",
+  "zh": "果酱",
+  "aliases": [
+   "草莓酱",
+   "果子酱",
+   "jam"
+  ],
+  "portions": [
+   {
+    "label": "抹 1 片吐司 15g",
+    "grams": 15
+   },
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   }
+  ],
+  "default": "抹 1 片吐司 15g"
+ },
+ {
+  "src": "Sugars, granulated",
+  "zh": "白砂糖",
+  "aliases": [
+   "白糖",
+   "砂糖",
+   "sugar"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 4g",
+    "grams": 4
+   },
+   {
+    "label": "1 汤匙 12g",
+    "grams": 12
+   }
+  ],
+  "default": "1 茶匙 4g"
+ },
+ {
+  "src": "Salad dressing, italian dressing, commercial",
+  "zh": "意式油醋汁",
+  "aliases": [
+   "油醋汁",
+   "意式沙拉汁",
+   "italian dressing",
+   "vinaigrette"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "2 汤匙 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Salad dressing, thousand island, commercial",
+  "zh": "千岛酱",
+  "aliases": [
+   "千岛沙拉酱",
+   "thousand island"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "2 汤匙 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Salad dressing, sesame seed dressing",
+  "zh": "芝麻沙拉酱",
+  "aliases": [
+   "焙煎芝麻酱",
+   "芝麻沙拉汁",
+   "sesame dressing"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "2 汤匙 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Gravy, beef, canned, ready-to-serve",
+  "zh": "牛肉肉汁（gravy）",
+  "aliases": [
+   "肉汁",
+   "烤肉汁",
+   "gravy"
+  ],
+  "portions": [
+   {
+    "label": "一份 60g",
+    "grams": 60
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 60g"
+ },
+ {
+  "src": "Chocolate-flavored hazelnut spread",
+  "zh": "巧克力榛子酱",
+  "aliases": [
+   "榛子酱",
+   "能多益",
+   "nutella",
+   "chocolate spread"
+  ],
+  "portions": [
+   {
+    "label": "抹 1 片吐司 15g",
+    "grams": 15
+   },
+   {
+    "label": "1 汤匙 19g",
+    "grams": 19
+   }
+  ],
+  "default": "抹 1 片吐司 15g"
+ },
+ {
+  "src": "Spices, curry powder",
+  "zh": "咖喱粉",
+  "aliases": [
+   "curry powder"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 2g",
+    "grams": 2
+   },
+   {
+    "label": "1 汤匙 6g",
+    "grams": 6
+   }
+  ],
+  "default": "1 茶匙 2g"
+ },
+ {
+  "src": "Spices, pepper, black",
+  "zh": "黑胡椒粉",
+  "aliases": [
+   "黑胡椒",
+   "胡椒粉",
+   "black pepper"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 2g",
+    "grams": 2
+   },
+   {
+    "label": "少许 1g",
+    "grams": 1
+   }
+  ],
+  "default": "1 茶匙 2g"
+ },
+ {
+  "src": "Spices, pepper, red or cayenne",
+  "zh": "辣椒粉",
+  "aliases": [
+   "辣椒面",
+   "cayenne",
+   "chilli powder"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 2g",
+    "grams": 2
+   },
+   {
+    "label": "1 汤匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 茶匙 2g"
+ },
+ {
+  "src": "Spices, cinnamon, ground",
+  "zh": "肉桂粉",
+  "aliases": [
+   "桂皮粉",
+   "cinnamon"
+  ],
+  "portions": [
+   {
+    "label": "1 茶匙 3g",
+    "grams": 3
+   }
+  ],
+  "default": "1 茶匙 3g"
+ },
+ {
+  "src": "Beverages, coffee, brewed, prepared with tap water",
+  "zh": "黑咖啡（现煮）",
+  "aliases": [
+   "美式咖啡",
+   "滴滤咖啡",
+   "black coffee"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 马克杯 350ml",
+    "grams": 350
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, coffee, brewed, espresso, restaurant-prepared",
+  "zh": "意式浓缩咖啡",
+  "aliases": [
+   "浓缩咖啡",
+   "espresso"
+  ],
+  "portions": [
+   {
+    "label": "1 份 30ml",
+    "grams": 30
+   },
+   {
+    "label": "双份 60ml",
+    "grams": 60
+   }
+  ],
+  "default": "1 份 30ml"
+ },
+ {
+  "src": "Beverages, coffee, instant, prepared with water",
+  "zh": "速溶咖啡（冲好，无糖）",
+  "aliases": [
+   "速溶黑咖啡",
+   "instant coffee"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, coffee, ready to drink, milk based, sweetened",
+  "zh": "瓶装咖啡（含奶含糖）",
+  "aliases": [
+   "即饮咖啡",
+   "瓶装拿铁",
+   "iced coffee"
+  ],
+  "portions": [
+   {
+    "label": "1 瓶 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 瓶 250ml"
+ },
+ {
+  "src": "Beverages, tea, black, brewed, prepared with tap water",
+  "zh": "红茶（不加奶糖）",
+  "aliases": [
+   "英式红茶",
+   "black tea"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 马克杯 350ml",
+    "grams": 350
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, tea, green, brewed",
+  "zh": "绿茶",
+  "aliases": [
+   "茶水",
+   "green tea"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, Orange juice drink",
+  "zh": "橙汁饮料",
+  "aliases": [
+   "橙味饮料",
+   "orange drink"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 小盒 200ml",
+    "grams": 200
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Cranberry juice cocktail, bottled",
+  "zh": "蔓越莓汁饮料",
+  "aliases": [
+   "蔓越莓汁",
+   "cranberry juice"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, carbonated, cola",
+  "zh": "可乐",
+  "aliases": [
+   "可口可乐",
+   "cola",
+   "coke"
+  ],
+  "portions": [
+   {
+    "label": "1 罐 330ml",
+    "grams": 330
+   },
+   {
+    "label": "1 瓶 500ml",
+    "grams": 500
+   },
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 罐 330ml"
+ },
+ {
+  "src": "Beverages, carbonated, low calorie, cola or pepper-type, with aspartame",
+  "zh": "无糖可乐",
+  "aliases": [
+   "零度可乐",
+   "健怡可乐",
+   "diet coke",
+   "coke zero"
+  ],
+  "portions": [
+   {
+    "label": "1 罐 330ml",
+    "grams": 330
+   },
+   {
+    "label": "1 瓶 500ml",
+    "grams": 500
+   },
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 罐 330ml"
+ },
+ {
+  "src": "Beverages, carbonated, lemon-lime soda, no caffeine",
+  "zh": "柠檬汽水（雪碧类）",
+  "aliases": [
+   "雪碧",
+   "七喜",
+   "lemonade",
+   "sprite"
+  ],
+  "portions": [
+   {
+    "label": "1 罐 330ml",
+    "grams": 330
+   },
+   {
+    "label": "1 瓶 500ml",
+    "grams": 500
+   },
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 罐 330ml"
+ },
+ {
+  "src": "Beverages, carbonated, orange",
+  "zh": "橙味汽水",
+  "aliases": [
+   "芬达",
+   "橙汁汽水",
+   "orange soda"
+  ],
+  "portions": [
+   {
+    "label": "1 罐 330ml",
+    "grams": 330
+   },
+   {
+    "label": "1 瓶 500ml",
+    "grams": 500
+   },
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 罐 330ml"
+ },
+ {
+  "src": "Beverages, Energy Drink with carbonated water and high fructose corn syrup",
+  "zh": "能量饮料",
+  "aliases": [
+   "功能饮料",
+   "红牛",
+   "energy drink"
+  ],
+  "portions": [
+   {
+    "label": "1 罐 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 大罐 500ml",
+    "grams": 500
+   }
+  ],
+  "default": "1 罐 250ml"
+ },
+ {
+  "src": "Alcoholic beverage, beer, all",
+  "zh": "啤酒",
+  "aliases": [
+   "拉格",
+   "beer",
+   "lager"
+  ],
+  "portions": [
+   {
+    "label": "1 品脱 568ml",
+    "grams": 568
+   },
+   {
+    "label": "1 罐 440ml",
+    "grams": 440
+   },
+   {
+    "label": "1 瓶 330ml",
+    "grams": 330
+   }
+  ],
+  "default": "1 品脱 568ml"
+ },
+ {
+  "src": "Alcoholic beverage, wine, table, red",
+  "zh": "红葡萄酒",
+  "aliases": [
+   "红酒",
+   "red wine"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 175ml",
+    "grams": 175
+   },
+   {
+    "label": "1 小杯 125ml",
+    "grams": 125
+   },
+   {
+    "label": "1 大杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 175ml"
+ },
+ {
+  "src": "Alcoholic beverage, wine, table, white",
+  "zh": "白葡萄酒",
+  "aliases": [
+   "干白",
+   "white wine"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 175ml",
+    "grams": 175
+   },
+   {
+    "label": "1 小杯 125ml",
+    "grams": 125
+   },
+   {
+    "label": "1 大杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 175ml"
+ },
+ {
+  "src": "Alcoholic beverage, distilled, vodka, 80 proof",
+  "zh": "伏特加/金酒（40度）",
+  "aliases": [
+   "伏特加",
+   "金酒",
+   "杜松子酒",
+   "vodka"
+  ],
+  "portions": [
+   {
+    "label": "1 份 25ml",
+    "grams": 25
+   },
+   {
+    "label": "双份 50ml",
+    "grams": 50
+   }
+  ],
+  "default": "1 份 25ml"
+ },
+ {
+  "src": "Alcoholic beverage, distilled, whiskey, 86 proof",
+  "zh": "威士忌",
+  "aliases": [
+   "洋酒",
+   "whisky"
+  ],
+  "portions": [
+   {
+    "label": "1 份 25ml",
+    "grams": 25
+   },
+   {
+    "label": "双份 50ml",
+    "grams": 50
+   }
+  ],
+  "default": "1 份 25ml"
+ },
+ {
+  "src": "Alcoholic beverage, rice (sake)",
+  "zh": "清酒（米酒）",
+  "aliases": [
+   "清酒",
+   "米酒",
+   "sake"
+  ],
+  "portions": [
+   {
+    "label": "1 小杯 50ml",
+    "grams": 50
+   },
+   {
+    "label": "1 合 180ml",
+    "grams": 180
+   }
+  ],
+  "default": "1 小杯 50ml"
+ },
+ {
+  "src": "Beverages, Cocoa mix, powder, prepared with water",
+  "zh": "热巧克力（冲水）",
+  "aliases": [
+   "热可可",
+   "可可饮料",
+   "hot chocolate"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Fast foods, strawberry banana smoothie made with ice and low-fat yogurt",
+  "zh": "草莓香蕉思慕雪",
+  "aliases": [
+   "思慕雪",
+   "果昔",
+   "smoothie"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 350ml",
+    "grams": 350
+   },
+   {
+    "label": "1 小杯 250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯 350ml"
+ },
+ {
+  "src": "Shake, fast food, vanilla",
+  "zh": "香草奶昔",
+  "aliases": [
+   "奶昔",
+   "milkshake"
+  ],
+  "portions": [
+   {
+    "label": "1 杯（中）350ml",
+    "grams": 350
+   },
+   {
+    "label": "1 杯（小）250ml",
+    "grams": 250
+   }
+  ],
+  "default": "1 杯（中）350ml"
+ },
+ {
+  "src": "Beverages, almond milk, unsweetened, shelf stable",
+  "zh": "无糖杏仁奶",
+  "aliases": [
+   "杏仁奶",
+   "almond milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "加入咖啡 50ml",
+    "grams": 50
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Beverages, Protein powder whey based",
+  "zh": "乳清蛋白粉",
+  "aliases": [
+   "蛋白粉",
+   "乳清蛋白",
+   "whey protein"
+  ],
+  "portions": [
+   {
+    "label": "1 勺 30g",
+    "grams": 30
+   },
+   {
+    "label": "半勺 15g",
+    "grams": 15
+   }
+  ],
+  "default": "1 勺 30g"
+ },
+ {
+  "src": "Snacks, potato chips, plain, salted",
+  "zh": "薯片（原味）",
+  "aliases": [
+   "薯片",
+   "crisps",
+   "potato chips"
+  ],
+  "portions": [
+   {
+    "label": "1 小包 25g",
+    "grams": 25
+   },
+   {
+    "label": "1 包 40g",
+    "grams": 40
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 小包 25g"
+ },
+ {
+  "src": "Snacks, tortilla chips, plain, white corn, salted",
+  "zh": "玉米片（原味）",
+  "aliases": [
+   "墨西哥玉米片",
+   "tortilla chips",
+   "nachos"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一小碗 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Snacks, popcorn, air-popped (Unsalted)",
+  "zh": "爆米花（空气爆，无油）",
+  "aliases": [
+   "爆米花",
+   "popcorn"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 碗 15g"
+ },
+ {
+  "src": "Snacks, popcorn, caramel-coated, without peanuts",
+  "zh": "焦糖爆米花",
+  "aliases": [
+   "甜爆米花",
+   "caramel popcorn"
+  ],
+  "portions": [
+   {
+    "label": "一小把 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份 35g",
+    "grams": 35
+   }
+  ],
+  "default": "一小把 15g"
+ },
+ {
+  "src": "Snacks, pretzels, hard, plain, salted",
+  "zh": "椒盐脆饼",
+  "aliases": [
+   "扭结饼",
+   "咸脆饼",
+   "pretzels"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 个",
+    "grams": 6
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Snacks, granola bars, hard, plain",
+  "zh": "燕麦棒（脆）",
+  "aliases": [
+   "燕麦棒",
+   "谷物棒",
+   "granola bar",
+   "cereal bar"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 21
+   },
+   {
+    "label": "1 包（2 根）",
+    "grams": 42
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Snacks, rice cakes, brown rice, plain, unsalted",
+  "zh": "糙米饼（膨化）",
+  "aliases": [
+   "米饼",
+   "膨化米饼",
+   "rice cake"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 9
+   },
+   {
+    "label": "2 片",
+    "grams": 18
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Rice crackers",
+  "zh": "米果（仙贝）",
+  "aliases": [
+   "仙贝",
+   "雪饼",
+   "米饼干",
+   "rice crackers"
+  ],
+  "portions": [
+   {
+    "label": "1 片（小）",
+    "grams": 4
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 片（小）"
+ },
+ {
+  "src": "Snacks, shrimp cracker",
+  "zh": "虾片",
+  "aliases": [
+   "虾条",
+   "prawn crackers"
+  ],
+  "portions": [
+   {
+    "label": "一小碗 20g",
+    "grams": 20
+   },
+   {
+    "label": "1 袋（外卖）50g",
+    "grams": 50
+   }
+  ],
+  "default": "一小碗 20g"
+ },
+ {
+  "src": "Snacks, beef jerky, chopped and formed",
+  "zh": "牛肉干",
+  "aliases": [
+   "牛肉条",
+   "beef jerky"
+  ],
+  "portions": [
+   {
+    "label": "一份 25g",
+    "grams": 25
+   },
+   {
+    "label": "1 小包 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 25g"
+ },
+ {
+  "src": "Chocolate, dark, 70-85% cacao solids",
+  "zh": "黑巧克力（70-85%）",
+  "aliases": [
+   "黑巧",
+   "dark chocolate"
+  ],
+  "portions": [
+   {
+    "label": "1 小块 10g",
+    "grams": 10
+   },
+   {
+    "label": "半板 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 小块 10g"
+ },
+ {
+  "src": "Candies, milk chocolate",
+  "zh": "牛奶巧克力",
+  "aliases": [
+   "巧克力",
+   "milk chocolate"
+  ],
+  "portions": [
+   {
+    "label": "1 小块 7g",
+    "grams": 7
+   },
+   {
+    "label": "1 条 45g",
+    "grams": 45
+   }
+  ],
+  "default": "1 小块 7g"
+ },
+ {
+  "src": "Ice creams, vanilla",
+  "zh": "香草冰淇淋",
+  "aliases": [
+   "冰淇淋",
+   "雪糕",
+   "vanilla ice cream"
+  ],
+  "portions": [
+   {
+    "label": "1 球 60g",
+    "grams": 60
+   },
+   {
+    "label": "1 小碗 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 球 60g"
+ },
+ {
+  "src": "Ice creams, chocolate",
+  "zh": "巧克力冰淇淋",
+  "aliases": [
+   "巧克力雪糕",
+   "chocolate ice cream"
+  ],
+  "portions": [
+   {
+    "label": "1 球 60g",
+    "grams": 60
+   },
+   {
+    "label": "1 小碗 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 球 60g"
+ },
+ {
+  "src": "Fast foods, vanilla, light, soft-serve ice cream, with cone",
+  "zh": "甜筒（软冰淇淋）",
+  "aliases": [
+   "甜筒",
+   "软冰淇淋",
+   "ice cream cone",
+   "soft serve"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 90
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Fast foods, sundae, hot fudge",
+  "zh": "热巧克力圣代",
+  "aliases": [
+   "圣代",
+   "sundae"
+  ],
+  "portions": [
+   {
+    "label": "1 杯",
+    "grams": 160
+   }
+  ],
+  "default": "1 杯"
+ },
+ {
+  "src": "Frozen novelties, ice type, pop",
+  "zh": "冰棒（果味）",
+  "aliases": [
+   "冰棍",
+   "冰棒",
+   "ice lolly"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 60
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Frozen novelties, ice cream type, chocolate or caramel covered, with nuts",
+  "zh": "巧克力脆皮坚果雪糕",
+  "aliases": [
+   "脆皮雪糕",
+   "雪糕棒",
+   "ice cream bar"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 80
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Puddings, chocolate",
+  "zh": "巧克力布丁",
+  "aliases": [
+   "布丁",
+   "chocolate pudding"
+  ],
+  "portions": [
+   {
+    "label": "1 杯",
+    "grams": 110
+   }
+  ],
+  "default": "1 杯"
+ },
+ {
+  "src": "Puddings, rice",
+  "zh": "牛奶米布丁",
+  "aliases": [
+   "米布丁",
+   "rice pudding"
+  ],
+  "portions": [
+   {
+    "label": "1 小罐 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   }
+  ],
+  "default": "1 小罐 150g"
+ },
+ {
+  "src": "Desserts, egg custard, baked, prepared-from-recipe",
+  "zh": "烤蛋奶布丁",
+  "aliases": [
+   "蛋奶冻",
+   "烤布丁",
+   "baked custard"
+  ],
+  "portions": [
+   {
+    "label": "1 个（烤盅）",
+    "grams": 140
+   }
+  ],
+  "default": "1 个（烤盅）"
+ },
+ {
+  "src": "Desserts, flan, caramel custard, prepared-from-recipe",
+  "zh": "焦糖布丁",
+  "aliases": [
+   "焦糖炖蛋",
+   "flan",
+   "creme caramel"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 100
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Desserts, mousse, chocolate, prepared-from-recipe",
+  "zh": "巧克力慕斯",
+  "aliases": [
+   "慕斯",
+   "chocolate mousse"
+  ],
+  "portions": [
+   {
+    "label": "1 小杯",
+    "grams": 80
+   }
+  ],
+  "default": "1 小杯"
+ },
+ {
+  "src": "Desserts, apple crisp, prepared-from-recipe",
+  "zh": "苹果奶酥（crumble）",
+  "aliases": [
+   "苹果金宝",
+   "苹果酥",
+   "apple crumble"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Gelatin desserts, dry mix, prepared with water",
+  "zh": "果冻",
+  "aliases": [
+   "啫喱",
+   "jelly"
+  ],
+  "portions": [
+   {
+    "label": "1 小杯 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 小杯 125g"
+ },
+ {
+  "src": "Puddings, tapioca",
+  "zh": "西米布丁",
+  "aliases": [
+   "西米露",
+   "tapioca pudding"
+  ],
+  "portions": [
+   {
+    "label": "1 杯",
+    "grams": 110
+   }
+  ],
+  "default": "1 杯"
+ },
+ {
+  "src": "Candies, hard",
+  "zh": "硬糖",
+  "aliases": [
+   "水果硬糖",
+   "糖果",
+   "hard candy",
+   "boiled sweets"
+  ],
+  "portions": [
+   {
+    "label": "1 粒",
+    "grams": 5
+   },
+   {
+    "label": "一份 20g",
+    "grams": 20
+   }
+  ],
+  "default": "1 粒"
+ },
+ {
+  "src": "Candies, gumdrops, starch jelly pieces",
+  "zh": "水果软糖",
+  "aliases": [
+   "软糖",
+   "橡皮糖",
+   "gummy sweets"
+  ],
+  "portions": [
+   {
+    "label": "1 粒",
+    "grams": 4
+   },
+   {
+    "label": "1 小包 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 粒"
+ },
+ {
+  "src": "Candies, marshmallows",
+  "zh": "棉花糖",
+  "aliases": [
+   "marshmallow"
+  ],
+  "portions": [
+   {
+    "label": "1 个（大）",
+    "grams": 7
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 个（大）"
+ },
+ {
+  "src": "Candies, chocolate covered, caramel with nuts",
+  "zh": "花生焦糖巧克力棒",
+  "aliases": [
+   "士力架",
+   "巧克力棒",
+   "chocolate bar"
+  ],
+  "portions": [
+   {
+    "label": "1 条",
+    "grams": 50
+   }
+  ],
+  "default": "1 条"
+ },
+ {
+  "src": "Candies, nougat, with almonds",
+  "zh": "牛轧糖",
+  "aliases": [
+   "杏仁牛轧糖",
+   "nougat"
+  ],
+  "portions": [
+   {
+    "label": "1 颗",
+    "grams": 10
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 颗"
+ },
+ {
+  "src": "Candies, peanut brittle, prepared-from-recipe",
+  "zh": "花生糖",
+  "aliases": [
+   "花生酥",
+   "peanut brittle"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 15
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Candies, sesame crunch",
+  "zh": "芝麻糖",
+  "aliases": [
+   "芝麻酥",
+   "芝麻脆片",
+   "sesame snaps"
+  ],
+  "portions": [
+   {
+    "label": "1 小块",
+    "grams": 10
+   },
+   {
+    "label": "1 小包 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 小块"
+ },
+ {
+  "src": "Soup, hot and sour, Chinese restaurant",
+  "zh": "酸辣汤",
+  "aliases": [
+   "hot and sour soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "1 小碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, egg drop, Chinese restaurant",
+  "zh": "蛋花汤",
+  "aliases": [
+   "鸡蛋汤",
+   "egg drop soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "1 小碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, wonton, Chinese restaurant",
+  "zh": "馄饨汤",
+  "aliases": [
+   "馄饨",
+   "云吞汤",
+   "wonton soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 300g",
+    "grams": 300
+   },
+   {
+    "label": "1 小碗 200g",
+    "grams": 200
+   }
+  ],
+  "default": "1 碗 300g"
+ },
+ {
+  "src": "Soup, tomato, canned, prepared with equal volume water, commercial",
+  "zh": "番茄汤（罐头）",
+  "aliases": [
+   "番茄浓汤",
+   "tomato soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "1 罐 400g",
+    "grams": 400
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, cream of mushroom, canned, prepared with equal volume water",
+  "zh": "奶油蘑菇汤（罐头）",
+  "aliases": [
+   "蘑菇汤",
+   "mushroom soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "1 罐 400g",
+    "grams": 400
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, chunky chicken noodle, canned, ready-to-serve",
+  "zh": "鸡肉面条汤（罐头）",
+  "aliases": [
+   "鸡汤面",
+   "chicken noodle soup"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "1 罐 400g",
+    "grams": 400
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, stock, chicken, home-prepared",
+  "zh": "鸡汤（自制高汤）",
+  "aliases": [
+   "鸡高汤",
+   "清鸡汤",
+   "chicken stock"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Soup, ramen noodle, any flavor, dry",
+  "zh": "方便面（面饼+调料，干）",
+  "aliases": [
+   "泡面",
+   "方便面",
+   "instant noodles",
+   "ramen"
+  ],
+  "portions": [
+   {
+    "label": "1 包",
+    "grams": 85
+   },
+   {
+    "label": "1 包（大）",
+    "grams": 120
+   }
+  ],
+  "default": "1 包"
+ },
+ {
+  "src": "Fast Food, Pizza Chain, 14\" pizza, cheese topping, regular crust",
+  "zh": "芝士披萨（外卖）",
+  "aliases": [
+   "芝士披萨",
+   "玛格丽特披萨",
+   "cheese pizza"
+  ],
+  "portions": [
+   {
+    "label": "1 块（14寸的1/8）",
+    "grams": 105
+   },
+   {
+    "label": "2 块",
+    "grams": 210
+   }
+  ],
+  "default": "1 块（14寸的1/8）"
+ },
+ {
+  "src": "Fast Food, Pizza Chain, 14\" pizza, pepperoni topping, regular crust",
+  "zh": "意式辣香肠披萨",
+  "aliases": [
+   "香肠披萨",
+   "pepperoni pizza"
+  ],
+  "portions": [
+   {
+    "label": "1 块（14寸的1/8）",
+    "grams": 110
+   },
+   {
+    "label": "2 块",
+    "grams": 220
+   }
+  ],
+  "default": "1 块（14寸的1/8）"
+ },
+ {
+  "src": "Fast foods, hamburger, single, regular patty, with condiments",
+  "zh": "汉堡（单层牛肉）",
+  "aliases": [
+   "汉堡包",
+   "hamburger",
+   "burger"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 110
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Fast foods, cheeseburger, single, regular patty, with condiments",
+  "zh": "芝士汉堡",
+  "aliases": [
+   "吉士汉堡",
+   "cheeseburger"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 120
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Fast foods, potato, french fried in vegetable oil",
+  "zh": "薯条（快餐）",
+  "aliases": [
+   "炸薯条",
+   "chips",
+   "french fries"
+  ],
+  "portions": [
+   {
+    "label": "中份 115g",
+    "grams": 115
+   },
+   {
+    "label": "小份 80g",
+    "grams": 80
+   },
+   {
+    "label": "大份 155g",
+    "grams": 155
+   }
+  ],
+  "default": "中份 115g"
+ },
+ {
+  "src": "Fast foods, chicken, breaded and fried, boneless pieces, plain",
+  "zh": "炸鸡块",
+  "aliases": [
+   "麦乐鸡",
+   "鸡块",
+   "chicken nuggets"
+  ],
+  "portions": [
+   {
+    "label": "6 块",
+    "grams": 96
+   },
+   {
+    "label": "1 块",
+    "grams": 16
+   },
+   {
+    "label": "9 块",
+    "grams": 144
+   }
+  ],
+  "default": "6 块"
+ },
+ {
+  "src": "Fast Foods, Fried Chicken, Drumstick, meat and skin with breading",
+  "zh": "炸鸡腿（带皮裹粉）",
+  "aliases": [
+   "炸鸡",
+   "炸鸡腿",
+   "fried chicken"
+  ],
+  "portions": [
+   {
+    "label": "1 只（可食部分）",
+    "grams": 75
+   },
+   {
+    "label": "2 只",
+    "grams": 150
+   }
+  ],
+  "default": "1 只（可食部分）"
+ },
+ {
+  "src": "Restaurant, family style, fish fillet, battered or breaded, fried",
+  "zh": "炸鱼（裹面糊）",
+  "aliases": [
+   "炸鱼",
+   "fish and chips",
+   "battered fish"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 150
+   },
+   {
+    "label": "1 块（大）",
+    "grams": 230
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Restaurant, Chinese, fried rice, without meat",
+  "zh": "炒饭（中餐馆）",
+  "aliases": [
+   "蛋炒饭",
+   "fried rice"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "1 盒（外卖）350g",
+    "grams": 350
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Restaurant, Chinese, vegetable lo mein, without meat",
+  "zh": "蔬菜炒面（中餐馆）",
+  "aliases": [
+   "炒面",
+   "捞面",
+   "chow mein",
+   "lo mein"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "1 盒（外卖）350g",
+    "grams": 350
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Restaurant, Chinese, sweet and sour pork",
+  "zh": "咕咾肉（糖醋肉）",
+  "aliases": [
+   "咕噜肉",
+   "糖醋里脊",
+   "sweet and sour pork"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 盒（外卖）300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Restaurant, Chinese, sweet and sour chicken",
+  "zh": "糖醋鸡（中餐馆）",
+  "aliases": [
+   "酸甜鸡",
+   "sweet and sour chicken"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 盒（外卖）300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Restaurant, Chinese, kung pao chicken",
+  "zh": "宫保鸡丁",
+  "aliases": [
+   "宫爆鸡丁",
+   "kung pao chicken"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 盒（外卖）300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Restaurant, Chinese, beef and vegetables",
+  "zh": "牛肉炒时蔬",
+  "aliases": [
+   "蔬菜炒牛肉",
+   "beef stir fry"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 盒（外卖）300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Restaurant, Chinese, egg rolls, assorted",
+  "zh": "春卷（中餐馆）",
+  "aliases": [
+   "炸春卷",
+   "spring roll",
+   "egg roll"
+  ],
+  "portions": [
+   {
+    "label": "1 个（大）",
+    "grams": 85
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 30
+   }
+  ],
+  "default": "1 个（大）"
+ },
+ {
+  "src": "Potsticker or wonton, pork and vegetable, frozen, unprepared",
+  "zh": "猪肉饺子（冷冻，生）",
+  "aliases": [
+   "饺子",
+   "锅贴",
+   "dumplings",
+   "gyoza"
+  ],
+  "portions": [
+   {
+    "label": "10 个",
+    "grams": 200
+   },
+   {
+    "label": "1 个",
+    "grams": 20
+   }
+  ],
+  "default": "10 个"
+ },
+ {
+  "src": "Lasagna with meat sauce, frozen, prepared",
+  "zh": "肉酱千层面（即食餐）",
+  "aliases": [
+   "千层面",
+   "lasagne"
+  ],
+  "portions": [
+   {
+    "label": "1 盒（即食餐）",
+    "grams": 400
+   },
+   {
+    "label": "一份 250g",
+    "grams": 250
+   }
+  ],
+  "default": "1 盒（即食餐）"
+ },
+ {
+  "src": "Macaroni and cheese, frozen entree",
+  "zh": "芝士通心粉（即食餐）",
+  "aliases": [
+   "奶酪通心粉",
+   "mac and cheese"
+  ],
+  "portions": [
+   {
+    "label": "1 盒（即食餐）",
+    "grams": 400
+   },
+   {
+    "label": "一份 250g",
+    "grams": 250
+   }
+  ],
+  "default": "1 盒（即食餐）"
+ },
+ {
+  "src": "Restaurant, Italian, spaghetti with meat sauce",
+  "zh": "肉酱意面",
+  "aliases": [
+   "意大利肉酱面",
+   "spaghetti bolognese",
+   "spag bol"
+  ],
+  "portions": [
+   {
+    "label": "1 盘 350g",
+    "grams": 350
+   },
+   {
+    "label": "一份 250g",
+    "grams": 250
+   }
+  ],
+  "default": "1 盘 350g"
+ },
+ {
+  "src": "Fast foods, submarine sandwich, ham on white bread with lettuce and tomato",
+  "zh": "火腿三明治（白面包）",
+  "aliases": [
+   "三明治",
+   "ham sandwich"
+  ],
+  "portions": [
+   {
+    "label": "1 份（超市三明治）",
+    "grams": 180
+   },
+   {
+    "label": "1 个（6寸潜艇堡）",
+    "grams": 220
+   }
+  ],
+  "default": "1 份（超市三明治）"
+ },
+ {
+  "src": "Chicken pot pie, frozen entree, prepared",
+  "zh": "鸡肉派（烤好）",
+  "aliases": [
+   "鸡肉馅饼",
+   "chicken pie"
+  ],
+  "portions": [
+   {
+    "label": "1 个（单人份）",
+    "grams": 220
+   }
+  ],
+  "default": "1 个（单人份）"
+ }
+]
