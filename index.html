@@ -449,7 +449,7 @@
    kcal_target 1900 → 2000（他定的数；分析建议过 2200）：那 18 天他日均吃 2105
    却正好按计划速度在掉，说明 1900 是照着偏低的 2300 算出来的、本来就定严了。 */
 var BUILD = {
-  version: "1.16.0",
+  version: "1.17.0",
   built: "2026-10-06",
   kcal_target: 2000,     // 减脂目标：晨重 82.5kg → 78kg，每周约 −0.4~0.5kg
   tdee: 2600,            // 校准常数，随周报更新；不是当日实测消耗
@@ -946,11 +946,14 @@ var AI_SYS_LABEL = "你是营养标签识别器。只输出一个 JSON 对象，
   '{"name":"品牌+食物名(中文)","per_100g":{"kcal":0,"protein":0,"fat":0,"carb":0},' +
   '"portions":[{"label":"整包","grams":0}],"default_portion":"整包",' +
   '"pack_grams":整包或每份的克数(标签没写就用null),"pack_kcal":同一份量对应的总热量(没写就用null),' +
-  '"note":"哪些数字是标签实读、哪些是估算"}。' +
+  '"note":"哪些数字是标签实读、哪些是估算",' +
+  '"read":{"kcal":true,"protein":true,"fat":true,"carb":true},' +
+  '"search":"用包装上的原文写：品牌 产品全名 规格（如 Tesco Strawberry Compote with Granola and Greek Style Yogurt 180g），供上网查",' +
+  '"barcode":"照片里看得清的条形码数字，看不到就用null"}。' +
   "规则：多张照片是同一个食物的不同面（外包装/成分表），合并成一条；per_100g 全部用每100克数值；" +
   "per_100g 只取标签上「每100克」那一列，不要取「每份」那一列；脂肪取总脂肪那一行（不是其中的饱和脂肪），碳水取总碳水那一行（不是其中的糖）；" +
   "标签只给千焦(kJ)时除以4.184换成kcal；pack_grams 和 pack_kcal 必须对应同一份量，照抄标签不要换算；" +
-  "看不清或没有的字段按同类食物估算并在 note 里说明；portions 给1-3个常用份量（整包/一份/半盒等，含克数）。";
+  "看不清或没有的字段按同类食物估算并在 note 里说明，同时在 read 里把这个字段标成 false（只有在标签上清楚读到的才标 true）；portions 给1-3个常用份量（整包/一份/半盒等，含克数）。";
 var AI_SYS_MEAL = "你是饮食热量估算器。用户给出一餐的照片或文字描述。只输出一个 JSON 对象，不要任何其他文字、不要代码块标记。格式：" +
   '{"items":[{"name":"食物名(中文)","grams":0,"per_100g":{"kcal":0,"protein":0,"fat":0,"carb":0}}],"note":"整体假设与不确定性"}。' +
   "规则：把这一餐拆成1-6样食物，每样给估计克数(grams)和每100克营养(per_100g)；多张照片属于同一餐；" +
@@ -964,7 +967,7 @@ function aiRequest(model, sys, userContent) {
     headers: { "Content-Type": "application/json", "Authorization": "Bearer " + AI.key },
     signal: ctrl ? ctrl.signal : undefined,
     /* 只给确认接受 temperature 0 的老型号传 0；gpt-5/6、o 系列、Claude Sonnet 5 起只接受默认值，传了会报错 */
-    body: JSON.stringify(/^(gpt-4|gemini-2|claude-haiku-4)/.test(model)
+    body: JSON.stringify(/^(gpt-4|gemini-2|claude-haiku-4)/.test(model) && !/search/.test(model)
       ? { model: model, temperature: 0, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] }
       : { model: model, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] })
   }).then(function (r) {
@@ -1036,6 +1039,80 @@ function compareSpecs(a, b) {
   });
   return diffs.length ? ["复核模型读数不同：" + diffs.join("、") + "——建议对着标签核一遍"] : [];
 }
+/* ── 标签没读全时上网补（v1.17.0，用户要求）─────────────────────────
+   触发：识别模型说有字段没看清（read=false），或读数没通过算术自检。
+   先用照片里读到的条形码查 Open Food Facts（免费）；查不到再让 ChatAnywhere 的联网搜索模型去找官网营养表
+   （按次另收搜索费，只在没读全时才用）。只替换没看清的字段；读数自相矛盾而网上那份自洽时，四个数整套换成网上的。
+   查不到就保留原来的估算，并在提示里说清楚。 */
+var AI_SEARCH_MODEL = "gpt-4o-mini-search-preview";   /* ChatAnywhere 最便宜的联网搜索模型（2026-10 价目页） */
+var AI_SYS_WEB = "你是营养数据查找员。用网络搜索找指定商品的营养成分表，优先超市官网或品牌官网，其次 Open Food Facts 等数据库。" +
+  "只输出一个 JSON 对象，不要任何其他文字、不要代码块标记。格式：" +
+  '{"found":true,"matched_name":"网页上的商品名","per_100g":{"kcal":0,"protein":0,"fat":0,"carb":0,"fiber":0},"pack_grams":null,"source":"网址"}。' +
+  "规则：必须是同一品牌同一款商品，找不到就输出 {\"found\":false}，不要拿相似商品凑；per_100g 用每100克那一列；" +
+  "脂肪取总脂肪、碳水取总碳水；只有千焦时除以4.184换成千卡。";
+function webCheck(per, fiber) {
+  var calc = 4 * per.protein + 9 * per.fat + 4 * per.carb + 2 * (fiber || 0);
+  return per.kcal < 20 || Math.abs(calc - per.kcal) <= Math.max(8, per.kcal * 0.1);
+}
+function webParse(txt) {
+  var s = String(txt).replace(/```json|```/g, "");
+  var a = s.indexOf("{"), b = s.lastIndexOf("}");
+  if (a < 0 || b <= a) return null;
+  var o; try { o = JSON.parse(s.slice(a, b + 1)); } catch (e) { return null; }
+  if (!o || o.found !== true || !o.per_100g) return null;
+  function num(x, hi) { x = Number(x); return (isFinite(x) && x >= 0 && x <= hi) ? Math.round(x * 10) / 10 : null; }
+  var per = { kcal: num(o.per_100g.kcal, 900), protein: num(o.per_100g.protein, 100), fat: num(o.per_100g.fat, 100), carb: num(o.per_100g.carb, 100) };
+  if (per.kcal == null || per.protein == null || per.fat == null || per.carb == null) return null;
+  per.kcal = Math.round(per.kcal);
+  return { per_100g: per, fiber: num(o.per_100g.fiber, 100) || 0,
+           src: (String(o.matched_name || "").slice(0, 40) + " " + String(o.source || "").slice(0, 80)).trim() };
+}
+function webFromBarcode(code) {
+  if (!code) return Promise.resolve(null);
+  return fetch("https://world.openfoodfacts.org/api/v2/product/" + code + ".json?fields=" + OFF_FIELDS).then(function (r) {
+    return r.ok ? r.json() : null;
+  }).then(function (j) {
+    var sp = j && j.status === 1 && j.product ? offToSpec(j.product, code) : null;
+    if (!sp || [sp.per_100g.protein, sp.per_100g.fat, sp.per_100g.carb].some(function (x) { return x == null; })) return null;
+    return { per_100g: sp.per_100g, fiber: sp.extra.fiber || 0, src: "Open Food Facts 条形码 " + code + "（" + sp.name + "）" };
+  }).catch(function () { return null; });
+}
+function webFromSearch(spec) {
+  var q = "商品：" + (spec.search || spec.name) + "\n中文名：" + spec.name +
+    (spec.pack_grams ? "\n规格：" + spec.pack_grams + "g" : "") +
+    (spec.unread.indexOf("kcal") < 0 ? "\n标签上读到每100克 " + spec.per_100g.kcal + " 千卡（可用来确认是不是同一款）" : "");
+  return aiRequest(AI_SEARCH_MODEL, AI_SYS_WEB, q).then(webParse);
+}
+/* 返回 Promise；会直接改 spec 和 v（warns/oks） */
+function webFill(spec, v) {
+  /* 页面原有的自检只抓差 30% 以上的大错；决定要不要上网查时收紧到 15%（看串行把饱和脂肪当脂肪，常常只差 20-30%） */
+  var p0 = spec.per_100g, calc0 = 4 * p0.protein + 9 * p0.fat + 4 * p0.carb;
+  var badRead = v.warns.length > 0 || (p0.kcal >= 40 && Math.abs(calc0 - p0.kcal) > Math.max(15, p0.kcal * 0.15));
+  if (!spec.unread.length && !badRead) return Promise.resolve();
+  var why = spec.unread.length ? "标签上没看清：" + spec.unread.map(function (k) {
+    return { kcal: "热量", protein: "蛋白", fat: "脂肪", carb: "碳水" }[k]; }).join("、")
+    : "照片读出的数自相矛盾（标 " + p0.kcal + " 千卡，按碳蛋脂算约 " + Math.round(calc0) + "）";
+  var searchErr = null;
+  return webFromBarcode(spec.barcode).then(function (w) {
+    if (w) return w;
+    return webFromSearch(spec).catch(function (e) { searchErr = e && e.message ? e.message : String(e); return null; });
+  }).then(function (w) {
+    if (!w) {
+      v.warns.push(why + "，网上也没查到同款" + (searchErr ? "（联网搜索出错：" + searchErr + "）" : "") +
+        "，这些数字是 AI 按同类食物估的");
+      return;
+    }
+    var fields = spec.unread.slice();
+    /* 读到的数自相矛盾、网上那份自洽：整套换成网上的 */
+    if (badRead && webCheck(w.per_100g, w.fiber)) fields = ["kcal", "protein", "fat", "carb"];
+    if (!fields.length) { v.warns.push("网上查到的另一份数据（" + w.src + "）：每100克 " + w.per_100g.kcal + " 千卡，可对照"); return; }
+    fields.forEach(function (k) { spec.per_100g[k] = w.per_100g[k]; });
+    var nm = fields.map(function (k) { return { kcal: "热量", protein: "蛋白", fat: "脂肪", carb: "碳水" }[k]; }).join("、");
+    v.warns.push(why + "；" + nm + "已换成网上查到的数（来源：" + w.src + "），不是你拍的标签，有空对一下");
+    v.warns = v.warns.filter(function (x) { return !/对不上|不一致/.test(x) || fields.length < 4; });
+    spec.note = (spec.note + "；网上补：" + nm + "（" + w.src + "）").slice(0, 200);
+  });
+}
 function finishAddFood(spec, warns, oks) {
   var note = "AI 识别：" + spec.note;
   if (oks && oks.length) note += "；" + oks.join("；");
@@ -1065,7 +1142,10 @@ function aiParseFood(txt) {
   function optNum(x, lo, hi) { x = Number(x); return (isFinite(x) && x >= lo && x <= hi) ? x : null; }
   return { name: o.name.slice(0, 30), per_100g: { kcal: Math.round(kcal), protein: pr, fat: ft, carb: cb },
            portions: ports, default_portion: dp, note: String(o.note || "").slice(0, 120),
-           pack_grams: optNum(o.pack_grams, 1, 5000), pack_kcal: optNum(o.pack_kcal, 1, 10000) };
+           pack_grams: optNum(o.pack_grams, 1, 5000), pack_kcal: optNum(o.pack_kcal, 1, 10000),
+           unread: ["kcal", "protein", "fat", "carb"].filter(function (k) { return !(o.read && o.read[k] === true); }),
+           search: String(o.search || "").replace(/\s+/g, " ").trim().slice(0, 120),
+           barcode: /^\d{8,14}$/.test(String(o.barcode || "").replace(/\s/g, "")) ? String(o.barcode).replace(/\s/g, "") : null };
 }
 function aiAddFood(spec) {
   /* finishAddFood 已经加过前缀，这里别再加一遍 */
@@ -1207,18 +1287,21 @@ function aiPhotosReady(urls) {
       var spec = aiParseFood(txt);
       if (!spec) { alert("AI 回复解析失败，换张更清楚的照片试试。"); return; }
       var v = validateFoodSpec(spec);
-      if (!AI.model2) { finishAddFood(spec, v.warns, v.oks); return; }
-      /* 可选的第二模型复核：同样的照片再读一遍，对比读数 */
-      return aiRequest(AI.model2, AI_SYS_LABEL, content).then(function (txt2) {
-        var spec2 = aiParseFood(txt2);
-        if (spec2) {
-          var d = compareSpecs(spec, spec2);
-          if (d.length) v.warns = v.warns.concat(d); else v.oks.push("双模型复核一致");
-        } else v.warns.push("复核模型回复无法解析，未完成复核");
-        finishAddFood(spec, v.warns, v.oks);
-      }).catch(function () {
-        v.warns.push("复核模型调用失败，未完成复核");
-        finishAddFood(spec, v.warns, v.oks);
+      /* 没读全或读数自相矛盾 → 先上网补，再（可选）复核 */
+      return webFill(spec, v).then(function () {
+        if (!AI.model2) { finishAddFood(spec, v.warns, v.oks); return; }
+        /* 可选的第二模型复核：同样的照片再读一遍，对比读数 */
+        return aiRequest(AI.model2, AI_SYS_LABEL, content).then(function (txt2) {
+          var spec2 = aiParseFood(txt2);
+          if (spec2) {
+            var d = compareSpecs(spec, spec2);
+            if (d.length) v.warns = v.warns.concat(d); else v.oks.push("双模型复核一致");
+          } else v.warns.push("复核模型回复无法解析，未完成复核");
+          finishAddFood(spec, v.warns, v.oks);
+        }).catch(function () {
+          v.warns.push("复核模型调用失败，未完成复核");
+          finishAddFood(spec, v.warns, v.oks);
+        });
       });
     });
   } else {
@@ -2606,7 +2689,7 @@ function renderExport() {
     '<div class="note">密钥只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 ChatAnywhere。' +
     '列表按花费从低到高排，价格是和原默认 gpt-4.1-mini 比；日常用默认的 gemini-3.8-flash 就好（新一代、价钱差不多，一次识别约 1-3 分钱）。复核模型最好和识别模型不同厂商。选的模型调不通时会自动用 gpt-4.1-mini 再试一次，' +
     '标签特别小或印刷差再换更强的。复核模型选一个后，成分表入库会用两个模型各读一遍、不一致时提醒' +
-    '（费用×2，仍是几分钱级）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
+    '（费用×2，仍是几分钱级）。成分表没拍清时，会先按照片里的条形码查免费数据库，查不到再用联网搜索模型去网上找同款的官方营养表，把没看清的数字补上（联网搜索按次另收费，只在没读全时才用）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
     '<div class="mod"><button class="btn solid" data-act="do-export">导出全部数据</button>' +
     '<div class="note">每周一次。文件会出现在「文件」App 的下载项里，' +
     '打开 OneDrive 把它移到 <b style="font-family:var(--f-num)">健康数据/calorie-tracker/exports/</b>。' +
