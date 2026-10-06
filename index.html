@@ -449,8 +449,8 @@
    kcal_target 1900 → 2000（他定的数；分析建议过 2200）：那 18 天他日均吃 2105
    却正好按计划速度在掉，说明 1900 是照着偏低的 2300 算出来的、本来就定严了。 */
 var BUILD = {
-  version: "1.15.4",
-  built: "2026-10-05",
+  version: "1.16.0",
+  built: "2026-10-06",
   kcal_target: 2000,     // 减脂目标：晨重 82.5kg → 78kg，每周约 −0.4~0.5kg
   tdee: 2600,            // 校准常数，随周报更新；不是当日实测消耗
   protein_target: 150,
@@ -848,22 +848,36 @@ var AI_CFG_STORE = "caltrk7f3a.ai.v1";
 var UF_KEY = "caltrk7f3a.userfoods.v1";   // 手机上拍照入库的个人食物，随导出带出
 var AI = loadObj(AI_CFG_STORE);
 if (!AI.base) AI.base = "https://api.chatanywhere.org";
-if (!AI.model) AI.model = "gpt-4.1-mini";
+var AI_DEFAULT_MODEL = "gemini-3.8-flash";
+var AI_FALLBACK_MODEL = "gpt-4.1-mini";   /* 新模型调不通时自动退回的老默认，2026-09 前一直在用、确认能读图 */
+if (!AI.model) AI.model = AI_DEFAULT_MODEL;
 /* 2026-09-01 一次性迁移：旧默认 gpt-4o-mini 是页面自动填的（用户没主动选过），升到 4.1-mini */
 if (AI.key && AI.model === "gpt-4o-mini" && !AI.m41) { AI.model = "gpt-4.1-mini"; AI.m41 = 1; persist(AI_CFG_STORE, AI); }
-/* 下拉候选：全部为 ChatAnywhere 在售、支持图片输入的模型（2026-09 查证）。价格注释见「导出」页说明 */
+/* 2026-10-06 一次性迁移（用户要求）：旧型号换成同价位的新一代；用户之后再改回去不会被覆盖 */
+if (!AI.m26) {
+  var M26 = { "gpt-4.1-mini": "gemini-3.8-flash", "gemini-2.5-flash": "gemini-3.8-flash", "gpt-4o-mini": "gpt-6-luna",
+    "gpt-5-mini": "gpt-6-luna", "gpt-4.1": "gpt-6.1-sol", "claude-sonnet-5": "claude-sonnet-5-5" };
+  if (M26[AI.model]) AI.model = M26[AI.model];
+  /* 复核模型要和识别模型不同厂商，才有互查的意义 */
+  if (AI.model2 && M26[AI.model2]) AI.model2 = /^gemini/.test(AI.model) ? "gpt-6-luna" : "gemini-3.8-flash";
+  AI.m26 = 1;
+  persist(AI_CFG_STORE, AI);
+}
+/* 下拉候选：ChatAnywhere 在售模型（2026-10-06 查其价目页，9/30 版），按每次识别的大致花费从低到高。
+   价格（CA币/千 token，输入/输出）：gpt-6-luna 0.0007/0.0035；gemini-3.8-flash 0.003/0.015；
+   gpt-4.1-mini 0.0028/0.0112；gpt-5.4-mini 0.00525/0.0315；gpt-6.1-sol 0.014/0.07；claude-sonnet-5-5 0.01/0.05 */
 var MODEL_OPTS = [
-  ["gpt-4.1-mini", "gpt-4.1-mini（推荐：准与省的平衡）"],
-  ["gemini-2.5-flash", "gemini-2.5-flash（更便宜，看图也强）"],
-  ["gpt-4o-mini", "gpt-4o-mini（最省，读小字稍弱）"],
-  ["gpt-5-mini", "gpt-5-mini（更新一代，稍贵）"],
-  ["gpt-4.1", "gpt-4.1（高准确，约 5 倍价）"],
-  ["claude-sonnet-5", "claude-sonnet-5（最准也最贵）"]
+  ["gemini-3.8-flash", "gemini-3.8-flash（推荐）"],
+  ["gpt-6-luna", "gpt-6-luna（最省，约 1/4 价）"],
+  ["gpt-5.4-mini", "gpt-5.4-mini（约 2-3 倍价）"],
+  ["gpt-6.1-sol", "gpt-6.1-sol（高准确，约 5 倍价）"],
+  ["claude-sonnet-5-5", "claude-sonnet-5.5（最准也最贵）"],
+  ["gpt-4.1-mini", "gpt-4.1-mini（旧默认）"]
 ];
 var MODEL2_OPTS = [
   ["", "不启用（默认）"],
-  ["gemini-2.5-flash", "gemini-2.5-flash（推荐：跨厂商互查）"],
-  ["gpt-4.1-mini", "gpt-4.1-mini"],
+  ["gpt-6-luna", "gpt-6-luna（推荐）"],
+  ["gemini-3.8-flash", "gemini-3.8-flash（识别用 GPT 时选）"],
   ["claude-haiku-4-5-20251001", "claude-haiku-4.5"]
 ];
 function modelSelHtml(id, inId, opts, current) {
@@ -922,7 +936,7 @@ function saveAiKey() {
     }
     return sel.value;
   }
-  AI.model = pickModel("ai-model-sel", "ai-model-in") || "gpt-4.1-mini";
+  AI.model = pickModel("ai-model-sel", "ai-model-in") || AI_DEFAULT_MODEL;
   var m2 = pickModel("ai-model2-sel", "ai-model2-in");
   if (m2) AI.model2 = m2; else delete AI.model2;
   persist(AI_CFG_STORE, AI);
@@ -949,10 +963,10 @@ function aiRequest(model, sys, userContent) {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": "Bearer " + AI.key },
     signal: ctrl ? ctrl.signal : undefined,
-    /* gpt-5 / o 系列和 Claude Sonnet 5 只接受默认 temperature，传 0 会报错 */
-    body: JSON.stringify(/^(gpt-5|o\d|claude-sonnet-5)/.test(model)
-      ? { model: model, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] }
-      : { model: model, temperature: 0, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] })
+    /* 只给确认接受 temperature 0 的老型号传 0；gpt-5/6、o 系列、Claude Sonnet 5 起只接受默认值，传了会报错 */
+    body: JSON.stringify(/^(gpt-4|gemini-2|claude-haiku-4)/.test(model)
+      ? { model: model, temperature: 0, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] }
+      : { model: model, messages: [{ role: "system", content: sys }, { role: "user", content: userContent }] })
   }).then(function (r) {
     if (!r.ok) throw new Error("HTTP " + r.status + (r.status === 401 ? "（密钥无效？）" : ""));
     return r.json();
@@ -967,7 +981,17 @@ function aiChat(sys, userContent, onOk) {
   if (aiBusy) return;
   aiBusy = true;
   renderAiMod();   /* 真正发请求了才显示「识别中」 */
-  aiRequest(AI.model, sys, userContent).then(function (txt) {
+  var fellBack = null;
+  aiRequest(AI.model, sys, userContent).catch(function (e) {
+    /* 选的模型被服务方拒绝（下架、改名、不收图片等，都是 HTTP 4xx/5xx）就用老默认再试一次；
+       密钥无效（401）和超时不重试 */
+    var m = e && e.message ? e.message : "";
+    if (AI.model === AI_FALLBACK_MODEL || !/^HTTP /.test(m) || /^HTTP 401/.test(m)) throw e;
+    fellBack = m;
+    return aiRequest(AI_FALLBACK_MODEL, sys, userContent);
+  }).then(function (txt) {
+    if (fellBack) alert("识别模型 " + AI.model + " 这次没调通（" + fellBack + "），已自动改用 " + AI_FALLBACK_MODEL +
+      " 完成识别。老是这样的话，去「导出」页换个模型。");
     return onOk(txt);
   }).catch(function (e) {
     alert("AI 识别失败：" + (e && e.message ? e.message : e) + "\n可以先用「记一条估计」，回头再补。");
@@ -2575,12 +2599,12 @@ function renderExport() {
     '<input id="ai-key-in" type="password" autocomplete="off" placeholder="粘贴密钥（留空=不改；输「清除」=删掉）" ' +
       'style="width:100%;margin:8px 0 0;padding:10px;border:1px solid var(--hair);border-radius:8px;background:var(--card);color:inherit;font-size:14px">' +
     '<div class="rowline" style="margin-top:10px"><span class="k">识别模型</span></div>' +
-    modelSelHtml("ai-model-sel", "ai-model-in", MODEL_OPTS, AI.model || "gpt-4.1-mini") +
+    modelSelHtml("ai-model-sel", "ai-model-in", MODEL_OPTS, AI.model || AI_DEFAULT_MODEL) +
     '<div class="rowline" style="margin-top:10px"><span class="k">复核模型（可选）</span></div>' +
     modelSelHtml("ai-model2-sel", "ai-model2-in", MODEL2_OPTS, AI.model2 || "") +
     '<button class="btn solid" data-act="save-ai-key" style="margin-top:10px">保存设置</button>' +
     '<div class="note">密钥只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 ChatAnywhere。' +
-    '列表里都是支持看图的模型，按性价比排序；日常用默认的 gpt-4.1-mini 就好（一次识别约 1-3 分钱），' +
+    '列表按花费从低到高排，价格是和原默认 gpt-4.1-mini 比；日常用默认的 gemini-3.8-flash 就好（新一代、价钱差不多，一次识别约 1-3 分钱）。复核模型最好和识别模型不同厂商。选的模型调不通时会自动用 gpt-4.1-mini 再试一次，' +
     '标签特别小或印刷差再换更强的。复核模型选一个后，成分表入库会用两个模型各读一遍、不一致时提醒' +
     '（费用×2，仍是几分钱级）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
     '<div class="mod"><button class="btn solid" data-act="do-export">导出全部数据</button>' +
