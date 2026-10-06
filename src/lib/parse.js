@@ -57,8 +57,17 @@ export function aiParseMeal(txt) {
     var kcal = num(it.per_100g.kcal, 0, 900);
     if (g == null || kcal == null) continue;
     function m(x) { var v = num(x, 0, 100); return v == null ? 0 : Math.round(v * 10) / 10; }
-    items.push({ name: it.name.slice(0, 30), grams: Math.round(g),
-      per_100g: { kcal: Math.round(kcal), protein: m(it.per_100g.protein), fat: m(it.per_100g.fat), carb: m(it.per_100g.carb) } });
+    var item = { name: it.name.slice(0, 30), grams: Math.round(g),
+      per_100g: { kcal: Math.round(kcal), protein: m(it.per_100g.protein), fat: m(it.per_100g.fat), carb: m(it.per_100g.carb) } };
+    /* 份量档位（v2.2）：去重、按克数排，最多 4 个 */
+    var seen = {};
+    var ps = (Array.isArray(it.portions) ? it.portions : []).filter(function (p) {
+      return p && typeof p.label === "string" && p.label.trim() && num(p.grams, 1, 2000) != null;
+    }).map(function (p) { return { label: p.label.trim().slice(0, 10), grams: Math.round(Number(p.grams)) }; })
+      .filter(function (p) { if (seen[p.grams]) return false; seen[p.grams] = 1; return true; })
+      .sort(function (a, b) { return a.grams - b.grams; }).slice(0, 4);
+    if (ps.length) item.portions = ps;
+    items.push(item);
   }
   if (!items.length) return null;
   var note = String(o.note || "").slice(0, 160);
@@ -68,7 +77,9 @@ export function aiParseMeal(txt) {
     if (w) mealWarns.push(w);
   });
   if (mealWarns.length) note += "；⚠ " + mealWarns.join("；");
-  return { items: items, note: note.slice(0, 300) };
+  var meal = { items: items, note: note.slice(0, 300) };
+  if (typeof o.heard === "string" && o.heard.trim()) meal.heard = o.heard.trim().slice(0, 120);
+  return meal;
 }
 
 /* 12 位的 UPC-A 补 0 成 EAN-13，本地比对和查询都用同一种写法 */

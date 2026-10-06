@@ -1,3 +1,4 @@
+import { eatenGeneric, searchGeneric } from "../generic.js";
 import { esc } from "../lib/util.js";
 import { USER_FOODS, allFoods } from "../store.js";
 import { addedCmp, agoLabel, recentCmp, usageStats } from "./today.js";
@@ -29,7 +30,8 @@ export function renderLibrary() {
   }
   var u = usageStats();
   var list = allFoods().filter(match);
-  var eaten = list.filter(function (f) { return u.last[f.id]; }).sort(recentCmp(u)).slice(0, LIB_RECENT_MAX);
+  /* 吃过的通用食物也进「最近吃过」 */
+  var eaten = list.concat(eatenGeneric(u).filter(match)).filter(function (f) { return u.last[f.id]; }).sort(recentCmp(u)).slice(0, LIB_RECENT_MAX);
   var top = {};
   eaten.forEach(function (f) { top[f.id] = 1; });
   /* 「最近吃过」之外的一律按入库顺序，新的在上；吃过的仍带上次记录的日期 */
@@ -49,6 +51,12 @@ export function renderLibrary() {
   if (lib.length) {
     h += '<div class="mod-title" style="padding:14px 0 4px">食物库</div>' +
       lib.map(function (f) { return row(f, ago(f)); }).join("");
+  }
+  /* 通用食物库只在搜索时列出（约 500 条，平时不占地方） */
+  var gen = q ? searchGeneric(libQuery, 30, u).filter(function (f) { return !top[f.id]; }) : [];
+  if (gen.length) {
+    h += '<div class="mod-title" style="padding:14px 0 4px">通用食物库 · USDA 平均值</div>' +
+      gen.map(function (f) { return row(f, ago(f)); }).join("");
   }
   el.innerHTML = h || '<div class="empty">没有匹配的食物。</div>';
 }

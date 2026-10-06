@@ -13,7 +13,9 @@ await browser.close();
 const errors = snaps[snaps.length - 1].errors;
 console.log(`${snaps.length - 1} steps run on ${dir}/; page errors: ${errors.length ? errors.join(" | ") : "none"}`);
 let ok = !errors.length;
-const bc = spawn("node", [new URL("./barcode.mjs", import.meta.url).pathname, srv.url], { stdio: "inherit" });
-if (await new Promise(done => bc.on("exit", done)) !== 0) ok = false;
+for (const t of ["./barcode.mjs", "./voice.mjs"]) {
+  const c = spawn("node", [new URL(t, import.meta.url).pathname, srv.url], { stdio: "inherit" });
+  if (await new Promise(done => c.on("exit", done)) !== 0) ok = false;
+}
 srv.close();
 process.exit(ok ? 0 : 1);

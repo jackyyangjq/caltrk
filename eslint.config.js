@@ -6,10 +6,10 @@ export default [
       ecmaVersion: 2022, sourceType: "module",
       globals: {
         window: "readonly", document: "readonly", localStorage: "readonly", location: "readonly", navigator: "readonly",
-        fetch: "readonly", setTimeout: "readonly", clearTimeout: "readonly", setInterval: "readonly", alert: "readonly",
+        fetch: "readonly", setTimeout: "readonly", clearTimeout: "readonly", setInterval: "readonly", clearInterval: "readonly", alert: "readonly",
         confirm: "readonly", matchMedia: "readonly", URL: "readonly", Blob: "readonly", FileReader: "readonly", Image: "readonly",
         AbortController: "readonly", Promise: "readonly", ZXingWASM: "readonly", MediaRecorder: "readonly",
-        AudioContext: "readonly", OfflineAudioContext: "readonly", btoa: "readonly", atob: "readonly", console: "readonly"
+        performance: "readonly", AudioContext: "readonly", OfflineAudioContext: "readonly", btoa: "readonly", atob: "readonly", console: "readonly"
       }
     },
     rules: { "no-undef": "error", "no-unused-vars": ["warn", { vars: "local", args: "none", caughtErrors: "none" }] }

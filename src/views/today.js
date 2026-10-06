@@ -1,12 +1,14 @@
 import { aiBusy, aiReady } from "../ai.js";
 import { BUILD } from "../build.js";
 import { COMBOS, FOOD_LIBRARY, UF_SAME_AS } from "../data/foods.js";
+import { eatenGeneric, searchGeneric } from "../generic.js";
 import { addedCmpOf, agoLabelAt, rankChips, recentCmpOf, usageStatsOf } from "../lib/ranking.js";
 import { MEAL_ORDER, dateShift, dayLabel, dayTotals, esc, kcalOf, mealOf, nowTs, todayStr, weekdayOf } from "../lib/util.js";
 import { comboKcal } from "../sheets.js";
 import { entriesOfView, flashId, setFlash, syncTopbar, viewDate, viewingToday } from "../state.js";
 import { DB, K, allFoods, dayComplete, entriesOn, lastGramsOf, persist, storeBroken } from "../store.js";
 import { TRAINING_PRESETS, trainingKcal, trainingMin, trainingOfView, trainingOn } from "../training.js";
+import { VOICE_MAX_S, voiceSt } from "../voice.js";
 
 
 /* ── 今日页 ─────────────────────────────────────────────── */
@@ -24,7 +26,17 @@ export function agoLabel(ts) { return agoLabelAt(ts, todayStr()); }
 export function usageStats() { return usageStatsOf(DB.log, UF_SAME_AS, todayStr(), mealOf(nowTs())); }
 export function addedCmp() { return addedCmpOf(FOOD_LIBRARY); }
 export function recentCmp(u) { return recentCmpOf(u, FOOD_LIBRARY); }
-export function chipCandidates(n) { return rankChips(allFoods(), usageStats(), FOOD_LIBRARY, n); }
+export function chipCandidates(n) {
+  var u = usageStats();
+  return rankChips(allFoods().concat(eatenGeneric(u)), u, FOOD_LIBRARY, n);
+}
+/* 搜索结果里的一行（食物库、我的食物、通用库共用） */
+function foodRow(f) {
+  var dp = f.portions.find(function (p) { return p.label === f.default_portion; }) || f.portions[0];
+  return '<button class="r-item" data-act="open-food" data-food="' + f.id + '">' +
+    '<span class="nm"><i class="dot ' + (f.confidence === "high" ? "hi" : "lo") + '"></i><span>' + esc(f.name) + '</span></span>' +
+    '<span class="kc">' + esc(dp.label) + ' · ' + kcalOf(f, dp.grams) + '</span></button>';
+}
 export function bannerDismissedToday(kind) {
   var d = DB.settings.banner_dismiss || {};
   return d[kind] === todayStr();
@@ -150,7 +162,13 @@ export function renderTodayTop() {
 export function renderAiMod() {
   var el = document.getElementById("ai-mod");
   var h = '<div class="mod"><div class="mod-title">AI 记录</div>';
-  if (aiReady() && aiBusy) {
+  if (voiceSt) {
+    h += '<div class="voice-row"><span class="rec-dot"></span><span class="k">' + (voiceSt.t0 ? "录音中" : "正在打开麦克风…") + '</span>' +
+      '<span class="t" id="voice-t">0 秒 / ' + VOICE_MAX_S + '</span></div>' +
+      '<div class="ai-btns"><button class="btn solid" data-act="voice-stop">说完了</button>' +
+      '<button class="btn plain" data-act="voice-cancel">取消</button></div>' +
+      '<div class="hint">说吃了什么、大概多少，比如「一碗牛肉面，加了个卤蛋，还有半罐可乐」。</div>';
+  } else if (aiReady() && aiBusy) {
     h += '<div class="ai-btns"><button class="btn" disabled>识别中…</button></div>' +
       '<div class="hint">AI 正在分析，最多约一分钟。</div>';
   } else {
@@ -159,10 +177,11 @@ export function renderAiMod() {
       '<button class="btn solid" data-act="ai-meal-photo">🍽 拍这一餐</button>' +
       '<button class="btn" data-act="ai-label-photo">📷 拍成分表入库</button></div>' +
       '<div class="ai-text-row">' +
+      '<button class="btn mic" data-act="ai-voice" aria-label="说一说这一餐">🎤</button>' +
       '<input id="ai-meal-text" type="text" placeholder="或文字描述这一餐…">' +
       '<button class="btn" data-act="ai-meal-text">估算</button></div>' +
       (aiReady()
-        ? '<div class="hint">可多选照片（正面＋成分表算同一个）；选好照片才调用 AI；估算先确认再记录。文字估算的每样东西确认后会存进「我的食物」，下次直接点。</div>'
+        ? '<div class="hint">可多选照片（正面＋成分表算同一个）；选好照片才调用 AI；估算先确认再记录。🎤 是说一段话来估算；文字和语音估算的每样东西确认后会存进「我的食物」，下次直接点。</div>'
         : '<div class="hint" style="color:var(--over)">还没填 AI 密钥（换了网址或清过浏览器数据后要重新填）。点上面任一按钮会带你去「导出」页填。</div>');
   }
   el.innerHTML = h + '</div>';
@@ -173,19 +192,17 @@ export function renderQuickBody() {
   var h = "";
   if (searchQuery) {
     var q = searchQuery.toLowerCase();
+    var u = usageStats();
     var hits = allFoods().filter(function (f) { return f.name.toLowerCase().indexOf(q) >= 0 || f.id.indexOf(q) >= 0; });
-    hits.sort(recentCmp(usageStats()));   /* 最近吃过的排最上面 */
+    hits.sort(recentCmp(u));   /* 最近吃过的排最上面 */
+    var gen = searchGeneric(searchQuery, 12, u);
     h += '<div class="results">';
     /* 输入的是一串 8–14 位数字：多半是手抄的条形码 */
     var qDigits = searchQuery.replace(/\s/g, "");
     if (/^\d{8,14}$/.test(qDigits)) h += '<button class="r-guess" data-act="scan-code" data-code="' + qDigits + '">▥ 按条形码 ' + qDigits + ' 查询</button>';
-    hits.forEach(function (f) {
-      var dp = f.portions.find(function (p) { return p.label === f.default_portion; }) || f.portions[0];
-      h += '<button class="r-item" data-act="open-food" data-food="' + f.id + '">' +
-        '<span class="nm"><i class="dot ' + (f.confidence === "high" ? "hi" : "lo") + '"></i><span>' + esc(f.name) + '</span></span>' +
-        '<span class="kc">' + esc(dp.label) + ' · ' + kcalOf(f, dp.grams) + '</span></button>';
-    });
-    if (!hits.length) h += '<div class="r-none">食物库里没有「' + esc(searchQuery) + '」。</div>';
+    hits.forEach(function (f) { h += foodRow(f); });
+    if (gen.length) h += '<div class="mod-title r-sec">通用食物库 · USDA 平均值</div>' + gen.map(foodRow).join("");
+    if (!hits.length && !gen.length) h += '<div class="r-none">食物库里没有「' + esc(searchQuery) + '」。</div>';
     h += '<button class="r-guess" data-act="open-guess">＋ 先记一条估计（' + esc(searchQuery) + '）</button></div>';
   } else {
     h += '<div class="chips">' + COMBOS.map(function (c) {

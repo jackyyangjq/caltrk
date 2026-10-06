@@ -105,10 +105,13 @@ export var AI_SYS_LABEL = "你是营养标签识别器。只输出一个 JSON �
   "per_100g 只取标签上「每100克」那一列，不要取「每份」那一列；脂肪取总脂肪那一行（不是其中的饱和脂肪），碳水取总碳水那一行（不是其中的糖）；" +
   "标签只给千焦(kJ)时除以4.184换成kcal；pack_grams 和 pack_kcal 必须对应同一份量，照抄标签不要换算；" +
   "看不清或没有的字段按同类食物估算并在 note 里说明，同时在 read 里把这个字段标成 false（只有在标签上清楚读到的才标 true）；portions 给1-3个常用份量（整包/一份/半盒等，含克数）。";
-export var AI_SYS_MEAL = "你是饮食热量估算器。用户给出一餐的照片或文字描述。只输出一个 JSON 对象，不要任何其他文字、不要代码块标记。格式：" +
-  '{"items":[{"name":"食物名(中文)","grams":0,"per_100g":{"kcal":0,"protein":0,"fat":0,"carb":0}}],"note":"整体假设与不确定性"}。' +
+export var AI_SYS_MEAL = "你是饮食热量估算器。用户给出一餐的照片、文字描述或一段语音。只输出一个 JSON 对象，不要任何其他文字、不要代码块标记。格式：" +
+  '{"heard":"（只有语音时填）你听到的原话","items":[{"name":"食物名(中文)","grams":0,"per_100g":{"kcal":0,"protein":0,"fat":0,"carb":0},' +
+  '"portions":[{"label":"小碗","grams":0},{"label":"中碗","grams":0},{"label":"大碗","grams":0}]}],"note":"整体假设与不确定性"}。' +
   "规则：把这一餐拆成1-6样食物，每样给估计克数(grams)和每100克营养(per_100g)；多张照片属于同一餐；" +
-  "照片里有营养成分表时优先用标签数值；克数按常见餐具和分量估；拿不准就取常见值并在 note 里说明。";
+  "照片里有营养成分表时优先用标签数值；克数按常见餐具和分量估；拿不准就取常见值并在 note 里说明；" +
+  "portions 给 2-4 个这样东西常见的份量档位，用中国人习惯的说法（小碗/中碗/大碗、半盘/一盘、1 个/2 个、一片、一勺等），" +
+  "每档写上克数，从小到大排，其中一档要和 grams 一致。";
 export var aiBusy = false;
 export function aiRequest(model, sys, userContent) {
   var ctrl = ("AbortController" in window) ? new AbortController() : null;
@@ -131,7 +134,9 @@ export function aiRequest(model, sys, userContent) {
   }).finally(function () { if (timer) clearTimeout(timer); });
 }
 /* onOk 可以返回 Promise（比如复核模型的第二次调用），「识别中」会一直显示到全部完成 */
-export function aiChat(sys, userContent, onOk) {
+/* opts.noFallback：调不通时不退回 AI_FALLBACK_MODEL（比如语音，老模型不收音频）；opts.failHint：失败提示里加的一句 */
+export function aiChat(sys, userContent, onOk, opts) {
+  opts = opts || {};
   if (aiBusy) return;
   aiBusy = true;
   renderAiMod();   /* 真正发请求了才显示「识别中」 */
@@ -140,7 +145,7 @@ export function aiChat(sys, userContent, onOk) {
     /* 选的模型被服务方拒绝（下架、改名、不收图片等，都是 HTTP 4xx/5xx）就用老默认再试一次；
        密钥无效（401）和超时不重试 */
     var m = e && e.message ? e.message : "";
-    if (AI.model === AI_FALLBACK_MODEL || !/^HTTP /.test(m) || /^HTTP 401/.test(m)) throw e;
+    if (opts.noFallback || AI.model === AI_FALLBACK_MODEL || !/^HTTP /.test(m) || /^HTTP 401/.test(m)) throw e;
     fellBack = m;
     return aiRequest(AI_FALLBACK_MODEL, sys, userContent);
   }).then(function (txt) {
@@ -148,7 +153,7 @@ export function aiChat(sys, userContent, onOk) {
       " 完成识别。老是这样的话，去「导出」页换个模型。");
     return onOk(txt);
   }).catch(function (e) {
-    alert("AI 识别失败：" + (e && e.message ? e.message : e) + "\n可以先用「记一条估计」，回头再补。");
+    alert("AI 识别失败：" + (e && e.message ? e.message : e) + "\n" + (opts.failHint || "可以先用「记一条估计」，回头再补。"));
   }).finally(function () {
     aiBusy = false;
     renderAiMod();
@@ -241,14 +246,21 @@ export function aiAddFood(spec) {
 export var MEAL_DRAFT = null;
 export function setMealDraft(v) { MEAL_DRAFT = v; }
 
+/* 文字估算存进「我的食物」时的份量：AI 给的档位（≤3 个）里有和这次克数相同的就用它做默认，没有就补一个「一份 Ng」 */
+export function textFoodPortions(it, g) {
+  var ps = (it.portions || []).slice(0, 3);
+  var hit = ps.filter(function (p) { return p.grams === g; })[0];
+  if (!hit) { hit = { label: "一份 " + g + "g", grams: g }; ps = [hit].concat(ps.slice(0, 2)); }
+  return { portions: ps, def: hit.label };
+}
 export function textFoodFor(it, mealNote) {
   var key = normName(it.name);
   var hit = allFoods().filter(function (f) { return normName(f.name) === key; })[0];
   if (hit) return { food: hit, created: false };
-  var g = Math.round(it.grams);
+  var g = Math.round(it.grams), tp = textFoodPortions(it, g);
   var f = { id: "uf-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5),
             name: it.name, per_100g: it.per_100g,
-            portions: [{ label: "一份 " + g + "g", grams: g }], default_portion: "一份 " + g + "g",
+            portions: tp.portions, default_portion: tp.def,
             confidence: "low", added: todayStr(), src: "text",
             note: ("AI 文字估算：" + (mealNote || "数值按同类食物常见值估算")).slice(0, 300) };
   USER_FOODS.push(f);
@@ -258,6 +270,22 @@ export function mealItemKcal(it) { return it.grams > 0 ? Math.round(it.per_100g.
 export function mealTotal() {
   return MEAL_DRAFT ? MEAL_DRAFT.items.reduce(function (a, it) { return a + mealItemKcal(it); }, 0) : 0;
 }
+/* 份量档位：点一下把这一项的克数换成那一档 */
+export function mealPortionChips(it, i) {
+  if (!it.portions || !it.portions.length) return "";
+  return '<div class="mport" id="mp-' + i + '">' + it.portions.map(function (p) {
+    return '<button class="mp" data-act="meal-portion" data-i="' + i + '" data-g="' + p.grams + '" aria-pressed="' + (p.grams === it.grams) + '">' +
+      esc(p.label) + ' <span>' + p.grams + 'g</span></button>';
+  }).join("") + '</div>';
+}
+export function mealPickPortion(i, g) {
+  var it = MEAL_DRAFT && MEAL_DRAFT.items[i];
+  if (!it || !(g > 0)) return;
+  it.grams = g;
+  var inp = document.querySelector('[data-mg="' + i + '"]');
+  if (inp) { inp.value = g; inp.classList.remove("bad"); }
+  mealRecalc();
+}
 export function openMealSheet(meal) {
   MEAL_DRAFT = meal;
   var rows = meal.items.map(function (it, i) {
@@ -265,12 +293,14 @@ export function openMealSheet(meal) {
       '<input class="m-name" data-mname="' + i + '" value="' + esc(it.name) + '">' +
       '<input class="m-g" data-mg="' + i + '" type="number" inputmode="decimal" min="1" max="' + MAX_G + '" value="' + it.grams + '">' +
       '<span class="m-k" id="mk-' + i + '">' + mealItemKcal(it) + '</span>' +
-      '<button class="m-x" data-act="meal-del" data-i="' + i + '" aria-label="删除此项">✕</button></div>';
+      '<button class="m-x" data-act="meal-del" data-i="' + i + '" aria-label="删除此项">✕</button></div>' +
+      mealPortionChips(it, i);
   }).join("");
   openSheet(
     '<div class="sheet-h"><div class="nm">AI 估算 · 确认后才记录</div>' +
     '<div class="meta">名字和克数都可以改，热量跟着克数变。列：名称 · 克 · kcal</div></div>' +
-    '<div class="sheet-b">' + rows +
+    '<div class="sheet-b" style="max-height:78vh;overflow-y:auto">' +
+      (meal.heard ? '<div class="note">听到的是：「' + esc(meal.heard) + '」</div>' : '') + rows +
       '<div class="rowline" style="margin-top:10px"><span class="k">合计</span><span class="v" id="meal-total">' + mealTotal() + ' kcal</span></div>' +
       (meal.note ? '<div class="note">AI 备注：' + esc(meal.note) + '</div>' : '') +
       '<button class="btn solid" data-act="meal-confirm" style="margin-top:8px">确认记录</button>' +
@@ -281,6 +311,8 @@ export function mealRecalc() {
   MEAL_DRAFT.items.forEach(function (it, i) {
     var el = document.getElementById("mk-" + i);
     if (el) el.textContent = mealItemKcal(it);
+    var mp = document.getElementById("mp-" + i);
+    if (mp) mp.querySelectorAll(".mp").forEach(function (b) { b.setAttribute("aria-pressed", String(Number(b.getAttribute("data-g")) === it.grams)); });
   });
   var t = document.getElementById("meal-total");
   if (t) t.textContent = mealTotal() + " kcal";

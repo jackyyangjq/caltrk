@@ -1,4 +1,5 @@
-import { MEAL_DRAFT, aiBusy, aiEstimateMealText, aiNeedKey, aiPhotoStart, aiReady, mealItemKcal, mealRecalc, openMealSheet, saveAiKey, setMealDraft, textFoodFor } from "./ai.js";
+import { MEAL_DRAFT, aiBusy, aiEstimateMealText, aiNeedKey, aiPhotoStart, aiReady, mealItemKcal, mealPickPortion, mealRecalc, openMealSheet, saveAiKey, setMealDraft, textFoodFor } from "./ai.js";
+import { GENERIC, loadGeneric } from "./generic.js";
 import { MAX_G, newId, todayStr } from "./lib/util.js";
 import { lookupBarcode, scanClose, scanLiveStart, scanManualGo, scanPhotoStart, scanSave, scanTorch, scanUseFood, scanWarnRefresh, setScanDraft } from "./scan.js";
 import { addEntry, aiEntryPer100, buildEntry, closeSheet, confirmGuess, deleteEntry, elSheet, guessAmount, logCombo, openAiEntrySheet, openGuessSheet, openOrphanSheet, openPortionSheet, setGuessAmount, showUndoToast, showUndoToastMulti } from "./sheets.js";
@@ -7,9 +8,10 @@ import { DB, K, UF_KEY, USER_FOODS, dayComplete, foodById, persist, reloadDB, se
 import { presetOf, setTrainingMin, toggleTraining, trainingKcal, trainingMin, trainingOfView } from "./training.js";
 import { doExport, importInput, renderExport } from "./views/export.js";
 import { renderLibrary } from "./views/library.js";
-import { dismissBanner, histExpanded, renderBanner, renderToday, renderTodayBottom, searchQuery, setHistExpanded } from "./views/today.js";
+import { dismissBanner, histExpanded, renderBanner, renderQuickBody, renderToday, renderTodayBottom, searchQuery, setHistExpanded } from "./views/today.js";
 import { renderWeight, saveWeight, setWeightCtx, stepKg } from "./views/weight.js";
 import { setTrendRange } from "./views/weightChart.js";
+import { voiceCancel, voiceStart, voiceStop } from "./voice.js";
 
 /* ── 入口 ──────────────────────────────────────────────────
    模块地图（v2.0 从单文件 index.html 按原有分节拆出，行为不变）：
@@ -49,7 +51,7 @@ document.querySelector(".tabs").addEventListener("click", function (ev) {
 });
 
 /* 快速连点保护：这些动作依赖面板还开着 */
-export var NEED_SHEET = { "pick-portion": 1, "pick-grams": 1, "confirm-grams": 1, "confirm-guess": 1, "delete-entry": 1, "pick-amount": 1, "meal-del": 1, "meal-confirm": 1, "ai-entry-save": 1,
+export var NEED_SHEET = { "pick-portion": 1, "pick-grams": 1, "confirm-grams": 1, "confirm-guess": 1, "delete-entry": 1, "pick-amount": 1, "meal-del": 1, "meal-confirm": 1, "meal-portion": 1, "ai-entry-save": 1,
                    "scan-save": 1, "scan-use-food": 1, "scan-ai-label": 1, "scan-manual-go": 1, "scan-retry": 1, "scan-guess": 1 };
 document.addEventListener("click", function (ev) {
   var b = ev.target.closest("[data-act]");
@@ -107,6 +109,10 @@ document.addEventListener("click", function (ev) {
     if (!e) return;
     if (e.food_id) {
       if (foodById(e.food_id)) openPortionSheet(e.food_id, id);
+      /* 通用食物库还没下载好：等它好了再开，下载不了才当成找不到 */
+      else if (/^g-/.test(e.food_id) && !GENERIC) loadGeneric().then(function () {
+        if (foodById(e.food_id)) openPortionSheet(e.food_id, id); else openOrphanSheet(e, id);
+      }, function () { openOrphanSheet(e, id); });
       else openOrphanSheet(e, id);
     } else if (e.pending || !e.ai) {
       openGuessSheet("", id);
@@ -185,6 +191,10 @@ document.addEventListener("click", function (ev) {
     if (!aiReady()) aiNeedKey();
     else if (!aiBusy) aiEstimateMealText(mtEl ? mtEl.value.trim() : "");
   }
+  else if (act === "ai-voice") { if (!aiReady()) aiNeedKey(); else if (!aiBusy) voiceStart(); }
+  else if (act === "voice-stop") voiceStop();
+  else if (act === "voice-cancel") voiceCancel();
+  else if (act === "meal-portion") mealPickPortion(parseInt(b.getAttribute("data-i"), 10), parseFloat(b.getAttribute("data-g")));
   else if (act === "meal-del") {
     var mi = parseInt(b.getAttribute("data-i"), 10);
     if (MEAL_DRAFT && MEAL_DRAFT.items[mi] != null) {
@@ -298,6 +308,11 @@ export var shownDate = todayStr();
 setViewDateRaw(shownDate);           /* 每次打开都从今天开始看 */
 document.getElementById("tb-date").textContent = shownDate;
 switchTab("today");
+/* 通用食物库在后台下载，好了就刷新搜索结果、快速记录和食物库（不动输入框） */
+loadGeneric().then(function () {
+  renderQuickBody();
+  if (activeTab() === "library") renderLibrary();
+}, function () {});
 
 export function refreshIfNeeded(force) {
   var t = todayStr();
@@ -317,7 +332,7 @@ export function refreshIfNeeded(force) {
 /* 切回前台：先从存储重读（防旧标签页用过期内存覆盖新记录），再判断要不要重绘 */
 export var hiddenAt = 0;
 document.addEventListener("visibilitychange", function () {
-  if (document.hidden) { hiddenAt = Date.now(); scanClose(); }   /* 切走就关摄像头 */
+  if (document.hidden) { hiddenAt = Date.now(); scanClose(); voiceCancel(); }   /* 切走就关摄像头、停录音 */
 });
 export function onVisible() {
   if (document.hidden) return;

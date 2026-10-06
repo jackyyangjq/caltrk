@@ -82,3 +82,18 @@ describe("barcodes", () => {
     expect(gtinValid("123")).toBe(false);
   });
 });
+
+describe("aiParseMeal portions and transcript (v2.2)", () => {
+  it("keeps 2-4 portions, de-duplicated and sorted by grams, plus the heard text", () => {
+    const m = aiParseMeal(JSON.stringify({ heard: " 一碗面 ", items: [{ name: "面", grams: 300, per_100g: { kcal: 110, protein: 4, fat: 2, carb: 20 },
+      portions: [{ label: "大碗", grams: 450 }, { label: "小碗", grams: 200 }, { label: "中碗", grams: 300 }, { label: "又一个中碗", grams: 300 },
+        { label: "", grams: 100 }, { label: "超大", grams: 5000 }, { label: "特大碗", grams: 600 }, { label: "桶", grams: 900 }] }] }));
+    expect(m.heard).toBe("一碗面");
+    expect(m.items[0].portions).toEqual([{ label: "小碗", grams: 200 }, { label: "中碗", grams: 300 }, { label: "大碗", grams: 450 }, { label: "特大碗", grams: 600 }]);
+  });
+  it("leaves portions off when the model gives none", () => {
+    const m = aiParseMeal('{"items":[{"name":"x","grams":100,"per_100g":{"kcal":100,"protein":5,"fat":4,"carb":10}}]}');
+    expect(m.items[0].portions).toBeUndefined();
+    expect(m.heard).toBeUndefined();
+  });
+});

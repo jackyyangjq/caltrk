@@ -89,9 +89,16 @@ export const INIT_SCRIPT = `
 // Canned network responses for the AI endpoint and Open Food Facts.
 export const MOCK = {
   meal: JSON.stringify({ items: [
-    { name: "番茄炒蛋", grams: 220, per_100g: { kcal: 95, protein: 6, fat: 6.5, carb: 4 } },
-    { name: "米饭（熟）", grams: 180, per_100g: { kcal: 116, protein: 2.6, fat: 0.3, carb: 25.9 } },
+    { name: "番茄炒蛋", grams: 220, per_100g: { kcal: 95, protein: 6, fat: 6.5, carb: 4 },
+      portions: [{ label: "大盘", grams: 350 }, { label: "一盘", grams: 220 }, { label: "半盘", grams: 110 }] },
+    { name: "米饭（熟）", grams: 180, per_100g: { kcal: 116, protein: 2.6, fat: 0.3, carb: 25.9 },
+      portions: [{ label: "小碗", grams: 120 }, { label: "中碗", grams: 180 }, { label: "大碗", grams: 250 }, { label: "中碗", grams: 180 }] },
   ], note: "按家常做法估" }),
+  voice: JSON.stringify({ heard: "一碗牛肉面加一个卤蛋", items: [
+    { name: "牛肉面", grams: 500, per_100g: { kcal: 110, protein: 6, fat: 3, carb: 15 },
+      portions: [{ label: "小碗", grams: 350 }, { label: "大碗", grams: 500 }] },
+    { name: "卤蛋", grams: 50, per_100g: { kcal: 150, protein: 12.5, fat: 10.5, carb: 1.5 } },
+  ], note: "按面馆常见分量" }),
   label: JSON.stringify({ name: "Tesco 希腊酸奶", per_100g: { kcal: 120, protein: 5, fat: 0, carb: 9 },
     portions: [{ label: "整盒", grams: 500 }, { label: "一份", grams: 150 }], default_portion: "一份",
     pack_grams: 500, pack_kcal: 600, note: "蛋白脂肪实读", read: { kcal: true, protein: true, fat: false, carb: true },

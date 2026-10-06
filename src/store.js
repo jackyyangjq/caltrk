@@ -1,5 +1,6 @@
 import { FOOD_LIBRARY, UF_FIX, UF_SAME_AS } from "./data/foods.js";
 import { LOG_FIX } from "./data/logfix.js";
+import { genericById } from "./generic.js";
 import { applyLogFixesTo } from "./lib/logfix.js";
 
 /* ── 存储（键名一经发布不得更改，设计 §4.6）──────────────── */
@@ -86,7 +87,7 @@ export function allFoods() { return allFoodsRaw().filter(function (f) { return !
 export function foodById(id) {
   var all = allFoodsRaw();
   for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
-  return null;
+  return genericById(id);   /* 通用食物库（下载好之后才有） */
 }
 
 export function entriesOn(date) {

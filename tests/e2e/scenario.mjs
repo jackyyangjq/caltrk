@@ -93,6 +93,7 @@ export async function runScenario(browser, baseUrl) {
   // AI: text estimate
   await typeIn("#ai-meal-text", "番茄炒蛋盖饭"); await click('[data-act="ai-meal-text"]'); await page.waitForTimeout(400); await snap("ai-text-sheet");
   await page.locator('[data-mg="0"]').fill("250"); await snap("ai-text-grams");
+  await click('[data-act="meal-portion"][data-i="1"][data-g="250"]'); await snap("ai-text-portion");
   await page.locator('[data-mname="1"]').fill("白米饭"); await click('[data-act="meal-confirm"]'); await snap("ai-text-confirm");
   // AI: meal photo
   let fc = page.waitForEvent("filechooser"); await click('[data-act="ai-meal-photo"]');
