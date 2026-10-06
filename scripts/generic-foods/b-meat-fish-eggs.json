@@ -1,0 +1,2432 @@
+[
+ {
+  "src": "Chicken, breast, skinless, boneless, meat only",
+  "zh": "鸡胸肉（去皮，生）",
+  "aliases": [
+   "鸡胸",
+   "鸡胸脯肉",
+   "chicken breast"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 170
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, breast, meat only, cooked, roasted",
+  "zh": "鸡胸肉（去皮，烤）",
+  "aliases": [
+   "烤鸡胸",
+   "鸡胸",
+   "roast chicken breast"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 130
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, breast, meat only, cooked, stewed",
+  "zh": "鸡胸肉（去皮，水煮）",
+  "aliases": [
+   "水煮鸡胸",
+   "白煮鸡胸",
+   "poached chicken breast"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 130
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, breast, meat and skin, raw",
+  "zh": "鸡胸肉（带皮，生）",
+  "aliases": [
+   "带皮鸡胸",
+   "chicken breast with skin"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 190
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, breast, meat and skin, cooked, roasted",
+  "zh": "鸡胸肉（带皮，烤）",
+  "aliases": [
+   "烤鸡胸",
+   "带皮鸡胸",
+   "roast chicken breast skin-on"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 145
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, dark meat, thigh, meat only, raw",
+  "zh": "鸡腿肉（去皮去骨，生）",
+  "aliases": [
+   "去骨鸡腿肉",
+   "鸡腿排",
+   "chicken thigh fillet"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 100
+   },
+   {
+    "label": "一份 200g",
+    "grams": 200
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, thigh, meat only, cooked, roasted",
+  "zh": "鸡腿肉（去皮去骨，烤）",
+  "aliases": [
+   "烤鸡腿肉",
+   "鸡腿排",
+   "roast chicken thigh fillet"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 75
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Chicken, thigh, meat and skin, raw",
+  "zh": "鸡大腿（带皮，生）",
+  "aliases": [
+   "鸡腿",
+   "带皮鸡腿",
+   "chicken thigh"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 110
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, thigh, meat and skin, cooked, roasted",
+  "zh": "鸡大腿（带皮，烤）",
+  "aliases": [
+   "烤鸡腿",
+   "鸡腿",
+   "roast chicken thigh"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 85
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, drumstick, meat and skin, raw",
+  "zh": "鸡小腿（带皮，生）",
+  "aliases": [
+   "琵琶腿",
+   "棒棒腿",
+   "chicken drumstick"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 75
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, drumstick, meat and skin, cooked, roasted",
+  "zh": "鸡小腿（带皮，烤）",
+  "aliases": [
+   "烤琵琶腿",
+   "棒棒腿",
+   "roast chicken drumstick"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 55
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, wing, meat and skin, raw",
+  "zh": "鸡翅（生）",
+  "aliases": [
+   "鸡翅膀",
+   "鸡中翅",
+   "chicken wings"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 45
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, wing, meat and skin, cooked, roasted",
+  "zh": "鸡翅（烤）",
+  "aliases": [
+   "烤鸡翅",
+   "鸡翅膀",
+   "roast chicken wings"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 32
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只（净肉）"
+ },
+ {
+  "src": "Chicken, meat and skin, cooked, roasted",
+  "zh": "烤鸡（带皮）",
+  "aliases": [
+   "烤全鸡",
+   "整鸡",
+   "roast chicken"
+  ],
+  "portions": [
+   {
+    "label": "1/4 只（净肉）",
+    "grams": 200
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, meat only, cooked, roasted",
+  "zh": "烤鸡肉（去皮）",
+  "aliases": [
+   "烤鸡",
+   "鸡肉",
+   "roast chicken meat"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, meat and skin, cooked, stewed",
+  "zh": "炖鸡（带皮）",
+  "aliases": [
+   "白切鸡",
+   "清炖鸡",
+   "stewed chicken"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, ground, raw",
+  "zh": "鸡肉末（生）",
+  "aliases": [
+   "鸡肉馅",
+   "鸡绞肉",
+   "chicken mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Chicken, ground, crumbles, cooked, pan-browned",
+  "zh": "鸡肉末（炒熟）",
+  "aliases": [
+   "炒鸡肉末",
+   "鸡肉馅",
+   "cooked chicken mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, feet, boiled",
+  "zh": "鸡爪（煮）",
+  "aliases": [
+   "凤爪",
+   "鸡脚",
+   "chicken feet"
+  ],
+  "portions": [
+   {
+    "label": "1 只",
+    "grams": 30
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 只"
+ },
+ {
+  "src": "Chicken, gizzard, all classes, cooked, simmered",
+  "zh": "鸡胗（煮）",
+  "aliases": [
+   "鸡肫",
+   "鸡胃",
+   "chicken gizzard"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 30
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, liver, all classes, cooked, simmered",
+  "zh": "鸡肝（煮）",
+  "aliases": [
+   "鸡肝",
+   "chicken liver"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 30
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chicken, meat and skin, cooked, fried, batter",
+  "zh": "炸鸡（裹面糊）",
+  "aliases": [
+   "炸鸡块",
+   "炸鸡腿",
+   "fried chicken"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中，去骨）",
+    "grams": 90
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 块（中，去骨）"
+ },
+ {
+  "src": "Chicken breast tenders, breaded, cooked, microwaved",
+  "zh": "裹粉鸡柳（熟）",
+  "aliases": [
+   "鸡柳",
+   "鸡块",
+   "chicken goujons",
+   "chicken tenders"
+  ],
+  "portions": [
+   {
+    "label": "1 条",
+    "grams": 30
+   },
+   {
+    "label": "一份 120g",
+    "grams": 120
+   }
+  ],
+  "default": "一份 120g"
+ },
+ {
+  "src": "Chicken breast, oven-roasted, fat-free, sliced",
+  "zh": "鸡胸肉片（熟食）",
+  "aliases": [
+   "即食鸡胸片",
+   "鸡肉片",
+   "sliced chicken breast"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 15
+   },
+   {
+    "label": "一份 60g",
+    "grams": 60
+   }
+  ],
+  "default": "一份 60g"
+ },
+ {
+  "src": "Beef, ground, 95% lean meat / 5% fat, raw",
+  "zh": "牛肉末（5%脂肪，生）",
+  "aliases": [
+   "瘦牛肉馅",
+   "牛绞肉",
+   "lean beef mince 5%"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Beef, ground, 95% lean meat / 5% fat, crumbles, cooked",
+  "zh": "牛肉末（5%脂肪，炒熟）",
+  "aliases": [
+   "炒牛肉末",
+   "瘦牛肉馅",
+   "cooked beef mince 5%"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beef, ground, 90% lean meat / 10% fat, raw",
+  "zh": "牛肉末（10%脂肪，生）",
+  "aliases": [
+   "牛肉馅",
+   "牛绞肉",
+   "beef mince 10%"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Beef, ground, 90% lean meat / 10% fat, crumbles, cooked",
+  "zh": "牛肉末（10%脂肪，炒熟）",
+  "aliases": [
+   "炒牛肉末",
+   "牛肉馅",
+   "cooked beef mince 10%"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beef, ground, 80% lean meat / 20% fat, raw",
+  "zh": "牛肉末（20%脂肪，生）",
+  "aliases": [
+   "牛肉馅",
+   "牛绞肉",
+   "beef mince 20%"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Beef, ground, 80% lean meat / 20% fat, crumbles, cooked",
+  "zh": "牛肉末（20%脂肪，炒熟）",
+  "aliases": [
+   "炒牛肉末",
+   "牛肉馅",
+   "cooked beef mince 20%"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beef, ground, patties, frozen, cooked",
+  "zh": "牛肉汉堡饼（熟）",
+  "aliases": [
+   "汉堡肉饼",
+   "牛肉饼",
+   "beef burger"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 85
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Beef, rib eye, small end (ribs 10-12), raw",
+  "zh": "肉眼牛排（生）",
+  "aliases": [
+   "肉眼",
+   "眼肉牛排",
+   "ribeye steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 225
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Beef, rib, eye, small end (ribs 10- 12) separable lean only, cooked",
+  "zh": "肉眼牛排（瘦肉，熟）",
+  "aliases": [
+   "肉眼",
+   "煎牛排",
+   "cooked ribeye steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 170
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Beef, short loin, top loin steak, raw",
+  "zh": "西冷牛排（生）",
+  "aliases": [
+   "西冷",
+   "沙朗牛排",
+   "sirloin steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 225
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Beef, short loin, top loin, cooked, broiled",
+  "zh": "西冷牛排（带脂，熟）",
+  "aliases": [
+   "西冷",
+   "煎牛排",
+   "cooked sirloin steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 170
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Beef, shank crosscuts, raw",
+  "zh": "牛腱（生）",
+  "aliases": [
+   "牛腱子",
+   "牛小腿肉",
+   "beef shin"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Beef, shank crosscuts, cooked, simmered",
+  "zh": "牛腱（炖）",
+  "aliases": [
+   "卤牛腱",
+   "酱牛肉",
+   "牛腱子",
+   "braised beef shin"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beef, chuck, clod roast, raw",
+  "zh": "牛肩肉（炖肉用，生）",
+  "aliases": [
+   "牛肉块",
+   "炖牛肉",
+   "stewing beef",
+   "braising steak"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Beef, chuck, clod steak, cooked, braised",
+  "zh": "牛肩肉（炖）",
+  "aliases": [
+   "炖牛肉",
+   "红烧牛肉",
+   "braised beef"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Beef, brisket, point half, raw",
+  "zh": "牛腩（生）",
+  "aliases": [
+   "牛胸肉",
+   "牛腩肉",
+   "beef brisket"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Beef, cured, corned beef, canned",
+  "zh": "咸牛肉罐头",
+  "aliases": [
+   "罐头咸牛肉",
+   "腌牛肉",
+   "corned beef"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 30
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Roast beef, deli style, prepackaged, sliced",
+  "zh": "烤牛肉片（熟食）",
+  "aliases": [
+   "牛肉片",
+   "冷切牛肉",
+   "roast beef slices"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一份 60g",
+    "grams": 60
+   }
+  ],
+  "default": "一份 60g"
+ },
+ {
+  "src": "Pork, fresh, enhanced, loin, tenderloin",
+  "zh": "猪里脊（生）",
+  "aliases": [
+   "里脊肉",
+   "猪柳",
+   "pork tenderloin",
+   "pork fillet"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Pork, fresh, loin, blade (chops), boneless",
+  "zh": "猪排（去骨，熟）",
+  "aliases": [
+   "猪大排",
+   "猪扒",
+   "pork chop"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 120
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Pork, Leg Cap Steak, boneless, raw",
+  "zh": "猪腿肉排（生）",
+  "aliases": [
+   "猪后腿肉",
+   "猪肉排",
+   "pork leg steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Pork, loin, leg cap steak, boneless, cooked",
+  "zh": "猪腿肉排（熟）",
+  "aliases": [
+   "猪后腿肉",
+   "煎猪排",
+   "cooked pork leg steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 95
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Pork, fresh, belly, raw",
+  "zh": "五花肉（生）",
+  "aliases": [
+   "猪五花",
+   "三层肉",
+   "pork belly"
+  ],
+  "portions": [
+   {
+    "label": "1 片（厚切）",
+    "grams": 110
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pork, fresh, ground, raw",
+  "zh": "猪肉末（生）",
+  "aliases": [
+   "猪肉馅",
+   "猪绞肉",
+   "pork mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Pork, fresh, ground, cooked",
+  "zh": "猪肉末（熟）",
+  "aliases": [
+   "炒猪肉末",
+   "猪肉馅",
+   "cooked pork mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pork, ground, 96% lean / 4% fat, raw",
+  "zh": "瘦猪肉末（生）",
+  "aliases": [
+   "瘦猪肉馅",
+   "猪绞肉",
+   "lean pork mince 5%"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Pork, ground, 96% lean / 4% fat, cooked, crumbles",
+  "zh": "瘦猪肉末（炒熟）",
+  "aliases": [
+   "炒瘦肉末",
+   "瘦猪肉馅",
+   "cooked lean pork mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pork, fresh, spareribs, raw",
+  "zh": "猪肋排（生）",
+  "aliases": [
+   "排骨",
+   "肋排",
+   "pork spare ribs"
+  ],
+  "portions": [
+   {
+    "label": "1 根（净肉）",
+    "grams": 40
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pork, fresh, spareribs, cooked, braised",
+  "zh": "猪肋排（炖）",
+  "aliases": [
+   "红烧排骨",
+   "炖排骨",
+   "排骨",
+   "braised pork ribs"
+  ],
+  "portions": [
+   {
+    "label": "1 小块（净肉）",
+    "grams": 20
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pork, cured, bacon, unprepared",
+  "zh": "培根（生）",
+  "aliases": [
+   "烟肉",
+   "五花培根",
+   "streaky bacon"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一份 60g",
+    "grams": 60
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Pork, cured, bacon, pre-sliced, cooked",
+  "zh": "培根（煎熟）",
+  "aliases": [
+   "煎培根",
+   "烟肉",
+   "cooked bacon"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 8
+   },
+   {
+    "label": "一份 25g",
+    "grams": 25
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Ham, sliced, pre-packaged, deli meat (96%fat free, water added)",
+  "zh": "火腿片（低脂）",
+  "aliases": [
+   "火腿",
+   "三明治火腿",
+   "sliced ham"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一份 60g",
+    "grams": 60
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Pork, cured, ham, steak, boneless",
+  "zh": "腌猪腿肉排",
+  "aliases": [
+   "火腿扒",
+   "腌火腿排",
+   "gammon steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Pork sausage, link/patty, unprepared",
+  "zh": "猪肉香肠（生）",
+  "aliases": [
+   "英式香肠",
+   "香肠",
+   "pork sausage"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 60
+   },
+   {
+    "label": "2 根",
+    "grams": 120
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Pork sausage, link/patty, cooked, pan-fried",
+  "zh": "猪肉香肠（煎）",
+  "aliases": [
+   "煎香肠",
+   "英式香肠",
+   "cooked pork sausage"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 45
+   },
+   {
+    "label": "2 根",
+    "grams": 90
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Luncheon meat, pork, canned",
+  "zh": "午餐肉",
+  "aliases": [
+   "午餐肉罐头",
+   "火腿午餐肉",
+   "luncheon meat",
+   "spam"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 30
+   },
+   {
+    "label": "1/4 罐",
+    "grams": 85
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Salami, dry or hard, pork, beef",
+  "zh": "萨拉米香肠",
+  "aliases": [
+   "意大利腊肠",
+   "风干香肠",
+   "salami"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 6
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Sausage, pork, chorizo, link or ground, raw",
+  "zh": "西班牙辣香肠（生）",
+  "aliases": [
+   "乔利佐",
+   "辣香肠",
+   "chorizo"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Frankfurter, meat",
+  "zh": "热狗肠",
+  "aliases": [
+   "法兰克福香肠",
+   "热狗",
+   "frankfurter",
+   "hot dog"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 45
+   },
+   {
+    "label": "2 根",
+    "grams": 90
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Lamb, ground, raw",
+  "zh": "羊肉末（生）",
+  "aliases": [
+   "羊肉馅",
+   "羊绞肉",
+   "lamb mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Lamb, ground, cooked, broiled",
+  "zh": "羊肉末（熟）",
+  "aliases": [
+   "炒羊肉末",
+   "羊肉馅",
+   "cooked lamb mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Lamb, cubed for stew or kabob (leg and shoulder), raw",
+  "zh": "羊肉块（腿肩肉，生）",
+  "aliases": [
+   "羊腿肉",
+   "羊肩肉",
+   "diced lamb"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Lamb, cubed for stew or kabob (leg and shoulder), cooked, braised",
+  "zh": "羊肉块（炖）",
+  "aliases": [
+   "炖羊肉",
+   "羊肉煲",
+   "lamb stew meat"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Lamb, cubed for stew or kabob (leg and shoulder), cooked, broiled",
+  "zh": "烤羊肉串（瘦肉）",
+  "aliases": [
+   "羊肉串",
+   "烤羊肉",
+   "lamb kebab"
+  ],
+  "portions": [
+   {
+    "label": "1 串",
+    "grams": 25
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 串"
+ },
+ {
+  "src": "Lamb, shoulder, arm, roasted",
+  "zh": "烤羊肩（肥瘦）",
+  "aliases": [
+   "烤羊肉",
+   "羊肩肉",
+   "roast lamb shoulder"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Duck, domesticated, meat and skin, cooked, roasted",
+  "zh": "烤鸭（带皮）",
+  "aliases": [
+   "北京烤鸭",
+   "烧鸭",
+   "roast duck"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1/4 只（净肉）",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Duck, domesticated, meat only, cooked, roasted",
+  "zh": "鸭肉（去皮，烤）",
+  "aliases": [
+   "鸭胸肉",
+   "鸭肉",
+   "duck meat"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 块鸭胸（中）",
+    "grams": 120
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Duck, domesticated, meat only, raw",
+  "zh": "鸭肉（去皮，生）",
+  "aliases": [
+   "生鸭肉",
+   "鸭胸肉",
+   "raw duck meat"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 块鸭胸（中）",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Turkey, retail parts, breast, meat only, raw",
+  "zh": "火鸡胸肉（生）",
+  "aliases": [
+   "火鸡胸",
+   "火鸡排",
+   "turkey breast"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Turkey, retail parts, breast, meat only, cooked",
+  "zh": "火鸡胸肉（熟）",
+  "aliases": [
+   "火鸡胸",
+   "烤火鸡胸",
+   "cooked turkey breast"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 95
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Turkey, whole, meat and skin, cooked, roasted",
+  "zh": "烤火鸡（带皮）",
+  "aliases": [
+   "圣诞火鸡",
+   "火鸡肉",
+   "roast turkey"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 30
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Turkey, ground, 93% lean, 7% fat, raw",
+  "zh": "火鸡肉末（生）",
+  "aliases": [
+   "火鸡肉馅",
+   "火鸡绞肉",
+   "turkey mince"
+  ],
+  "portions": [
+   {
+    "label": "一份 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 125g"
+ },
+ {
+  "src": "Turkey breast, sliced, prepackaged",
+  "zh": "火鸡胸肉片（熟食）",
+  "aliases": [
+   "火鸡片",
+   "冷切火鸡",
+   "turkey slices"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 15
+   },
+   {
+    "label": "一份 60g",
+    "grams": 60
+   }
+  ],
+  "default": "一份 60g"
+ },
+ {
+  "src": "Fish, salmon, Atlantic, farmed, raw",
+  "zh": "三文鱼（生）",
+  "aliases": [
+   "三文鱼刺身",
+   "鲑鱼",
+   "三文鱼柳",
+   "salmon fillet"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, salmon, Atlantic, farmed, cooked",
+  "zh": "三文鱼（熟）",
+  "aliases": [
+   "烤三文鱼",
+   "煎三文鱼",
+   "cooked salmon"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, salmon, chinook, smoked",
+  "zh": "烟熏三文鱼",
+  "aliases": [
+   "熏三文鱼",
+   "熏鲑鱼",
+   "smoked salmon"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Fish, salmon, pink, canned, without salt",
+  "zh": "三文鱼罐头",
+  "aliases": [
+   "罐头三文鱼",
+   "罐装鲑鱼",
+   "canned salmon"
+  ],
+  "portions": [
+   {
+    "label": "1 小罐（沥干）",
+    "grams": 100
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 小罐（沥干）"
+ },
+ {
+  "src": "Fish, cod, Atlantic, raw",
+  "zh": "鳕鱼（生）",
+  "aliases": [
+   "大西洋鳕鱼",
+   "鳕鱼柳",
+   "cod fillet"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 140
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, cod, Atlantic, cooked, dry heat",
+  "zh": "鳕鱼（熟）",
+  "aliases": [
+   "烤鳕鱼",
+   "煎鳕鱼",
+   "cooked cod"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 110
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, haddock, raw",
+  "zh": "黑线鳕（生）",
+  "aliases": [
+   "黑鳕鱼",
+   "鳕鱼",
+   "haddock"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 140
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, haddock, cooked, dry heat",
+  "zh": "黑线鳕（熟）",
+  "aliases": [
+   "烤黑鳕鱼",
+   "鳕鱼",
+   "cooked haddock"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 110
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, haddock, smoked",
+  "zh": "烟熏黑线鳕",
+  "aliases": [
+   "烟熏鳕鱼",
+   "熏鳕鱼",
+   "smoked haddock"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 140
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, tuna, light, canned in water, without salt",
+  "zh": "金枪鱼罐头（水浸）",
+  "aliases": [
+   "吞拿鱼罐头",
+   "水浸金枪鱼",
+   "tuna in spring water",
+   "canned tuna"
+  ],
+  "portions": [
+   {
+    "label": "1 罐（沥干）",
+    "grams": 110
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 罐（沥干）"
+ },
+ {
+  "src": "Fish, tuna, light, canned in oil, without salt",
+  "zh": "金枪鱼罐头（油浸）",
+  "aliases": [
+   "吞拿鱼罐头",
+   "油浸金枪鱼",
+   "tuna in oil"
+  ],
+  "portions": [
+   {
+    "label": "1 罐（沥干）",
+    "grams": 110
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 罐（沥干）"
+ },
+ {
+  "src": "Fish, tuna, fresh, yellowfin, raw",
+  "zh": "金枪鱼（生）",
+  "aliases": [
+   "金枪鱼刺身",
+   "吞拿鱼",
+   "tuna steak"
+  ],
+  "portions": [
+   {
+    "label": "1 块（中）",
+    "grams": 125
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 块（中）"
+ },
+ {
+  "src": "Fish, mackerel, Atlantic, raw",
+  "zh": "鲭鱼（生）",
+  "aliases": [
+   "青花鱼",
+   "鲐鱼",
+   "mackerel"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 90
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, mackerel, Atlantic, cooked, dry heat",
+  "zh": "鲭鱼（熟）",
+  "aliases": [
+   "烤青花鱼",
+   "烤鲭鱼",
+   "cooked mackerel"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 75
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, sardine, Atlantic, canned in oil, drained solids with bone",
+  "zh": "沙丁鱼罐头（油浸）",
+  "aliases": [
+   "沙丁鱼",
+   "油浸沙丁鱼",
+   "sardines in oil"
+  ],
+  "portions": [
+   {
+    "label": "1 条",
+    "grams": 24
+   },
+   {
+    "label": "1 罐（沥干）",
+    "grams": 90
+   }
+  ],
+  "default": "1 罐（沥干）"
+ },
+ {
+  "src": "Fish, sardine, Pacific, canned in tomato sauce, drained solids with bone",
+  "zh": "沙丁鱼罐头（茄汁）",
+  "aliases": [
+   "茄汁沙丁鱼",
+   "沙丁鱼",
+   "sardines in tomato sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 条",
+    "grams": 30
+   },
+   {
+    "label": "1 罐（沥干）",
+    "grams": 90
+   }
+  ],
+  "default": "1 罐（沥干）"
+ },
+ {
+  "src": "Fish, sea bass, mixed species, raw",
+  "zh": "鲈鱼（生）",
+  "aliases": [
+   "海鲈鱼",
+   "鲈鱼柳",
+   "sea bass"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 95
+   },
+   {
+    "label": "1 条（净肉）",
+    "grams": 220
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, sea bass, mixed species, cooked, dry heat",
+  "zh": "鲈鱼（熟）",
+  "aliases": [
+   "清蒸鲈鱼",
+   "烤鲈鱼",
+   "cooked sea bass"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 75
+   },
+   {
+    "label": "1 条（净肉）",
+    "grams": 180
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, tilapia, raw",
+  "zh": "罗非鱼（生）",
+  "aliases": [
+   "非洲鲫鱼",
+   "罗非鱼柳",
+   "tilapia"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 110
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, tilapia, cooked, dry heat",
+  "zh": "罗非鱼（熟）",
+  "aliases": [
+   "烤罗非鱼",
+   "非洲鲫鱼",
+   "cooked tilapia"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 87
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, catfish, channel, wild, raw",
+  "zh": "鲶鱼（生）",
+  "aliases": [
+   "巴沙鱼",
+   "越南鲶鱼",
+   "basa",
+   "catfish"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 130
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, flatfish (flounder and sole species), cooked, dry heat",
+  "zh": "比目鱼（熟）",
+  "aliases": [
+   "鲽鱼",
+   "鳎鱼",
+   "plaice",
+   "sole"
+  ],
+  "portions": [
+   {
+    "label": "1 片鱼柳",
+    "grams": 90
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 片鱼柳"
+ },
+ {
+  "src": "Fish, fish sticks, frozen, prepared",
+  "zh": "鱼柳条（冷冻，熟）",
+  "aliases": [
+   "鱼手指",
+   "鳕鱼条",
+   "fish fingers"
+  ],
+  "portions": [
+   {
+    "label": "1 条",
+    "grams": 28
+   },
+   {
+    "label": "4 条",
+    "grams": 112
+   }
+  ],
+  "default": "4 条"
+ },
+ {
+  "src": "Crustaceans, shrimp, raw",
+  "zh": "虾仁（生）",
+  "aliases": [
+   "大虾",
+   "明虾",
+   "raw prawns",
+   "shrimp"
+  ],
+  "portions": [
+   {
+    "label": "1 只（大，去壳）",
+    "grams": 12
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Crustaceans, shrimp, cooked",
+  "zh": "虾仁（熟）",
+  "aliases": [
+   "白灼虾",
+   "熟虾仁",
+   "cooked prawns"
+  ],
+  "portions": [
+   {
+    "label": "1 只（大，去壳）",
+    "grams": 10
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Crustaceans, shrimp, mixed species, cooked, breaded and fried",
+  "zh": "炸虾（裹粉）",
+  "aliases": [
+   "面包虾",
+   "炸虾球",
+   "breaded prawns",
+   "scampi"
+  ],
+  "portions": [
+   {
+    "label": "1 只",
+    "grams": 20
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mollusks, squid, mixed species, raw",
+  "zh": "鱿鱼（生）",
+  "aliases": [
+   "鱿鱼",
+   "枪乌贼",
+   "squid"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mollusks, squid, mixed species, cooked, fried",
+  "zh": "炸鱿鱼圈",
+  "aliases": [
+   "鱿鱼圈",
+   "炸鱿鱼",
+   "calamari"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 10
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mollusks, scallop, mixed species, raw",
+  "zh": "扇贝肉（生）",
+  "aliases": [
+   "带子",
+   "鲜贝",
+   "scallops"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 20
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mollusks, mussel, blue, cooked, moist heat",
+  "zh": "青口（熟，去壳）",
+  "aliases": [
+   "贻贝",
+   "淡菜",
+   "mussels"
+  ],
+  "portions": [
+   {
+    "label": "1 个（去壳）",
+    "grams": 5
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Crustaceans, crab, blue, cooked, moist heat",
+  "zh": "蟹肉（熟）",
+  "aliases": [
+   "螃蟹",
+   "蟹肉罐头",
+   "crab meat"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Crustaceans, crab, alaska king, imitation, made from surimi",
+  "zh": "蟹棒",
+  "aliases": [
+   "蟹柳",
+   "蟹肉棒",
+   "crab sticks",
+   "seafood sticks"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 17
+   },
+   {
+    "label": "5 根",
+    "grams": 85
+   }
+  ],
+  "default": "5 根"
+ },
+ {
+  "src": "Crustaceans, crayfish, mixed species, farmed, cooked",
+  "zh": "小龙虾（熟，去壳）",
+  "aliases": [
+   "小龙虾肉",
+   "龙虾仁",
+   "crayfish tails"
+  ],
+  "portions": [
+   {
+    "label": "1 只（净肉）",
+    "grams": 5
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mollusks, clam, mixed species, cooked, moist heat",
+  "zh": "蛤蜊（熟，去壳）",
+  "aliases": [
+   "花甲",
+   "蚬子",
+   "clams"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Mollusks, oyster, Pacific, raw",
+  "zh": "生蚝",
+  "aliases": [
+   "牡蛎",
+   "蚝",
+   "oysters"
+  ],
+  "portions": [
+   {
+    "label": "1 只（去壳）",
+    "grams": 25
+   },
+   {
+    "label": "6 只（去壳）",
+    "grams": 150
+   }
+  ],
+  "default": "1 只（去壳）"
+ },
+ {
+  "src": "Egg, whole, raw, fresh",
+  "zh": "鸡蛋（生）",
+  "aliases": [
+   "鸡蛋",
+   "生鸡蛋",
+   "egg"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 50
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 58
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Egg, whole, cooked, hard-boiled",
+  "zh": "水煮蛋",
+  "aliases": [
+   "煮鸡蛋",
+   "白煮蛋",
+   "boiled egg"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 50
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 58
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Egg, whole, cooked, fried",
+  "zh": "煎蛋",
+  "aliases": [
+   "荷包蛋",
+   "煎鸡蛋",
+   "fried egg"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 46
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 52
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Egg, whole, cooked, scrambled",
+  "zh": "炒蛋（西式）",
+  "aliases": [
+   "炒鸡蛋",
+   "滑蛋",
+   "scrambled eggs"
+  ],
+  "portions": [
+   {
+    "label": "1 个蛋的量",
+    "grams": 60
+   },
+   {
+    "label": "2 个蛋的量",
+    "grams": 120
+   }
+  ],
+  "default": "2 个蛋的量"
+ },
+ {
+  "src": "Egg, whole, cooked, poached",
+  "zh": "水波蛋",
+  "aliases": [
+   "水煮荷包蛋",
+   "卧鸡蛋",
+   "poached egg"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 50
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 58
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Egg, whole, cooked, omelet",
+  "zh": "欧姆蛋（煎蛋卷）",
+  "aliases": [
+   "煎蛋卷",
+   "鸡蛋饼",
+   "omelette"
+  ],
+  "portions": [
+   {
+    "label": "2 个蛋的量",
+    "grams": 120
+   },
+   {
+    "label": "3 个蛋的量",
+    "grams": 180
+   }
+  ],
+  "default": "2 个蛋的量"
+ },
+ {
+  "src": "Egg, white, raw, fresh",
+  "zh": "蛋清（生）",
+  "aliases": [
+   "蛋白",
+   "鸡蛋清",
+   "egg white"
+  ],
+  "portions": [
+   {
+    "label": "1 个蛋的蛋清",
+    "grams": 33
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 个蛋的蛋清"
+ },
+ {
+  "src": "Egg, yolk, raw, fresh",
+  "zh": "蛋黄（生）",
+  "aliases": [
+   "鸡蛋黄",
+   "egg yolk"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 17
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Egg, quail, whole, fresh, raw",
+  "zh": "鹌鹑蛋",
+  "aliases": [
+   "鹑蛋",
+   "quail eggs"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 9
+   },
+   {
+    "label": "5 个",
+    "grams": 45
+   }
+  ],
+  "default": "5 个"
+ }
+]
