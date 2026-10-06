@@ -52,3 +52,27 @@ describe("applyLogFixesTo", () => {
     for (const [id, fx] of Object.entries(LOG_FIX)) expect(typeof fx.why, id).toBe("string");
   });
 });
+
+describe("generic food library (data/generic-foods.json)", async () => {
+  const fs = await import("node:fs");
+  const { foods } = JSON.parse(fs.readFileSync(new URL("../../data/generic-foods.json", import.meta.url), "utf8"));
+  it("has ~500 foods with unique ids and names, valid portions and in-range numbers", () => {
+    expect(foods.length).toBeGreaterThan(450);
+    expect(new Set(foods.map(f => f.id)).size).toBe(foods.length);
+    expect(new Set(foods.map(f => f.name)).size).toBe(foods.length);
+    for (const f of foods) {
+      expect(f.portions.map(p => p.label), f.name).toContain(f.default_portion);
+      const p = f.per_100g;
+      expect(p.kcal >= 0 && p.kcal <= 905 && p.protein + p.fat + p.carb + (f.fiber || 0) <= 101, f.name).toBe(true);
+    }
+  });
+  /* USDA 数值本身如此、不是串行：干木耳纤维约 70 g，USDA 按碳水全算 4 kcal；黑醋里有不算碳水的有机酸 */
+  const KNOWN = { "木耳（干）": 1, "意大利黑醋": 1 };
+  it("energy roughly matches 4/9/4 + 2·fibre (+7·alcohol for drinks) for nearly every food", () => {
+    const off = foods.filter(f => {
+      const p = f.per_100g, calc = 4 * p.protein + 9 * p.fat + 4 * p.carb + 2 * (f.fiber || 0);
+      return p.kcal > 40 && Math.abs(calc - p.kcal) / p.kcal > 0.2 && !/alcohol|beer|wine|distilled/i.test(f.en) && !KNOWN[f.name];
+    });
+    expect(off.map(f => `${f.name} ${f.per_100g.kcal}`)).toEqual([]);
+  });
+});

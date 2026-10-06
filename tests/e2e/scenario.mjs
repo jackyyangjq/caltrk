@@ -68,6 +68,9 @@ export async function runScenario(browser, baseUrl) {
   await typeIn("#in-grams", "123"); await snap("grams-preview");
   await click('[data-act="confirm-grams"]'); await snap("confirm-grams");
 
+  await typeIn("#in-search", "鸡胸"); await snap("search-generic");
+  await click('.r-sec ~ .r-item[data-act="open-food"]'); await snap("generic-sheet");
+  await click('[data-act="pick-portion"]'); await snap("generic-logged");
   await typeIn("#in-search", "奇怪的东西"); await snap("search-miss");
   await click('[data-act="open-guess"]'); await snap("guess-sheet");
   await typeIn("#in-gkcal", "333"); await click('[data-act="pick-amount"][data-a="一半"]');
@@ -137,6 +140,7 @@ export async function runScenario(browser, baseUrl) {
   // Library tab
   await click('.tabs [data-tab="library"]'); await snap("library");
   await typeIn("#in-lib", "tesco"); await snap("library-search");
+  await typeIn("#in-lib", "豆腐"); await snap("library-search-generic");
   await typeIn("#in-lib", ""); await click('[data-act="del-userfood"]'); await snap("library-del-armed");
   await click('[data-act="del-userfood"][data-armed]'); await snap("library-deleted");
   await click('.r-item[data-act="open-food"]'); await snap("library-open");
