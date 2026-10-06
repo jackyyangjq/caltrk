@@ -120,6 +120,13 @@ export async function runScenario(browser, baseUrl) {
 
   // Weight tab
   await click('.tabs [data-tab="weight"]'); await snap("weight");
+  await click('[data-act="trend-range"][data-r="14"]'); await snap("trend-14");
+  const box = await page.locator("#trchart").boundingBox();
+  await page.mouse.click(box.x + box.width * 0.4, box.y + box.height * 0.5); await snap("trend-tap");
+  await page.keyboard.press("ArrowLeft"); await page.keyboard.press("ArrowLeft"); await snap("trend-keys");
+  await click('[data-act="trend-range"][data-r="all"]'); await snap("trend-all");
+  await click(".tr-table summary"); await snap("trend-table");
+  await click('[data-act="trend-range"][data-r="30"]');
   await click('[data-act="ctx-gym"]'); await snap("weight-gym");
   await click('[data-act="kg-plus"]'); await click('[data-act="kg-plus"]'); await snap("weight-step");
   await click('[data-act="save-weight"]'); await snap("weight-saved");

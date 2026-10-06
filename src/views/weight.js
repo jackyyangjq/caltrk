@@ -1,6 +1,7 @@
 import { todayStr } from "../lib/util.js";
 import { flashId, setFlash } from "../state.js";
 import { DB, K, persist } from "../store.js";
+import { bindTrendChart, renderTrendMod } from "./weightChart.js";
 
 
 /* ── 体重页 ─────────────────────────────────────────────── */
@@ -46,6 +47,9 @@ export function renderWeight() {
     '<div class="note">每天早晨固定时机称：起床、上完厕所、早饭前。健身房下午的测量选「健身房 · 训练前」，两条基线分析时分开处理，同一天可以各记一条。</div>' +
     '</div>';
 
+  /* 趋势卡：图宽按卡片内宽（卡片左右各 15px 内边距 + 1px 边框） */
+  h += renderTrendMod(el.clientWidth - 32);
+
   h += '<div class="mod"><div class="mod-title">最近记录</div>';
   if (!DB.weight.length) {
     h += '<div class="empty">还没有体重记录。明早起床、上完厕所、早饭前称一次，顺手记进来——每天同一时机，数据才可比。</div>';
@@ -74,6 +78,7 @@ export function renderWeight() {
     '<b>每天 08:00「称体重 + 记早餐」</b>、<b>每天 21:30「补记 + 开『记全了』」</b>。' +
     '页面打开时顶部的提示条会兜底提示当天漏了什么。</div></div>';
   el.innerHTML = h;
+  bindTrendChart();
   setFlash(null);
   updateKgDelta();
   var ki = document.getElementById("in-kg");

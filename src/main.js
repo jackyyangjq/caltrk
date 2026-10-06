@@ -9,6 +9,7 @@ import { doExport, importInput, renderExport } from "./views/export.js";
 import { renderLibrary } from "./views/library.js";
 import { dismissBanner, histExpanded, renderBanner, renderToday, renderTodayBottom, searchQuery, setHistExpanded } from "./views/today.js";
 import { renderWeight, saveWeight, setWeightCtx, stepKg } from "./views/weight.js";
+import { setTrendRange } from "./views/weightChart.js";
 
 /* ── 入口 ──────────────────────────────────────────────────
    模块地图（v2.0 从单文件 index.html 按原有分节拆出，行为不变）：
@@ -240,6 +241,7 @@ document.addEventListener("click", function (ev) {
   else if (act === "ctx-morning") { setWeightCtx("morning"); renderWeight(); }
   else if (act === "ctx-gym") { setWeightCtx("gym_pre"); renderWeight(); }
   else if (act === "ctx-other") { setWeightCtx("other"); renderWeight(); }
+  else if (act === "trend-range") { setTrendRange(b.getAttribute("data-r")); renderWeight(); }
   else if (act === "kg-minus") stepKg(-0.1);
   else if (act === "kg-plus") stepKg(0.1);
   else if (act === "save-weight") saveWeight();
