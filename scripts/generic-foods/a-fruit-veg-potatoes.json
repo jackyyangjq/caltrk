@@ -1,0 +1,2624 @@
+[
+ {
+  "src": "Apples, raw, with skin",
+  "zh": "苹果",
+  "aliases": [
+   "富士苹果",
+   "蛇果",
+   "apple"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 180
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 130
+   },
+   {
+    "label": "半个",
+    "grams": 90
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Apricots, raw",
+  "zh": "杏",
+  "aliases": [
+   "杏子",
+   "apricot"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 35
+   },
+   {
+    "label": "3 个",
+    "grams": 105
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Apricots, dried, sulfured, uncooked",
+  "zh": "杏干",
+  "aliases": [
+   "杏脯",
+   "dried apricot"
+  ],
+  "portions": [
+   {
+    "label": "一小把 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 个",
+    "grams": 8
+   }
+  ],
+  "default": "一小把 30g"
+ },
+ {
+  "src": "Avocados, raw",
+  "zh": "牛油果",
+  "aliases": [
+   "鳄梨",
+   "avocado"
+  ],
+  "portions": [
+   {
+    "label": "半个",
+    "grams": 70
+   },
+   {
+    "label": "1 个（中）",
+    "grams": 140
+   }
+  ],
+  "default": "半个"
+ },
+ {
+  "src": "Bananas, raw",
+  "zh": "香蕉",
+  "aliases": [
+   "banana"
+  ],
+  "portions": [
+   {
+    "label": "1 根（中）",
+    "grams": 120
+   },
+   {
+    "label": "1 根（小）",
+    "grams": 100
+   },
+   {
+    "label": "1 根（大）",
+    "grams": 140
+   }
+  ],
+  "default": "1 根（中）"
+ },
+ {
+  "src": "Blackberries, raw",
+  "zh": "黑莓",
+  "aliases": [
+   "blackberry"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一盒 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Blueberries, raw",
+  "zh": "蓝莓",
+  "aliases": [
+   "blueberry"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一盒 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Blueberries, frozen, unsweetened",
+  "zh": "蓝莓（冷冻）",
+  "aliases": [
+   "冷冻蓝莓",
+   "frozen blueberries"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Cherries, sweet, raw",
+  "zh": "樱桃",
+  "aliases": [
+   "车厘子",
+   "cherry"
+  ],
+  "portions": [
+   {
+    "label": "10 颗",
+    "grams": 80
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "10 颗"
+ },
+ {
+  "src": "Clementines, raw",
+  "zh": "克莱门氏小柑橘",
+  "aliases": [
+   "小橘子",
+   "小柑橘",
+   "clementine",
+   "easy peeler"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 75
+   },
+   {
+    "label": "2 个",
+    "grams": 150
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Cranberries, dried, sweetened",
+  "zh": "蔓越莓干",
+  "aliases": [
+   "dried cranberries"
+  ],
+  "portions": [
+   {
+    "label": "一小把 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   }
+  ],
+  "default": "一小把 30g"
+ },
+ {
+  "src": "Dates, medjool",
+  "zh": "椰枣（Medjool）",
+  "aliases": [
+   "椰枣",
+   "伊拉克蜜枣",
+   "medjool dates"
+  ],
+  "portions": [
+   {
+    "label": "1 颗",
+    "grams": 24
+   },
+   {
+    "label": "3 颗",
+    "grams": 72
+   }
+  ],
+  "default": "1 颗"
+ },
+ {
+  "src": "Durian, raw or frozen",
+  "zh": "榴莲",
+  "aliases": [
+   "durian"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 块 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Figs, raw",
+  "zh": "无花果",
+  "aliases": [
+   "鲜无花果",
+   "fig"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 50
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Figs, dried, uncooked",
+  "zh": "无花果干",
+  "aliases": [
+   "dried figs"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 个",
+    "grams": 15
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Goji berries, dried",
+  "zh": "枸杞（干）",
+  "aliases": [
+   "枸杞子",
+   "宁夏枸杞",
+   "goji berries"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   },
+   {
+    "label": "一小把 20g",
+    "grams": 20
+   }
+  ],
+  "default": "1 汤匙 10g"
+ },
+ {
+  "src": "Grapefruit, raw, pink and red and white, all areas",
+  "zh": "西柚",
+  "aliases": [
+   "葡萄柚",
+   "grapefruit"
+  ],
+  "portions": [
+   {
+    "label": "半个",
+    "grams": 120
+   },
+   {
+    "label": "1 个",
+    "grams": 240
+   }
+  ],
+  "default": "半个"
+ },
+ {
+  "src": "Grapes, red or green (European type, such as Thompson seedless), raw",
+  "zh": "葡萄（无籽）",
+  "aliases": [
+   "葡萄",
+   "提子",
+   "grapes"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "10 颗",
+    "grams": 50
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Guavas, common, raw",
+  "zh": "番石榴",
+  "aliases": [
+   "芭乐",
+   "guava"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Jackfruit, raw",
+  "zh": "菠萝蜜",
+  "aliases": [
+   "木菠萝",
+   "jackfruit"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 瓣",
+    "grams": 25
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Jujube, raw",
+  "zh": "鲜枣",
+  "aliases": [
+   "冬枣",
+   "青枣",
+   "jujube"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Jujube, Chinese, fresh, dried",
+  "zh": "红枣（干）",
+  "aliases": [
+   "红枣",
+   "大枣",
+   "干枣",
+   "red dates"
+  ],
+  "portions": [
+   {
+    "label": "1 颗",
+    "grams": 6
+   },
+   {
+    "label": "5 颗",
+    "grams": 30
+   }
+  ],
+  "default": "1 颗"
+ },
+ {
+  "src": "Kiwifruit, green, raw",
+  "zh": "猕猴桃",
+  "aliases": [
+   "奇异果",
+   "kiwi"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 75
+   },
+   {
+    "label": "2 个",
+    "grams": 150
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Litchis, raw",
+  "zh": "荔枝",
+  "aliases": [
+   "lychee"
+  ],
+  "portions": [
+   {
+    "label": "10 颗",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 10
+   }
+  ],
+  "default": "10 颗"
+ },
+ {
+  "src": "Longans, raw",
+  "zh": "龙眼",
+  "aliases": [
+   "桂圆",
+   "鲜龙眼",
+   "longan"
+  ],
+  "portions": [
+   {
+    "label": "10 颗",
+    "grams": 40
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "10 颗"
+ },
+ {
+  "src": "Longans, dried",
+  "zh": "桂圆干",
+  "aliases": [
+   "桂圆肉",
+   "龙眼干",
+   "dried longan"
+  ],
+  "portions": [
+   {
+    "label": "一小把 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一小把 15g"
+ },
+ {
+  "src": "Loquats, raw",
+  "zh": "枇杷",
+  "aliases": [
+   "loquat"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 20
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Mangos, raw",
+  "zh": "芒果",
+  "aliases": [
+   "mango"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 200
+   },
+   {
+    "label": "半个",
+    "grams": 100
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Mango, dried, sweetened",
+  "zh": "芒果干",
+  "aliases": [
+   "dried mango"
+  ],
+  "portions": [
+   {
+    "label": "一份 40g",
+    "grams": 40
+   }
+  ],
+  "default": "一份 40g"
+ },
+ {
+  "src": "Melons, cantaloupe, raw",
+  "zh": "哈密瓜（罗马甜瓜）",
+  "aliases": [
+   "甜瓜",
+   "网纹瓜",
+   "cantaloupe"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 块",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Melons, honeydew, raw",
+  "zh": "蜜瓜（白兰瓜）",
+  "aliases": [
+   "白兰瓜",
+   "蜜露瓜",
+   "honeydew melon"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 块",
+    "grams": 125
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Nectarines, raw",
+  "zh": "油桃",
+  "aliases": [
+   "nectarine"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 140
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Oranges, raw",
+  "zh": "橙子",
+  "aliases": [
+   "橙",
+   "甜橙",
+   "orange"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 130
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 180
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Papayas, raw",
+  "zh": "木瓜",
+  "aliases": [
+   "番木瓜",
+   "papaya"
+  ],
+  "portions": [
+   {
+    "label": "半个（中）",
+    "grams": 150
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "半个（中）"
+ },
+ {
+  "src": "Passion-fruit, (granadilla), purple, raw",
+  "zh": "百香果",
+  "aliases": [
+   "西番莲",
+   "passion fruit"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 18
+   },
+   {
+    "label": "3 个",
+    "grams": 54
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Peaches, yellow, raw",
+  "zh": "桃子",
+  "aliases": [
+   "黄桃",
+   "水蜜桃",
+   "peach"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 150
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Peaches, canned, juice pack, solids and liquids",
+  "zh": "桃子罐头（果汁浸）",
+  "aliases": [
+   "黄桃罐头",
+   "canned peaches"
+  ],
+  "portions": [
+   {
+    "label": "一份 120g",
+    "grams": 120
+   },
+   {
+    "label": "1 罐 410g",
+    "grams": 410
+   }
+  ],
+  "default": "一份 120g"
+ },
+ {
+  "src": "Pears, raw",
+  "zh": "梨",
+  "aliases": [
+   "西洋梨",
+   "啤梨",
+   "pear"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 180
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Pears, asian, raw",
+  "zh": "亚洲梨（雪梨/丰水梨）",
+  "aliases": [
+   "雪梨",
+   "丰水梨",
+   "鸭梨",
+   "asian pear"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 250
+   },
+   {
+    "label": "半个",
+    "grams": 125
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Persimmons, japanese, raw",
+  "zh": "柿子",
+  "aliases": [
+   "甜柿",
+   "persimmon",
+   "sharon fruit"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 170
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Persimmons, japanese, dried",
+  "zh": "柿饼",
+  "aliases": [
+   "柿干",
+   "dried persimmon"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 40
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Pineapple, raw",
+  "zh": "菠萝",
+  "aliases": [
+   "凤梨",
+   "pineapple"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 片",
+    "grams": 80
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Plums, raw",
+  "zh": "李子",
+  "aliases": [
+   "布朗",
+   "plum"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 65
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Plums, dried (prunes), uncooked",
+  "zh": "西梅干",
+  "aliases": [
+   "西梅",
+   "加州西梅",
+   "prunes"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 颗",
+    "grams": 10
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Pomegranates, raw",
+  "zh": "石榴",
+  "aliases": [
+   "石榴籽",
+   "pomegranate"
+  ],
+  "portions": [
+   {
+    "label": "半个",
+    "grams": 140
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "半个"
+ },
+ {
+  "src": "Pummelo, raw",
+  "zh": "柚子",
+  "aliases": [
+   "文旦",
+   "蜜柚",
+   "pomelo"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 瓣",
+    "grams": 60
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Raisins, dark, seedless",
+  "zh": "葡萄干",
+  "aliases": [
+   "raisins"
+  ],
+  "portions": [
+   {
+    "label": "一小把 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   },
+   {
+    "label": "1 小盒 14g",
+    "grams": 14
+   }
+  ],
+  "default": "一小把 30g"
+ },
+ {
+  "src": "Raspberries, raw",
+  "zh": "树莓",
+  "aliases": [
+   "覆盆子",
+   "raspberry"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一盒 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Strawberries, raw",
+  "zh": "草莓",
+  "aliases": [
+   "strawberry"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 颗（中）",
+    "grams": 12
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Tangerines, (mandarin oranges), raw",
+  "zh": "橘子",
+  "aliases": [
+   "桔子",
+   "蜜橘",
+   "砂糖橘",
+   "mandarin"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 90
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 40
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Watermelon, raw",
+  "zh": "西瓜",
+  "aliases": [
+   "watermelon"
+  ],
+  "portions": [
+   {
+    "label": "一份 200g",
+    "grams": 200
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 200g"
+ },
+ {
+  "src": "Olives, pickled, canned or bottled, green",
+  "zh": "青橄榄（腌制）",
+  "aliases": [
+   "橄榄",
+   "绿橄榄",
+   "green olives"
+  ],
+  "portions": [
+   {
+    "label": "5 颗",
+    "grams": 20
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "5 颗"
+ },
+ {
+  "src": "Broccoli, raw",
+  "zh": "西兰花（生）",
+  "aliases": [
+   "西蓝花",
+   "青花菜",
+   "broccoli"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 300
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Broccoli, cooked, boiled, drained, without salt",
+  "zh": "西兰花（水煮）",
+  "aliases": [
+   "西蓝花",
+   "白灼西兰花",
+   "boiled broccoli"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Cabbage, chinese (pak-choi), raw",
+  "zh": "小白菜（上海青，生）",
+  "aliases": [
+   "青菜",
+   "上海青",
+   "bok choy",
+   "pak choi"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 棵",
+    "grams": 60
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cabbage, chinese (pak-choi), cooked, boiled, drained",
+  "zh": "小白菜（上海青，熟）",
+  "aliases": [
+   "青菜",
+   "上海青",
+   "bok choy"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cabbage, chinese (pe-tsai), raw",
+  "zh": "大白菜（生）",
+  "aliases": [
+   "黄芽白",
+   "绍菜",
+   "Chinese leaf",
+   "napa cabbage"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 700
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cabbage, napa, cooked",
+  "zh": "大白菜（熟）",
+  "aliases": [
+   "白菜",
+   "黄芽白",
+   "napa cabbage"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cabbage, raw",
+  "zh": "卷心菜（生）",
+  "aliases": [
+   "包菜",
+   "圆白菜",
+   "洋白菜",
+   "cabbage"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 900
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cabbage, cooked, boiled, drained, without salt",
+  "zh": "卷心菜（水煮）",
+  "aliases": [
+   "包菜",
+   "圆白菜",
+   "boiled cabbage"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Carrots, raw",
+  "zh": "胡萝卜（生）",
+  "aliases": [
+   "红萝卜",
+   "carrot"
+  ],
+  "portions": [
+   {
+    "label": "1 根（中）",
+    "grams": 80
+   },
+   {
+    "label": "1 根（大）",
+    "grams": 120
+   }
+  ],
+  "default": "1 根（中）"
+ },
+ {
+  "src": "Carrots, cooked, boiled, drained, without salt",
+  "zh": "胡萝卜（水煮）",
+  "aliases": [
+   "红萝卜",
+   "boiled carrots"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Cauliflower, raw",
+  "zh": "花菜（生）",
+  "aliases": [
+   "花椰菜",
+   "菜花",
+   "cauliflower"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 颗",
+    "grams": 600
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cauliflower, cooked, boiled, drained, without salt",
+  "zh": "花菜（水煮）",
+  "aliases": [
+   "花椰菜",
+   "菜花",
+   "boiled cauliflower"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Spinach, raw",
+  "zh": "菠菜（生）",
+  "aliases": [
+   "spinach"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一把 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Spinach, cooked, boiled, drained, without salt",
+  "zh": "菠菜（水煮）",
+  "aliases": [
+   "焯菠菜",
+   "boiled spinach"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Beans, snap, green, raw",
+  "zh": "四季豆（生）",
+  "aliases": [
+   "豆角",
+   "菜豆",
+   "green beans",
+   "fine beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一盘 200g",
+    "grams": 200
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Beans, snap, green, cooked, boiled",
+  "zh": "四季豆（水煮）",
+  "aliases": [
+   "豆角",
+   "菜豆",
+   "green beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 125g",
+    "grams": 125
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Mushrooms, white, raw",
+  "zh": "白蘑菇（生）",
+  "aliases": [
+   "口蘑",
+   "双孢菇",
+   "蘑菇",
+   "mushroom"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 个",
+    "grams": 18
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Mushrooms, white, stir-fried",
+  "zh": "白蘑菇（炒）",
+  "aliases": [
+   "口蘑",
+   "蘑菇",
+   "fried mushrooms"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Broccoli, chinese, cooked",
+  "zh": "芥兰（熟）",
+  "aliases": [
+   "芥蓝",
+   "gai lan",
+   "Chinese broccoli"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Celery, raw",
+  "zh": "西芹",
+  "aliases": [
+   "芹菜",
+   "celery"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 根",
+    "grams": 40
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cucumber, with peel, raw",
+  "zh": "黄瓜",
+  "aliases": [
+   "青瓜",
+   "cucumber"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 根（中）",
+    "grams": 250
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Lettuce, iceberg, raw",
+  "zh": "球生菜",
+  "aliases": [
+   "西生菜",
+   "结球生菜",
+   "iceberg lettuce"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 片叶",
+    "grams": 15
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Lettuce, green leaf, raw",
+  "zh": "生菜",
+  "aliases": [
+   "散叶生菜",
+   "罗马生菜",
+   "lettuce",
+   "romaine"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 片叶",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Kale, raw",
+  "zh": "羽衣甘蓝",
+  "aliases": [
+   "kale"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一把 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Tomatoes, red, ripe, raw",
+  "zh": "西红柿",
+  "aliases": [
+   "番茄",
+   "圣女果",
+   "tomato",
+   "cherry tomato"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 120
+   },
+   {
+    "label": "1 颗（樱桃番茄）",
+    "grams": 15
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Tomatoes, red, ripe, canned, packed in tomato juice",
+  "zh": "番茄罐头（切块）",
+  "aliases": [
+   "罐头番茄",
+   "切块番茄",
+   "chopped tomatoes"
+  ],
+  "portions": [
+   {
+    "label": "半罐 200g",
+    "grams": 200
+   },
+   {
+    "label": "1 罐 400g",
+    "grams": 400
+   }
+  ],
+  "default": "半罐 200g"
+ },
+ {
+  "src": "Tomato products, canned, paste, without salt added",
+  "zh": "番茄膏",
+  "aliases": [
+   "浓缩番茄酱",
+   "tomato purée",
+   "tomato paste"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 16g"
+ },
+ {
+  "src": "Tomato products, canned, puree, without salt added",
+  "zh": "番茄泥（passata）",
+  "aliases": [
+   "番茄蓉",
+   "意式番茄泥",
+   "passata"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "半盒 250g",
+    "grams": 250
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Onions, raw",
+  "zh": "洋葱",
+  "aliases": [
+   "圆葱",
+   "onion"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 150
+   },
+   {
+    "label": "半个",
+    "grams": 75
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Onions, spring or scallions, raw",
+  "zh": "葱（小葱）",
+  "aliases": [
+   "香葱",
+   "青葱",
+   "大葱",
+   "spring onion"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 15
+   },
+   {
+    "label": "1 汤匙 6g",
+    "grams": 6
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Garlic, raw",
+  "zh": "大蒜",
+  "aliases": [
+   "蒜",
+   "蒜瓣",
+   "蒜头",
+   "garlic"
+  ],
+  "portions": [
+   {
+    "label": "1 瓣",
+    "grams": 4
+   },
+   {
+    "label": "1 头",
+    "grams": 40
+   }
+  ],
+  "default": "1 瓣"
+ },
+ {
+  "src": "Ginger root, raw",
+  "zh": "生姜",
+  "aliases": [
+   "姜",
+   "老姜",
+   "ginger"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 3
+   },
+   {
+    "label": "一小块 15g",
+    "grams": 15
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Leeks, (bulb and lower leaf-portion), raw",
+  "zh": "韭葱",
+  "aliases": [
+   "洋大葱",
+   "扁葱",
+   "leek"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 根",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Chives, raw",
+  "zh": "细香葱",
+  "aliases": [
+   "韭菜",
+   "虾夷葱",
+   "chives"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 3g",
+    "grams": 3
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Peppers, sweet, red, raw",
+  "zh": "红甜椒",
+  "aliases": [
+   "红椒",
+   "彩椒",
+   "灯笼椒",
+   "red pepper"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 120
+   },
+   {
+    "label": "半个",
+    "grams": 60
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Peppers, sweet, green, raw",
+  "zh": "青椒",
+  "aliases": [
+   "柿子椒",
+   "甜椒",
+   "green pepper"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 120
+   },
+   {
+    "label": "半个",
+    "grams": 60
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Peppers, hot chili, red, raw",
+  "zh": "红辣椒",
+  "aliases": [
+   "辣椒",
+   "小米辣",
+   "朝天椒",
+   "chilli"
+  ],
+  "portions": [
+   {
+    "label": "1 根",
+    "grams": 10
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 根"
+ },
+ {
+  "src": "Mushrooms, shiitake, raw",
+  "zh": "香菇（鲜）",
+  "aliases": [
+   "鲜香菇",
+   "冬菇",
+   "shiitake"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 朵",
+    "grams": 15
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Mushrooms, shiitake, dried",
+  "zh": "香菇（干）",
+  "aliases": [
+   "干香菇",
+   "花菇",
+   "dried shiitake"
+  ],
+  "portions": [
+   {
+    "label": "一份 15g",
+    "grams": 15
+   },
+   {
+    "label": "1 朵",
+    "grams": 4
+   }
+  ],
+  "default": "一份 15g"
+ },
+ {
+  "src": "Mushrooms, enoki, raw",
+  "zh": "金针菇",
+  "aliases": [
+   "金菇",
+   "enoki"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 包",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mushrooms, oyster, raw",
+  "zh": "平菇",
+  "aliases": [
+   "蚝菇",
+   "秀珍菇",
+   "oyster mushroom"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Fungi, Cloud ears, dried",
+  "zh": "木耳（干）",
+  "aliases": [
+   "黑木耳",
+   "云耳",
+   "dried wood ear"
+  ],
+  "portions": [
+   {
+    "label": "一小把 10g",
+    "grams": 10
+   }
+  ],
+  "default": "一小把 10g"
+ },
+ {
+  "src": "Jew's ear, (pepeao), raw",
+  "zh": "木耳（泡发）",
+  "aliases": [
+   "黑木耳",
+   "鲜木耳",
+   "wood ear"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "一碗 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Mung beans, mature seeds, sprouted, raw",
+  "zh": "绿豆芽",
+  "aliases": [
+   "豆芽",
+   "芽菜",
+   "bean sprouts"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 袋 300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Bamboo shoots, canned, drained solids",
+  "zh": "竹笋（罐头）",
+  "aliases": [
+   "笋",
+   "笋片",
+   "bamboo shoots"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 罐 140g",
+    "grams": 140
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Lotus root, cooked, boiled, drained, without salt",
+  "zh": "莲藕（煮）",
+  "aliases": [
+   "藕",
+   "藕片",
+   "lotus root"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Waterchestnuts, chinese, (matai), raw",
+  "zh": "荸荠（马蹄）",
+  "aliases": [
+   "马蹄",
+   "water chestnut"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 个",
+    "grams": 15
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Taro, cooked, without salt",
+  "zh": "芋头（熟）",
+  "aliases": [
+   "芋艿",
+   "芋仔",
+   "taro"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 50
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Radishes, oriental, raw",
+  "zh": "白萝卜",
+  "aliases": [
+   "萝卜",
+   "daikon",
+   "mooli"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 根",
+    "grams": 600
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Edamame, frozen, prepared",
+  "zh": "毛豆仁（熟）",
+  "aliases": [
+   "毛豆",
+   "枝豆",
+   "edamame"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Seaweed, kelp, raw",
+  "zh": "海带",
+  "aliases": [
+   "昆布",
+   "海带丝",
+   "kelp"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一小碟 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Water convolvulus, cooked, boiled, drained, without salt",
+  "zh": "空心菜（熟）",
+  "aliases": [
+   "通菜",
+   "蕹菜",
+   "water spinach",
+   "morning glory"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一盘 200g",
+    "grams": 200
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Waxgourd, (chinese preserving melon), raw",
+  "zh": "冬瓜",
+  "aliases": [
+   "winter melon"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Balsam-pear (bitter gourd), pods, raw",
+  "zh": "苦瓜",
+  "aliases": [
+   "凉瓜",
+   "bitter melon"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 根",
+    "grams": 300
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Gourd, dishcloth (towelgourd), raw",
+  "zh": "丝瓜",
+  "aliases": [
+   "水瓜",
+   "luffa"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 根",
+    "grams": 300
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yardlong bean, cooked, boiled, drained, without salt",
+  "zh": "豇豆（熟）",
+  "aliases": [
+   "长豆角",
+   "豆角",
+   "yardlong bean"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Peas, green, frozen, cooked, boiled",
+  "zh": "青豌豆（冷冻，煮）",
+  "aliases": [
+   "豌豆",
+   "青豆",
+   "peas"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Peas, edible-podded, raw",
+  "zh": "荷兰豆",
+  "aliases": [
+   "甜豆",
+   "雪豆",
+   "mangetout",
+   "sugar snap peas"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一盘 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Corn, sweet, yellow, cooked, boiled",
+  "zh": "甜玉米（煮）",
+  "aliases": [
+   "玉米",
+   "玉米棒",
+   "sweetcorn",
+   "corn on the cob"
+  ],
+  "portions": [
+   {
+    "label": "1 根（中）",
+    "grams": 100
+   },
+   {
+    "label": "一份 80g",
+    "grams": 80
+   }
+  ],
+  "default": "1 根（中）"
+ },
+ {
+  "src": "Corn, sweet, yellow, canned, drained solids",
+  "zh": "玉米粒（罐头）",
+  "aliases": [
+   "甜玉米粒",
+   "玉米粒",
+   "tinned sweetcorn"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 小罐 165g",
+    "grams": 165
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Eggplant, raw",
+  "zh": "茄子",
+  "aliases": [
+   "矮瓜",
+   "aubergine",
+   "eggplant"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 个（中）",
+    "grams": 250
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Squash, summer, zucchini, raw",
+  "zh": "西葫芦",
+  "aliases": [
+   "角瓜",
+   "courgette",
+   "zucchini"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 根（中）",
+    "grams": 200
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Squash, winter, butternut, cooked, baked",
+  "zh": "奶油南瓜（烤）",
+  "aliases": [
+   "胡桃南瓜",
+   "butternut squash"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 200g",
+    "grams": 200
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Pumpkin, cooked, boiled, drained, without salt",
+  "zh": "南瓜（煮）",
+  "aliases": [
+   "倭瓜",
+   "蒸南瓜",
+   "pumpkin"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Asparagus, cooked, boiled, drained",
+  "zh": "芦笋（水煮）",
+  "aliases": [
+   "露笋",
+   "asparagus"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "5 根",
+    "grams": 75
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Beets, cooked, boiled, drained",
+  "zh": "甜菜根（熟）",
+  "aliases": [
+   "红菜头",
+   "甜菜头",
+   "beetroot"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 60
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Parsnips, cooked, boiled, drained, without salt",
+  "zh": "欧防风（煮）",
+  "aliases": [
+   "欧洲防风",
+   "芹菜萝卜",
+   "parsnip"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Okra, cooked, boiled, drained, without salt",
+  "zh": "秋葵（熟）",
+  "aliases": [
+   "羊角豆",
+   "okra"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "5 根",
+    "grams": 50
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Coriander (cilantro) leaves, raw",
+  "zh": "香菜",
+  "aliases": [
+   "芫荽",
+   "coriander",
+   "cilantro"
+  ],
+  "portions": [
+   {
+    "label": "一小把 10g",
+    "grams": 10
+   }
+  ],
+  "default": "一小把 10g"
+ },
+ {
+  "src": "Watercress, raw",
+  "zh": "西洋菜",
+  "aliases": [
+   "豆瓣菜",
+   "watercress"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一把 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Celtuce, raw",
+  "zh": "莴笋",
+  "aliases": [
+   "莴苣",
+   "青笋",
+   "celtuce"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 根",
+    "grams": 250
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Mountain yam, hawaii, cooked, steamed, without salt",
+  "zh": "山药（蒸）",
+  "aliases": [
+   "淮山",
+   "铁棍山药",
+   "chinese yam"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "一段 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Vegetables, mixed, frozen, unprepared",
+  "zh": "什锦蔬菜（冷冻）",
+  "aliases": [
+   "杂菜",
+   "混合蔬菜",
+   "mixed vegetables"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "一碗 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Brussels sprouts, cooked, boiled, drained, without salt",
+  "zh": "抱子甘蓝（水煮）",
+  "aliases": [
+   "球芽甘蓝",
+   "brussels sprouts"
+  ],
+  "portions": [
+   {
+    "label": "一份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 颗",
+    "grams": 20
+   }
+  ],
+  "default": "一份 80g"
+ },
+ {
+  "src": "Potatoes, flesh and skin, raw",
+  "zh": "土豆（生，带皮）",
+  "aliases": [
+   "马铃薯",
+   "洋芋",
+   "potato"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Potatoes, boiled, cooked without skin, flesh, without salt",
+  "zh": "土豆（去皮水煮）",
+  "aliases": [
+   "煮土豆",
+   "马铃薯",
+   "boiled potatoes"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 个（中）",
+    "grams": 170
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Potatoes, baked, flesh and skin, without salt",
+  "zh": "烤土豆（带皮）",
+  "aliases": [
+   "烤马铃薯",
+   "jacket potato",
+   "baked potato"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 200
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 300
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Potatoes, mashed, home-prepared, whole milk and butter added",
+  "zh": "土豆泥（加奶和黄油）",
+  "aliases": [
+   "薯泥",
+   "马铃薯泥",
+   "mashed potato"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 大勺 60g",
+    "grams": 60
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Potatoes, french fried, all types, salt not added in processing, frozen",
+  "zh": "薯条（冷冻，烤箱加热）",
+  "aliases": [
+   "炸薯条",
+   "oven chips",
+   "fries"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "一小份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g",
+  "pick_kcal": 168
+ },
+ {
+  "src": "Potatoes, hash brown, frozen, plain, prepared",
+  "zh": "薯饼（冷冻，加热）",
+  "aliases": [
+   "土豆饼",
+   "hash brown"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 45
+   },
+   {
+    "label": "2 块",
+    "grams": 90
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Potato salad, home-prepared",
+  "zh": "土豆沙拉",
+  "aliases": [
+   "马铃薯沙拉",
+   "potato salad"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 大勺 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Sweet potato, raw, unprepared",
+  "zh": "红薯（生）",
+  "aliases": [
+   "地瓜",
+   "番薯",
+   "sweet potato"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Sweet potato, cooked, baked in skin, flesh, without salt",
+  "zh": "烤红薯",
+  "aliases": [
+   "烤地瓜",
+   "烤番薯",
+   "baked sweet potato"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 180
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Sweet potato, cooked, boiled, without skin",
+  "zh": "红薯（去皮水煮）",
+  "aliases": [
+   "煮红薯",
+   "蒸红薯",
+   "boiled sweet potato"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 个（中）",
+    "grams": 180
+   }
+  ],
+  "default": "一份 150g"
+ }
+]

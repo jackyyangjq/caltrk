@@ -1,0 +1,2791 @@
+[
+ {
+  "src": "Milk, whole, 3.25% milkfat, with added vitamin D",
+  "zh": "全脂牛奶",
+  "aliases": [
+   "牛奶",
+   "纯牛奶",
+   "whole milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 小盒 200ml",
+    "grams": 200
+   },
+   {
+    "label": "加入茶/咖啡 30ml",
+    "grams": 30
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",
+  "zh": "半脱脂牛奶（2%脂肪）",
+  "aliases": [
+   "半脱脂奶",
+   "2%牛奶",
+   "semi-skimmed milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 小盒 200ml",
+    "grams": 200
+   },
+   {
+    "label": "加入茶/咖啡 30ml",
+    "grams": 30
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Milk, lowfat, fluid, 1% milkfat, with added vitamin A and vitamin D",
+  "zh": "低脂牛奶（1%脂肪）",
+  "aliases": [
+   "低脂奶",
+   "1%牛奶",
+   "1% milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 小盒 200ml",
+    "grams": 200
+   },
+   {
+    "label": "加入茶/咖啡 30ml",
+    "grams": 30
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",
+  "zh": "脱脂牛奶",
+  "aliases": [
+   "脱脂奶",
+   "skimmed milk",
+   "skim milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 小盒 200ml",
+    "grams": 200
+   },
+   {
+    "label": "加入茶/咖啡 30ml",
+    "grams": 30
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Milk, canned, condensed, sweetened",
+  "zh": "炼乳",
+  "aliases": [
+   "甜炼乳",
+   "condensed milk"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   },
+   {
+    "label": "1 茶匙 7g",
+    "grams": 7
+   }
+  ],
+  "default": "1 汤匙 20g"
+ },
+ {
+  "src": "Milk, canned, evaporated, with added vitamin A",
+  "zh": "淡奶（罐装）",
+  "aliases": [
+   "淡炼乳",
+   "奶茶淡奶",
+   "evaporated milk"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15ml",
+    "grams": 15
+   },
+   {
+    "label": "一份（奶茶）30ml",
+    "grams": 30
+   }
+  ],
+  "default": "一份（奶茶）30ml"
+ },
+ {
+  "src": "Milk, dry, whole, with added vitamin D",
+  "zh": "全脂奶粉",
+  "aliases": [
+   "奶粉",
+   "milk powder"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "一份（冲一杯）25g",
+    "grams": 25
+   }
+  ],
+  "default": "一份（冲一杯）25g"
+ },
+ {
+  "src": "Yogurt, plain, whole milk",
+  "zh": "原味酸奶（全脂）",
+  "aliases": [
+   "酸奶",
+   "无糖酸奶",
+   "natural yogurt"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 小盒 125g",
+    "grams": 125
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yogurt, plain, low fat",
+  "zh": "原味酸奶（低脂）",
+  "aliases": [
+   "低脂酸奶",
+   "低脂无糖酸奶",
+   "low fat yogurt"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 小盒 125g",
+    "grams": 125
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yogurt, Greek, plain, whole milk",
+  "zh": "希腊酸奶（全脂）",
+  "aliases": [
+   "希腊式酸奶",
+   "Greek yogurt"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 小盒 170g",
+    "grams": 170
+   },
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yogurt, Greek, plain, lowfat",
+  "zh": "希腊酸奶（低脂）",
+  "aliases": [
+   "低脂希腊酸奶",
+   "low fat Greek yogurt"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 小盒 170g",
+    "grams": 170
+   },
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yogurt, Greek, plain, nonfat",
+  "zh": "希腊酸奶（脱脂0%）",
+  "aliases": [
+   "0%希腊酸奶",
+   "脱脂希腊酸奶",
+   "fat free Greek yogurt"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 小盒 170g",
+    "grams": 170
+   },
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Yogurt, fruit, low fat, 9 g protein/8 oz",
+  "zh": "水果酸奶（低脂）",
+  "aliases": [
+   "果味酸奶",
+   "果粒酸奶",
+   "fruit yogurt"
+  ],
+  "portions": [
+   {
+    "label": "1 小盒 125g",
+    "grams": 125
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 小盒 125g"
+ },
+ {
+  "src": "Cheese, cheddar",
+  "zh": "切达奶酪",
+  "aliases": [
+   "切达芝士",
+   "车达奶酪",
+   "cheddar"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一把（擦丝）40g",
+    "grams": 40
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, cheddar, reduced fat",
+  "zh": "切达奶酪（低脂）",
+  "aliases": [
+   "低脂切达",
+   "减脂芝士",
+   "reduced fat cheddar"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "一把（擦丝）40g",
+    "grams": 40
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, mozzarella, whole milk",
+  "zh": "马苏里拉奶酪（鲜奶酪球）",
+  "aliases": [
+   "马苏里拉",
+   "莫扎瑞拉",
+   "mozzarella"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "半球",
+    "grams": 60
+   },
+   {
+    "label": "1 球",
+    "grams": 125
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, mozzarella, low moisture, part-skim, shredded",
+  "zh": "马苏里拉奶酪碎（披萨用）",
+  "aliases": [
+   "芝士碎",
+   "披萨奶酪",
+   "grated mozzarella"
+  ],
+  "portions": [
+   {
+    "label": "一把 30g",
+    "grams": 30
+   },
+   {
+    "label": "一份（披萨）60g",
+    "grams": 60
+   }
+  ],
+  "default": "一把 30g"
+ },
+ {
+  "src": "Cheese, parmesan, hard",
+  "zh": "帕玛森奶酪",
+  "aliases": [
+   "帕尔马干酪",
+   "巴马臣芝士",
+   "parmesan"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙（擦碎）5g",
+    "grams": 5
+   },
+   {
+    "label": "一份 20g",
+    "grams": 20
+   }
+  ],
+  "default": "1 汤匙（擦碎）5g"
+ },
+ {
+  "src": "Cheese, feta",
+  "zh": "菲达奶酪",
+  "aliases": [
+   "羊乳酪",
+   "希腊白奶酪",
+   "feta"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1/4 块 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, cottage, creamed, large or small curd",
+  "zh": "茅屋奶酪",
+  "aliases": [
+   "农家奶酪",
+   "卡特基奶酪",
+   "cottage cheese"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 30g",
+    "grams": 30
+   },
+   {
+    "label": "半盒 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cheese, cottage, lowfat, 1% milkfat",
+  "zh": "茅屋奶酪（低脂）",
+  "aliases": [
+   "低脂农家奶酪",
+   "low fat cottage cheese"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 30g",
+    "grams": 30
+   },
+   {
+    "label": "半盒 150g",
+    "grams": 150
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cheese, cream",
+  "zh": "奶油奶酪",
+  "aliases": [
+   "奶油芝士",
+   "忌廉芝士",
+   "cream cheese"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, cream, low fat",
+  "zh": "奶油奶酪（低脂）",
+  "aliases": [
+   "低脂奶油芝士",
+   "light cream cheese"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, brie",
+  "zh": "布里奶酪",
+  "aliases": [
+   "布里芝士",
+   "brie"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一小块 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, gouda",
+  "zh": "高达奶酪",
+  "aliases": [
+   "豪达奶酪",
+   "gouda"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 片",
+    "grams": 20
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, blue",
+  "zh": "蓝纹奶酪",
+  "aliases": [
+   "蓝芝士",
+   "斯蒂尔顿",
+   "blue cheese",
+   "stilton"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一小块 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, goat, soft type",
+  "zh": "山羊奶酪（软质）",
+  "aliases": [
+   "山羊芝士",
+   "羊奶酪",
+   "goat cheese"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一小块 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cheese, ricotta, whole milk",
+  "zh": "意大利乳清奶酪（瑞可塔）",
+  "aliases": [
+   "瑞可塔",
+   "里科塔奶酪",
+   "ricotta"
+  ],
+  "portions": [
+   {
+    "label": "一份 60g",
+    "grams": 60
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 60g"
+ },
+ {
+  "src": "Cheese, pasteurized process, American, fortified with vitamin D",
+  "zh": "芝士片（再制干酪）",
+  "aliases": [
+   "奶酪片",
+   "汉堡芝士片",
+   "cheese slice"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 20
+   },
+   {
+    "label": "2 片",
+    "grams": 40
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Cream, fluid, heavy whipping",
+  "zh": "淡奶油（高脂，可打发）",
+  "aliases": [
+   "稀奶油",
+   "鲜奶油",
+   "double cream",
+   "whipping cream"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15ml",
+    "grams": 15
+   },
+   {
+    "label": "一份 50ml",
+    "grams": 50
+   }
+  ],
+  "default": "1 汤匙 15ml"
+ },
+ {
+  "src": "Cream, fluid, light (coffee cream or table cream)",
+  "zh": "单奶油（低脂稀奶油）",
+  "aliases": [
+   "单倍奶油",
+   "咖啡奶油",
+   "single cream"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15ml",
+    "grams": 15
+   },
+   {
+    "label": "一份 50ml",
+    "grams": 50
+   }
+  ],
+  "default": "1 汤匙 15ml"
+ },
+ {
+  "src": "Cream, sour, cultured",
+  "zh": "酸奶油",
+  "aliases": [
+   "酸忌廉",
+   "sour cream"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Ice cream, bar or stick, chocolate covered",
+  "zh": "巧克力脆皮冰淇淋棒",
+  "aliases": [
+   "雪糕",
+   "冰淇淋",
+   "ice cream bar"
+  ],
+  "portions": [
+   {
+    "label": "1 支",
+    "grams": 70
+   },
+   {
+    "label": "1 支（迷你）",
+    "grams": 40
+   }
+  ],
+  "default": "1 支"
+ },
+ {
+  "src": "Yogurt, frozen, flavors other than chocolate, lowfat",
+  "zh": "冻酸奶（低脂）",
+  "aliases": [
+   "酸奶冰淇淋",
+   "frozen yogurt",
+   "froyo"
+  ],
+  "portions": [
+   {
+    "label": "1 球",
+    "grams": 60
+   },
+   {
+    "label": "一杯 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 球"
+ },
+ {
+  "src": "Rice, white, long-grain, cooked without salt",
+  "zh": "白米饭（长粒米）",
+  "aliases": [
+   "米饭",
+   "香米饭",
+   "泰国香米",
+   "rice"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 75g",
+    "grams": 75
+   },
+   {
+    "label": "1 大碗 250g",
+    "grams": 250
+   }
+  ],
+  "default": "1 碗 150g"
+ },
+ {
+  "src": "Rice, white, short-grain, cooked",
+  "zh": "白米饭（短粒/珍珠米）",
+  "aliases": [
+   "米饭",
+   "东北大米饭",
+   "寿司米饭",
+   "short grain rice"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 75g",
+    "grams": 75
+   },
+   {
+    "label": "1 大碗 250g",
+    "grams": 250
+   }
+  ],
+  "default": "1 碗 150g"
+ },
+ {
+  "src": "Rice, brown, long-grain, cooked",
+  "zh": "糙米饭",
+  "aliases": [
+   "糙米",
+   "brown rice"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 75g",
+    "grams": 75
+   }
+  ],
+  "default": "1 碗 150g"
+ },
+ {
+  "src": "Rice, white, glutinous, cooked",
+  "zh": "糯米饭",
+  "aliases": [
+   "江米饭",
+   "sticky rice",
+   "glutinous rice"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 75g",
+    "grams": 75
+   }
+  ],
+  "default": "1 碗 150g"
+ },
+ {
+  "src": "Rice, white, long-grain, raw",
+  "zh": "大米（生）",
+  "aliases": [
+   "生米",
+   "白米",
+   "uncooked rice"
+  ],
+  "portions": [
+   {
+    "label": "一人份 75g",
+    "grams": 75
+   },
+   {
+    "label": "1 量杯（电饭煲）150g",
+    "grams": 150
+   }
+  ],
+  "default": "一人份 75g"
+ },
+ {
+  "src": "Rice, white, glutinous, uncooked",
+  "zh": "糯米（生）",
+  "aliases": [
+   "江米",
+   "生糯米",
+   "raw glutinous rice"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Rice noodles, cooked",
+  "zh": "米粉/河粉（熟）",
+  "aliases": [
+   "米线",
+   "河粉",
+   "rice noodles"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Rice noodles, dry",
+  "zh": "米粉（干）",
+  "aliases": [
+   "干米粉",
+   "干米线",
+   "dried rice noodles"
+  ],
+  "portions": [
+   {
+    "label": "一人份 70g",
+    "grams": 70
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一人份 70g"
+ },
+ {
+  "src": "Noodles, egg, cooked, without added salt",
+  "zh": "鸡蛋面（熟）",
+  "aliases": [
+   "蛋面",
+   "egg noodles"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Noodles, egg, dry",
+  "zh": "鸡蛋面（干）",
+  "aliases": [
+   "干蛋面",
+   "面饼",
+   "dried egg noodles"
+  ],
+  "portions": [
+   {
+    "label": "1 个面饼",
+    "grams": 50
+   },
+   {
+    "label": "一人份 75g",
+    "grams": 75
+   }
+  ],
+  "default": "1 个面饼"
+ },
+ {
+  "src": "Noodles, japanese, soba, cooked",
+  "zh": "荞麦面（熟）",
+  "aliases": [
+   "日式荞麦面",
+   "soba"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Noodles, japanese, somen, cooked",
+  "zh": "挂面/素面（熟）",
+  "aliases": [
+   "挂面",
+   "素面",
+   "面条",
+   "somen"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   }
+  ],
+  "default": "1 碗 200g"
+ },
+ {
+  "src": "Noodles, japanese, somen, dry",
+  "zh": "挂面/素面（干）",
+  "aliases": [
+   "干挂面",
+   "干面条",
+   "dried noodles"
+  ],
+  "portions": [
+   {
+    "label": "一人份 80g",
+    "grams": 80
+   },
+   {
+    "label": "1 把 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一人份 80g"
+ },
+ {
+  "src": "Noodles, chinese, cellophane or long rice (mung beans), dehydrated",
+  "zh": "粉丝（干，绿豆）",
+  "aliases": [
+   "绿豆粉丝",
+   "冬粉",
+   "glass noodles",
+   "bean thread"
+  ],
+  "portions": [
+   {
+    "label": "1 小把 25g",
+    "grams": 25
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 小把 25g"
+ },
+ {
+  "src": "Pasta, cooked, without added salt",
+  "zh": "意大利面（熟）",
+  "aliases": [
+   "意面",
+   "通心粉",
+   "spaghetti",
+   "pasta"
+  ],
+  "portions": [
+   {
+    "label": "一人份 180g",
+    "grams": 180
+   },
+   {
+    "label": "1 大盘 250g",
+    "grams": 250
+   }
+  ],
+  "default": "一人份 180g"
+ },
+ {
+  "src": "Pasta, dry",
+  "zh": "意大利面（干）",
+  "aliases": [
+   "干意面",
+   "dry pasta"
+  ],
+  "portions": [
+   {
+    "label": "一人份 75g",
+    "grams": 75
+   },
+   {
+    "label": "一份 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一人份 75g"
+ },
+ {
+  "src": "Pasta, whole-wheat, cooked",
+  "zh": "全麦意面（熟）",
+  "aliases": [
+   "全麦意大利面",
+   "wholewheat pasta"
+  ],
+  "portions": [
+   {
+    "label": "一人份 180g",
+    "grams": 180
+   },
+   {
+    "label": "1 大盘 250g",
+    "grams": 250
+   }
+  ],
+  "default": "一人份 180g"
+ },
+ {
+  "src": "Couscous, cooked",
+  "zh": "古斯米（熟）",
+  "aliases": [
+   "北非小米",
+   "蒸粗麦粉",
+   "couscous"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "半份 75g",
+    "grams": 75
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Quinoa, cooked",
+  "zh": "藜麦（熟）",
+  "aliases": [
+   "藜麦饭",
+   "quinoa"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 90g",
+    "grams": 90
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Quinoa, uncooked",
+  "zh": "藜麦（生）",
+  "aliases": [
+   "生藜麦",
+   "raw quinoa"
+  ],
+  "portions": [
+   {
+    "label": "一人份 60g",
+    "grams": 60
+   },
+   {
+    "label": "1 汤匙 12g",
+    "grams": 12
+   }
+  ],
+  "default": "一人份 60g"
+ },
+ {
+  "src": "Wheat flour, white, all-purpose",
+  "zh": "中筋面粉",
+  "aliases": [
+   "普通面粉",
+   "面粉",
+   "plain flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 杯 125g",
+    "grams": 125
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Wheat flour, white, bread",
+  "zh": "高筋面粉",
+  "aliases": [
+   "面包粉",
+   "strong flour",
+   "bread flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 杯 125g",
+    "grams": 125
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Wheat flour, white, cake",
+  "zh": "低筋面粉",
+  "aliases": [
+   "蛋糕粉",
+   "cake flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 杯 115g",
+    "grams": 115
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Wheat flour, whole-grain",
+  "zh": "全麦面粉",
+  "aliases": [
+   "全麦粉",
+   "wholemeal flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 杯 120g",
+    "grams": 120
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Wheat flour, white, all-purpose, self-rising",
+  "zh": "自发粉",
+  "aliases": [
+   "自发面粉",
+   "self-raising flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 杯 125g",
+    "grams": 125
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Cornmeal, whole-grain, yellow",
+  "zh": "玉米面（全谷物）",
+  "aliases": [
+   "玉米粉",
+   "粗玉米面",
+   "cornmeal",
+   "polenta"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Cornstarch",
+  "zh": "玉米淀粉",
+  "aliases": [
+   "生粉",
+   "淀粉",
+   "cornflour",
+   "corn starch"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   },
+   {
+    "label": "1 茶匙 3g",
+    "grams": 3
+   }
+  ],
+  "default": "1 汤匙 8g"
+ },
+ {
+  "src": "Rice flour, white",
+  "zh": "粘米粉",
+  "aliases": [
+   "大米粉",
+   "rice flour"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Barley, pearled, cooked",
+  "zh": "珍珠大麦（熟）",
+  "aliases": [
+   "大麦",
+   "大麦仁",
+   "pearl barley"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 80g",
+    "grams": 80
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Millet, raw",
+  "zh": "小米（生）",
+  "aliases": [
+   "黄小米",
+   "生小米",
+   "millet"
+  ],
+  "portions": [
+   {
+    "label": "一人份（煮粥）30g",
+    "grams": 30
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一人份（煮粥）30g"
+ },
+ {
+  "src": "Millet, cooked",
+  "zh": "小米饭（熟）",
+  "aliases": [
+   "熟小米",
+   "cooked millet"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 75g",
+    "grams": 75
+   }
+  ],
+  "default": "1 碗 150g"
+ },
+ {
+  "src": "Tapioca, pearl, dry",
+  "zh": "西米（干）",
+  "aliases": [
+   "西谷米",
+   "木薯珍珠",
+   "tapioca pearls",
+   "sago"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 汤匙 12g",
+    "grams": 12
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Wonton wrappers",
+  "zh": "馄饨皮/饺子皮",
+  "aliases": [
+   "馄饨皮",
+   "饺子皮",
+   "云吞皮",
+   "wonton wrappers"
+  ],
+  "portions": [
+   {
+    "label": "10 张",
+    "grams": 80
+   },
+   {
+    "label": "1 张",
+    "grams": 8
+   }
+  ],
+  "default": "10 张"
+ },
+ {
+  "src": "Bread, white",
+  "zh": "白面包（吐司）",
+  "aliases": [
+   "吐司",
+   "白吐司",
+   "切片面包",
+   "white bread"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 36
+   },
+   {
+    "label": "2 片",
+    "grams": 72
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Bread, whole-wheat",
+  "zh": "全麦面包",
+  "aliases": [
+   "全麦吐司",
+   "wholemeal bread",
+   "brown bread"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 36
+   },
+   {
+    "label": "2 片",
+    "grams": 72
+   }
+  ],
+  "default": "1 片",
+  "pick_kcal": 252
+ },
+ {
+  "src": "Bread, multi-grain",
+  "zh": "杂粮面包",
+  "aliases": [
+   "多谷物面包",
+   "谷物面包",
+   "seeded bread",
+   "multigrain bread"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 40
+   },
+   {
+    "label": "2 片",
+    "grams": 80
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Bread, rye",
+  "zh": "黑麦面包",
+  "aliases": [
+   "裸麦面包",
+   "rye bread"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 32
+   },
+   {
+    "label": "2 片",
+    "grams": 64
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Bread, french or vienna",
+  "zh": "法棍（法式面包）",
+  "aliases": [
+   "法国面包",
+   "长棍面包",
+   "baguette"
+  ],
+  "portions": [
+   {
+    "label": "1 段（10cm）",
+    "grams": 45
+   },
+   {
+    "label": "1 片",
+    "grams": 25
+   },
+   {
+    "label": "1 根",
+    "grams": 250
+   }
+  ],
+  "default": "1 段（10cm）"
+ },
+ {
+  "src": "Bagels, plain, without calcium propionate",
+  "zh": "贝果（原味）",
+  "aliases": [
+   "百吉饼",
+   "贝果",
+   "bagel"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 85
+   },
+   {
+    "label": "半个",
+    "grams": 43
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Bread, pita, white",
+  "zh": "皮塔饼（白）",
+  "aliases": [
+   "口袋饼",
+   "皮塔",
+   "pitta",
+   "pita"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 60
+   },
+   {
+    "label": "1 个（迷你）",
+    "grams": 30
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Tortillas, ready-to-bake or -fry, flour, shelf stable",
+  "zh": "墨西哥卷饼皮（小麦）",
+  "aliases": [
+   "卷饼皮",
+   "墨西哥饼",
+   "wrap",
+   "tortilla"
+  ],
+  "portions": [
+   {
+    "label": "1 张（大）",
+    "grams": 62
+   },
+   {
+    "label": "1 张（小）",
+    "grams": 40
+   }
+  ],
+  "default": "1 张（大）"
+ },
+ {
+  "src": "Bread, naan, plain, refrigerated",
+  "zh": "印度馕饼",
+  "aliases": [
+   "馕",
+   "印度烤饼",
+   "naan"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 130
+   },
+   {
+    "label": "半个",
+    "grams": 65
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Croissants, butter",
+  "zh": "牛角包（黄油）",
+  "aliases": [
+   "可颂",
+   "羊角包",
+   "croissant"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 55
+   },
+   {
+    "label": "1 个（迷你）",
+    "grams": 25
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "English muffins, plain, with calcium propionate",
+  "zh": "英式松饼",
+  "aliases": [
+   "英式玛芬",
+   "English muffin"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 60
+   },
+   {
+    "label": "半个",
+    "grams": 30
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Rolls, dinner, plain",
+  "zh": "小餐包",
+  "aliases": [
+   "餐包",
+   "面包卷",
+   "bread roll"
+  ],
+  "portions": [
+   {
+    "label": "1 个（小）",
+    "grams": 30
+   },
+   {
+    "label": "1 个（大）",
+    "grams": 60
+   }
+  ],
+  "default": "1 个（小）"
+ },
+ {
+  "src": "Rolls, hamburger or hotdog, plain",
+  "zh": "汉堡面包",
+  "aliases": [
+   "汉堡胚",
+   "热狗面包",
+   "burger bun"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 55
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Crackers, saltines",
+  "zh": "苏打饼干",
+  "aliases": [
+   "咸饼干",
+   "梳打饼",
+   "saltine crackers"
+  ],
+  "portions": [
+   {
+    "label": "5 块",
+    "grams": 15
+   },
+   {
+    "label": "1 块",
+    "grams": 3
+   },
+   {
+    "label": "1 小包 25g",
+    "grams": 25
+   }
+  ],
+  "default": "5 块"
+ },
+ {
+  "src": "Crackers, standard snack-type",
+  "zh": "黄油小圆饼干（咸）",
+  "aliases": [
+   "咸味薄脆",
+   "butter crackers",
+   "snack crackers"
+  ],
+  "portions": [
+   {
+    "label": "5 块",
+    "grams": 16
+   },
+   {
+    "label": "1 块",
+    "grams": 3
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "5 块"
+ },
+ {
+  "src": "Muffins, blueberry",
+  "zh": "蓝莓玛芬",
+  "aliases": [
+   "蓝莓松饼",
+   "玛芬蛋糕",
+   "blueberry muffin"
+  ],
+  "portions": [
+   {
+    "label": "1 个（中）",
+    "grams": 110
+   },
+   {
+    "label": "1 个（小）",
+    "grams": 60
+   }
+  ],
+  "default": "1 个（中）"
+ },
+ {
+  "src": "Cake, cheesecake",
+  "zh": "芝士蛋糕",
+  "aliases": [
+   "奶酪蛋糕",
+   "重芝士",
+   "cheesecake"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 100
+   },
+   {
+    "label": "1 小块",
+    "grams": 70
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Cake, chocolate, commercially prepared with chocolate frosting, in-store bakery",
+  "zh": "巧克力蛋糕（带糖霜）",
+  "aliases": [
+   "巧克力蛋糕",
+   "chocolate cake"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 80
+   },
+   {
+    "label": "1 小块",
+    "grams": 50
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Cake, pound, butter",
+  "zh": "磅蛋糕（黄油）",
+  "aliases": [
+   "黄油蛋糕",
+   "马德拉蛋糕",
+   "pound cake",
+   "madeira cake"
+  ],
+  "portions": [
+   {
+    "label": "1 片",
+    "grams": 40
+   },
+   {
+    "label": "1 厚片",
+    "grams": 60
+   }
+  ],
+  "default": "1 片"
+ },
+ {
+  "src": "Cookies, chocolate chip, made with butter",
+  "zh": "巧克力豆曲奇",
+  "aliases": [
+   "曲奇",
+   "巧克力曲奇",
+   "chocolate chip cookie"
+  ],
+  "portions": [
+   {
+    "label": "1 块（小）",
+    "grams": 11
+   },
+   {
+    "label": "1 块（大）",
+    "grams": 45
+   }
+  ],
+  "default": "1 块（小）"
+ },
+ {
+  "src": "Cookies, Marie biscuit",
+  "zh": "马利饼干",
+  "aliases": [
+   "玛丽饼干",
+   "茶饼干",
+   "Marie biscuit",
+   "rich tea"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 8
+   },
+   {
+    "label": "4 块",
+    "grams": 32
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Cookies, shortbread, plain",
+  "zh": "黄油酥饼",
+  "aliases": [
+   "苏格兰酥饼",
+   "黄油饼干",
+   "shortbread"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 17
+   },
+   {
+    "label": "2 块",
+    "grams": 34
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Cookies, chocolate sandwich, with creme filling",
+  "zh": "巧克力夹心饼干",
+  "aliases": [
+   "夹心饼干",
+   "黑白夹心饼干",
+   "sandwich cookie"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 11
+   },
+   {
+    "label": "3 块",
+    "grams": 33
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Doughnuts, cake-type, plain, sugared or glazed",
+  "zh": "甜甜圈（糖霜）",
+  "aliases": [
+   "甜甜圈",
+   "多拿滋",
+   "doughnut",
+   "donut"
+  ],
+  "portions": [
+   {
+    "label": "1 个",
+    "grams": 60
+   }
+  ],
+  "default": "1 个"
+ },
+ {
+  "src": "Pancakes, plain",
+  "zh": "美式松饼（原味）",
+  "aliases": [
+   "热香饼",
+   "煎饼",
+   "pancake"
+  ],
+  "portions": [
+   {
+    "label": "1 张（中）",
+    "grams": 40
+   },
+   {
+    "label": "3 张",
+    "grams": 120
+   }
+  ],
+  "default": "1 张（中）"
+ },
+ {
+  "src": "Bread, crumbs, dry, grated, plain",
+  "zh": "面包糠",
+  "aliases": [
+   "面包屑",
+   "breadcrumbs",
+   "panko"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 7g",
+    "grams": 7
+   },
+   {
+    "label": "一份 30g",
+    "grams": 30
+   }
+  ],
+  "default": "1 汤匙 7g"
+ },
+ {
+  "src": "Cereals, oats, regular and quick, cooked with water, without salt",
+  "zh": "燕麦粥（水煮）",
+  "aliases": [
+   "麦片粥",
+   "燕麦糊",
+   "porridge"
+  ],
+  "portions": [
+   {
+    "label": "1 碗 250g",
+    "grams": 250
+   },
+   {
+    "label": "半碗 125g",
+    "grams": 125
+   }
+  ],
+  "default": "1 碗 250g"
+ },
+ {
+  "src": "Cereals, oats, regular and quick, not fortified, dry",
+  "zh": "燕麦片（干）",
+  "aliases": [
+   "燕麦",
+   "传统燕麦片",
+   "rolled oats",
+   "porridge oats"
+  ],
+  "portions": [
+   {
+    "label": "一份 40g",
+    "grams": 40
+   },
+   {
+    "label": "1 汤匙 8g",
+    "grams": 8
+   }
+  ],
+  "default": "一份 40g"
+ },
+ {
+  "src": "Cereals, oats, instant, plain, dry",
+  "zh": "即食燕麦片（干）",
+  "aliases": [
+   "速溶燕麦",
+   "即食麦片",
+   "instant oats"
+  ],
+  "portions": [
+   {
+    "label": "一份 40g",
+    "grams": 40
+   },
+   {
+    "label": "1 小袋 27g",
+    "grams": 27
+   }
+  ],
+  "default": "一份 40g"
+ },
+ {
+  "src": "Cereals ready-to-eat, granola, homemade",
+  "zh": "格兰诺拉麦片",
+  "aliases": [
+   "烤燕麦脆",
+   "格兰诺拉",
+   "granola"
+  ],
+  "portions": [
+   {
+    "label": "一份 45g",
+    "grams": 45
+   },
+   {
+    "label": "一小把 20g",
+    "grams": 20
+   }
+  ],
+  "default": "一份 45g"
+ },
+ {
+  "src": "Cereals ready-to-eat, wheat and bran, presweetened with nuts and fruits",
+  "zh": "果仁水果麦片",
+  "aliases": [
+   "什锦麦片",
+   "水果麦片",
+   "muesli",
+   "fruit and nut cereal"
+  ],
+  "portions": [
+   {
+    "label": "一份 45g",
+    "grams": 45
+   },
+   {
+    "label": "一小碗 30g",
+    "grams": 30
+   }
+  ],
+  "default": "一份 45g"
+ },
+ {
+  "src": "Cereals ready-to-eat, rice, puffed",
+  "zh": "膨化米麦片",
+  "aliases": [
+   "米花",
+   "大米脆",
+   "puffed rice",
+   "rice crisps"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 杯 14g",
+    "grams": 14
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cereals ready-to-eat, wheat, puffed",
+  "zh": "膨化小麦麦片",
+  "aliases": [
+   "小麦泡芙",
+   "puffed wheat"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "1 杯 12g",
+    "grams": 12
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Cereals ready-to-eat, chocolate-flavored frosted puffed corn",
+  "zh": "巧克力玉米球麦片",
+  "aliases": [
+   "可可球",
+   "巧克力麦片",
+   "chocolate cereal"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "一大份 45g",
+    "grams": 45
+   }
+  ],
+  "default": "一份 30g"
+ },
+ {
+  "src": "Tofu, raw, firm, prepared with calcium sulfate",
+  "zh": "老豆腐（北豆腐）",
+  "aliases": [
+   "北豆腐",
+   "硬豆腐",
+   "firm tofu"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 盒 280g",
+    "grams": 280
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Tofu, raw, prepared with calcium sulfate",
+  "zh": "南豆腐（普通豆腐）",
+  "aliases": [
+   "豆腐",
+   "水豆腐",
+   "regular tofu"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 盒 300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Tofu, soft, prepared with calcium sulfate and magnesium chloride (nigari)",
+  "zh": "内酯豆腐（嫩/绢豆腐）",
+  "aliases": [
+   "嫩豆腐",
+   "绢豆腐",
+   "silken tofu"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 盒 300g",
+    "grams": 300
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Tofu, fried",
+  "zh": "油豆腐（豆腐泡）",
+  "aliases": [
+   "豆腐泡",
+   "炸豆腐",
+   "fried tofu",
+   "tofu puffs"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "1 个",
+    "grams": 8
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Tofu, salted and fermented (fuyu)",
+  "zh": "腐乳",
+  "aliases": [
+   "豆腐乳",
+   "南乳",
+   "fermented bean curd"
+  ],
+  "portions": [
+   {
+    "label": "1 块",
+    "grams": 15
+   },
+   {
+    "label": "半块",
+    "grams": 8
+   }
+  ],
+  "default": "1 块"
+ },
+ {
+  "src": "Soymilk, original and vanilla, unfortified",
+  "zh": "豆浆（原味）",
+  "aliases": [
+   "豆奶",
+   "现磨豆浆",
+   "soy milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "1 碗 300ml",
+    "grams": 300
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Soymilk (all flavors), unsweetened, with added calcium, vitamins A and D",
+  "zh": "无糖豆奶（加钙）",
+  "aliases": [
+   "无糖豆浆",
+   "unsweetened soya milk",
+   "soya milk"
+  ],
+  "portions": [
+   {
+    "label": "1 杯 250ml",
+    "grams": 250
+   },
+   {
+    "label": "加入茶/咖啡 30ml",
+    "grams": 30
+   }
+  ],
+  "default": "1 杯 250ml"
+ },
+ {
+  "src": "Soybeans, mature cooked, boiled, without salt",
+  "zh": "黄豆（煮熟）",
+  "aliases": [
+   "大豆",
+   "煮黄豆",
+   "soybeans"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "半碗 85g",
+    "grams": 85
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Chickpeas (garbanzo beans, bengal gram), mature seeds, canned, drained solids",
+  "zh": "鹰嘴豆（罐头，沥干）",
+  "aliases": [
+   "鹰嘴豆",
+   "雪莲子",
+   "chickpeas"
+  ],
+  "portions": [
+   {
+    "label": "一份 120g",
+    "grams": 120
+   },
+   {
+    "label": "1 罐（沥干）240g",
+    "grams": 240
+   }
+  ],
+  "default": "一份 120g"
+ },
+ {
+  "src": "Lentils, mature seeds, cooked, boiled, without salt",
+  "zh": "小扁豆（煮熟）",
+  "aliases": [
+   "兵豆",
+   "扁豆",
+   "lentils"
+  ],
+  "portions": [
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "半碗 100g",
+    "grams": 100
+   }
+  ],
+  "default": "一份 150g"
+ },
+ {
+  "src": "Beans, kidney, all types, mature seeds, canned",
+  "zh": "红腰豆（罐头）",
+  "aliases": [
+   "腰豆",
+   "芸豆",
+   "kidney beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 120g",
+    "grams": 120
+   },
+   {
+    "label": "1 罐（沥干）240g",
+    "grams": 240
+   }
+  ],
+  "default": "一份 120g"
+ },
+ {
+  "src": "Beans, black, mature seeds, cooked, boiled",
+  "zh": "黑芸豆（煮熟）",
+  "aliases": [
+   "黑豆",
+   "黑龟豆",
+   "black beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 120g",
+    "grams": 120
+   },
+   {
+    "label": "半碗 85g",
+    "grams": 85
+   }
+  ],
+  "default": "一份 120g"
+ },
+ {
+  "src": "Beans, baked, canned, plain or vegetarian",
+  "zh": "茄汁焗豆",
+  "aliases": [
+   "焗豆",
+   "番茄焗豆",
+   "baked beans"
+  ],
+  "portions": [
+   {
+    "label": "半罐 207g",
+    "grams": 207
+   },
+   {
+    "label": "一份 150g",
+    "grams": 150
+   },
+   {
+    "label": "1 罐 415g",
+    "grams": 415
+   }
+  ],
+  "default": "半罐 207g"
+ },
+ {
+  "src": "Mung beans, mature seeds, cooked, boiled, without salt",
+  "zh": "绿豆（煮熟）",
+  "aliases": [
+   "绿豆",
+   "mung beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beans, adzuki, mature seeds, cooked, boiled",
+  "zh": "红豆（煮熟）",
+  "aliases": [
+   "赤小豆",
+   "红小豆",
+   "adzuki beans"
+  ],
+  "portions": [
+   {
+    "label": "一份 100g",
+    "grams": 100
+   },
+   {
+    "label": "1 碗 200g",
+    "grams": 200
+   }
+  ],
+  "default": "一份 100g"
+ },
+ {
+  "src": "Beans, adzuki, mature seeds, canned, sweetened",
+  "zh": "蜜红豆（甜）",
+  "aliases": [
+   "蜜豆",
+   "甜红豆",
+   "sweet red beans"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 20g",
+    "grams": 20
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "1 汤匙 20g"
+ },
+ {
+  "src": "Hummus, commercial",
+  "zh": "鹰嘴豆泥",
+  "aliases": [
+   "胡姆斯",
+   "hummus"
+  ],
+  "portions": [
+   {
+    "label": "一份 50g",
+    "grams": 50
+   },
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   }
+  ],
+  "default": "一份 50g"
+ },
+ {
+  "src": "Soy sauce made from soy and wheat (shoyu)",
+  "zh": "酱油（生抽）",
+  "aliases": [
+   "生抽",
+   "豉油",
+   "soy sauce"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15ml",
+    "grams": 15
+   },
+   {
+    "label": "1 茶匙 5ml",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 15ml"
+ },
+ {
+  "src": "Nuts, almonds",
+  "zh": "巴旦木（扁桃仁）",
+  "aliases": [
+   "杏仁",
+   "大杏仁",
+   "almonds"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "10 粒",
+    "grams": 12
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Nuts, walnuts, english",
+  "zh": "核桃仁",
+  "aliases": [
+   "核桃",
+   "胡桃",
+   "walnuts"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "1 个（核桃仁）",
+    "grams": 5
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Nuts, cashew nuts, dry roasted, without salt added",
+  "zh": "腰果（烤，无盐）",
+  "aliases": [
+   "腰果",
+   "cashews"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "10 粒",
+    "grams": 15
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Peanuts, all types, raw",
+  "zh": "花生米（生）",
+  "aliases": [
+   "花生",
+   "生花生",
+   "peanuts"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Peanuts, all types, dry-roasted, without salt",
+  "zh": "烤花生（无盐）",
+  "aliases": [
+   "熟花生",
+   "干烤花生",
+   "roasted peanuts"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "一份 50g",
+    "grams": 50
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Peanut butter, smooth style, without salt",
+  "zh": "花生酱（顺滑）",
+  "aliases": [
+   "花生酱",
+   "幼滑花生酱",
+   "peanut butter"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 16g",
+    "grams": 16
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 16g"
+ },
+ {
+  "src": "Nuts, pistachio nuts, dry roasted, without salt added",
+  "zh": "开心果（烤，无盐）",
+  "aliases": [
+   "开心果",
+   "阿月浑子",
+   "pistachios"
+  ],
+  "portions": [
+   {
+    "label": "一小把（去壳）28g",
+    "grams": 28
+   },
+   {
+    "label": "10 粒",
+    "grams": 7
+   }
+  ],
+  "default": "一小把（去壳）28g"
+ },
+ {
+  "src": "Nuts, pecans",
+  "zh": "碧根果",
+  "aliases": [
+   "长山核桃",
+   "美国山核桃",
+   "pecans"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "1 个（果仁）",
+    "grams": 5
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Nuts, chestnuts, chinese, roasted",
+  "zh": "板栗（烤/糖炒）",
+  "aliases": [
+   "栗子",
+   "糖炒栗子",
+   "chestnuts"
+  ],
+  "portions": [
+   {
+    "label": "10 颗（去壳）",
+    "grams": 100
+   },
+   {
+    "label": "1 颗（去壳）",
+    "grams": 10
+   }
+  ],
+  "default": "10 颗（去壳）"
+ },
+ {
+  "src": "Nuts, mixed nuts, dry roasted, with peanuts, without salt added",
+  "zh": "混合坚果（含花生）",
+  "aliases": [
+   "什锦坚果",
+   "每日坚果",
+   "mixed nuts"
+  ],
+  "portions": [
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   },
+   {
+    "label": "1 小包 25g",
+    "grams": 25
+   }
+  ],
+  "default": "一小把 28g"
+ },
+ {
+  "src": "Seeds, sesame seeds, whole, roasted and toasted",
+  "zh": "熟芝麻",
+  "aliases": [
+   "芝麻",
+   "白芝麻",
+   "黑芝麻",
+   "sesame seeds"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 9g",
+    "grams": 9
+   },
+   {
+    "label": "1 茶匙 3g",
+    "grams": 3
+   }
+  ],
+  "default": "1 汤匙 9g"
+ },
+ {
+  "src": "Seeds, sesame butter, tahini, from roasted and toasted kernels (most common type)",
+  "zh": "芝麻酱",
+  "aliases": [
+   "麻酱",
+   "中东芝麻酱",
+   "tahini",
+   "sesame paste"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 15g",
+    "grams": 15
+   },
+   {
+    "label": "1 茶匙 5g",
+    "grams": 5
+   }
+  ],
+  "default": "1 汤匙 15g"
+ },
+ {
+  "src": "Seeds, chia seeds, dried",
+  "zh": "奇亚籽",
+  "aliases": [
+   "奇异籽",
+   "鼠尾草籽",
+   "chia seeds"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 12g",
+    "grams": 12
+   },
+   {
+    "label": "1 茶匙 4g",
+    "grams": 4
+   }
+  ],
+  "default": "1 汤匙 12g"
+ },
+ {
+  "src": "Seeds, sunflower seed kernels, dry roasted, without salt",
+  "zh": "葵花籽仁（烤）",
+  "aliases": [
+   "瓜子仁",
+   "葵瓜子",
+   "sunflower seeds"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 9g",
+    "grams": 9
+   },
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   }
+  ],
+  "default": "1 汤匙 9g"
+ },
+ {
+  "src": "Seeds, pumpkin and squash seed kernels, dried",
+  "zh": "南瓜籽仁",
+  "aliases": [
+   "南瓜子",
+   "白瓜子仁",
+   "pumpkin seeds"
+  ],
+  "portions": [
+   {
+    "label": "1 汤匙 10g",
+    "grams": 10
+   },
+   {
+    "label": "一小把 28g",
+    "grams": 28
+   }
+  ],
+  "default": "1 汤匙 10g"
+ },
+ {
+  "src": "Seeds, lotus seeds, dried",
+  "zh": "莲子（干）",
+  "aliases": [
+   "干莲子",
+   "白莲",
+   "lotus seeds"
+  ],
+  "portions": [
+   {
+    "label": "一份 30g",
+    "grams": 30
+   },
+   {
+    "label": "10 粒",
+    "grams": 12
+   }
+  ],
+  "default": "一份 30g"
+ }
+]
