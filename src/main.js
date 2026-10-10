@@ -22,7 +22,8 @@ import { voiceCancel, voiceStart, voiceStop } from "./voice.js";
      store.js            localStorage 读写、食物查找
      state.js            正在看哪一天、刚记的那条（闪一下）
      sheets.js           底部弹出面板、撤销条、记录增删改
-     ai.js / scan.js     AI 识别、条形码
+     ai.js / scan.js     AI 识别（Claude API）、条形码
+     voice.js            语音记录（浏览器语音识别转文字，再交给 ai.js）
      training.js         今日训练
      views/*.js          四个页面
    本文件：Tab 切换、全局点击分发、启动与跨午夜刷新。 */
@@ -296,11 +297,6 @@ document.addEventListener("input", function (ev) {
 }, true);
 document.addEventListener("change", function (ev) {
   if (ev.target.hasAttribute && ev.target.hasAttribute("data-tmin")) renderTodayBottom();
-  /* 模型下拉选「自定义…」时显示手输框 */
-  if (ev.target.hasAttribute && ev.target.hasAttribute("data-modelsel")) {
-    var ci = document.getElementById(ev.target.getAttribute("data-modelsel"));
-    if (ci) ci.style.display = ev.target.value === "__custom" ? "" : "none";
-  }
 }, true);
 
 /* ── 启动与刷新 ─────────────────────────────────────────── */

@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { NOW, buildFixture, INIT_SCRIPT, MOCK } from "./fixture.mjs";
+import { NOW, buildFixture, claudeReply, INIT_SCRIPT, MOCK } from "./fixture.mjs";
 
 const ICON = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../../apple-touch-icon.png");
 
@@ -15,11 +15,10 @@ export async function runScenario(browser, baseUrl) {
   page.on("pageerror", e => errors.push(e.message));
   await page.clock.setFixedTime(new Date(NOW));
   await page.addInitScript(INIT_SCRIPT);
-  await page.route("https://api.chatanywhere.org/**", async route => {
-    const body = route.request().postDataJSON();
-    const sys = body.messages[0].content;
+  await page.route("https://api.anthropic.com/**", async route => {
+    const sys = route.request().postDataJSON().system;
     const content = /营养数据查找员/.test(sys) ? MOCK.web : /营养标签识别器/.test(sys) ? MOCK.label : MOCK.meal;
-    await route.fulfill({ json: { choices: [{ message: { content } }] } });
+    await route.fulfill({ json: claudeReply(content) });
   });
   await page.route("https://world.openfoodfacts.org/**", async route => {
     if (route.request().url().includes("5057753936686")) await route.fulfill({ json: MOCK.off });
@@ -148,9 +147,8 @@ export async function runScenario(browser, baseUrl) {
 
   // Export tab: settings, export, import
   await click('.tabs [data-tab="export"]'); await snap("export");
-  await page.locator("#ai-model-sel").selectOption("__custom"); await snap("model-custom");
-  await typeIn("#ai-model-in", "my-model"); await page.locator("#ai-model2-sel").selectOption("gpt-6-luna");
-  await click('[data-act="save-ai-key"]'); await snap("model-saved");
+  await page.locator("#ai-model2-sel").selectOption("claude-opus-5-5"); await snap("review-picked");
+  await click('[data-act="save-ai-key"]'); await snap("review-saved");
   const dl = page.waitForEvent("download"); await click('[data-act="do-export"]');
   const d = await dl; const exported = fs.readFileSync(await d.path(), "utf8");
   await snap("exported");

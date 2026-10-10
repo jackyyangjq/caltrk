@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { defineConfig } from "vite";
 
 /* 运行时按相对路径动态加载的文件（条形码识别库、按需加载的数据），原样拷进 dist。
-   源码目录本身也能直接当静态站点打开，所以这些文件留在仓库根目录、不放 public/。 */
+   这些文件留在仓库根目录、不放 public/：开发时 vite 直接从根目录提供，构建时由下面的插件拷进 dist。 */
 const STATIC = ["vendor", "data", "apple-touch-icon.png"];
 
 export default defineConfig({

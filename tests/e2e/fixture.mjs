@@ -75,7 +75,7 @@ export function buildFixture() {
     "caltrk7f3a.settings.v1": JSON.stringify(settings),
     "caltrk7f3a.training.v1": JSON.stringify(training),
     "caltrk7f3a.userfoods.v1": JSON.stringify(userFoods),
-    "caltrk7f3a.ai.v1": JSON.stringify({ key: "sk-test-1234567890", model: "gemini-3.8-flash", m26: 1 }),
+    "caltrk7f3a.ai.v1": JSON.stringify({ key: "sk-ant-test-1234567890", claude: 1 }),
   };
 }
 
@@ -86,6 +86,13 @@ export const INIT_SCRIPT = `
   Math.random = function () { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x80000000; };
 })();`;
 
+// A Claude Messages API reply (what POST /v1/messages returns) carrying `text`; `extra` overrides fields.
+export function claudeReply(text, extra = {}) {
+  return { id: "msg_test", type: "message", role: "assistant", model: "claude-sonnet-5-5",
+    content: [{ type: "thinking", thinking: "", signature: "sig" }, { type: "text", text }],
+    stop_reason: "end_turn", stop_sequence: null, usage: { input_tokens: 10, output_tokens: 10 }, ...extra };
+}
+
 // Canned network responses for the AI endpoint and Open Food Facts.
 export const MOCK = {
   meal: JSON.stringify({ items: [
@@ -94,7 +101,7 @@ export const MOCK = {
     { name: "米饭（熟）", grams: 180, per_100g: { kcal: 116, protein: 2.6, fat: 0.3, carb: 25.9 },
       portions: [{ label: "小碗", grams: 120 }, { label: "中碗", grams: 180 }, { label: "大碗", grams: 250 }, { label: "中碗", grams: 180 }] },
   ], note: "按家常做法估" }),
-  voice: JSON.stringify({ heard: "一碗牛肉面加一个卤蛋", items: [
+  voice: JSON.stringify({ items: [
     { name: "牛肉面", grams: 500, per_100g: { kcal: 110, protein: 6, fat: 3, carb: 15 },
       portions: [{ label: "小碗", grams: 350 }, { label: "大碗", grams: 500 }] },
     { name: "卤蛋", grams: 50, per_100g: { kcal: 150, protein: 12.5, fat: 10.5, carb: 1.5 } },

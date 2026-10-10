@@ -77,9 +77,7 @@ export function aiParseMeal(txt) {
     if (w) mealWarns.push(w);
   });
   if (mealWarns.length) note += "；⚠ " + mealWarns.join("；");
-  var meal = { items: items, note: note.slice(0, 300) };
-  if (typeof o.heard === "string" && o.heard.trim()) meal.heard = o.heard.trim().slice(0, 120);
-  return meal;
+  return { items: items, note: note.slice(0, 300) };
 }
 
 /* 12 位的 UPC-A 补 0 成 EAN-13，本地比对和查询都用同一种写法 */
