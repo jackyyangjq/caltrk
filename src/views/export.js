@@ -1,4 +1,4 @@
-import { AI, AI_DEFAULT_MODEL, MODEL2_OPTS, MODEL_OPTS, aiKeyNudge, aiReady, modelSelHtml } from "../ai.js";
+import { AI, AI_MODEL_LABEL, AI_REVIEW_LABEL, AI_REVIEW_MODEL, aiKeyNudge, aiReady } from "../ai.js";
 import { BUILD } from "../build.js";
 import { mergeMissing } from "../lib/backup.js";
 import { nowTs, todayStr } from "../lib/util.js";
@@ -8,6 +8,7 @@ import { daysSinceExport, renderBanner } from "./today.js";
 
 
 /* ── 导出页 ─────────────────────────────────────────────── */
+var FIELD_ST = 'style="width:100%;margin:8px 0 0;padding:10px;border:1px solid var(--hair);border-radius:8px;background:var(--card);color:inherit;font-size:14px"';
 export function renderExport() {
   var el = document.getElementById("view-export");
   var completeDays = DB.days.filter(function (d) { return d.complete; }).length;
@@ -23,21 +24,24 @@ export function renderExport() {
       (lastConfirm ? lastConfirm + (ds > 0 ? "（" + ds + " 天前）" : "") : "从未") + '</span></div>' +
     (storeBroken ? '<div class="note" style="color:var(--over)">⚠️ 检测到存储异常。导出文件里已附带抢救出的原始数据，请尽快导出并联系分析端。</div>' : '') +
     '</div>' +
-    '<div class="mod"><div class="mod-title">AI 识别（自带密钥）</div>' +
-    (aiKeyNudge && !aiReady() ? '<div class="warnbox">先在下面粘贴 ChatAnywhere 密钥、点「保存设置」，再回「今日」页拍照或估算。</div>' : '') +
+    '<div class="mod"><div class="mod-title">AI 识别（Claude，自带密钥）</div>' +
+    (AI.oldKey && !aiReady() ? '<div class="warnbox">AI 已经从 ChatAnywhere 换成 Claude，原来的密钥在这里用不了，已经清掉。' +
+      '去 Claude Console（platform.claude.com）→ API keys 建一个密钥，贴到下面、点「保存设置」。</div>'
+      : aiKeyNudge && !aiReady() ? '<div class="warnbox">先在下面粘贴 Anthropic API 密钥（sk-ant- 开头）、点「保存设置」，再回「今日」页拍照或估算。</div>' : '') +
     '<div class="rowline"><span class="k">状态</span><span class="v">' +
-      (aiReady() ? "已启用 · " + AI.model : "未设置") + '</span></div>' +
-    '<input id="ai-key-in" type="password" autocomplete="off" placeholder="粘贴密钥（留空=不改；输「清除」=删掉）" ' +
-      'style="width:100%;margin:8px 0 0;padding:10px;border:1px solid var(--hair);border-radius:8px;background:var(--card);color:inherit;font-size:14px">' +
-    '<div class="rowline" style="margin-top:10px"><span class="k">识别模型</span></div>' +
-    modelSelHtml("ai-model-sel", "ai-model-in", MODEL_OPTS, AI.model || AI_DEFAULT_MODEL) +
-    '<div class="rowline" style="margin-top:10px"><span class="k">复核模型（可选）</span></div>' +
-    modelSelHtml("ai-model2-sel", "ai-model2-in", MODEL2_OPTS, AI.model2 || "") +
+      (aiReady() ? "已启用 · " + AI_MODEL_LABEL + (AI.model2 === AI_REVIEW_MODEL ? " ＋ " + AI_REVIEW_LABEL + " 复核" : "") : "未设置") + '</span></div>' +
+    '<input id="ai-key-in" type="password" autocomplete="off" placeholder="粘贴 Anthropic 密钥（留空=不改；输「清除」=删掉）" ' + FIELD_ST + '>' +
+    '<div class="rowline" style="margin-top:10px"><span class="k">成分表复核（可选）</span></div>' +
+    '<select id="ai-model2-sel" ' + FIELD_ST + '>' +
+      '<option value=""' + (AI.model2 === AI_REVIEW_MODEL ? "" : " selected") + '>不启用（默认）</option>' +
+      '<option value="' + AI_REVIEW_MODEL + '"' + (AI.model2 === AI_REVIEW_MODEL ? " selected" : "") + '>' + AI_REVIEW_LABEL + ' 再读一遍</option>' +
+    '</select>' +
     '<button class="btn solid" data-act="save-ai-key" style="margin-top:10px">保存设置</button>' +
-    '<div class="note">密钥只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 ChatAnywhere。' +
-    '列表按花费从低到高排，价格是和原默认 gpt-4.1-mini 比；日常用默认的 gemini-3.8-flash 就好（新一代、价钱差不多，一次识别约 1-3 分钱）。复核模型最好和识别模型不同厂商。选的模型调不通时会自动用 gpt-4.1-mini 再试一次，' +
-    '标签特别小或印刷差再换更强的。复核模型选一个后，成分表入库会用两个模型各读一遍、不一致时提醒' +
-    '（费用×2，仍是几分钱级）。成分表没拍清时，会先按照片里的条形码查免费数据库，查不到再用联网搜索模型去网上找同款的官方营养表，把没看清的数字补上（联网搜索按次另收费，只在没读全时才用）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
+    '<div class="note">密钥只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 Anthropic（api.anthropic.com）。' +
+    '拍照、文字和语音估算都用 ' + AI_MODEL_LABEL + '，一次约 1–3 美分；花了多少、还剩多少在 Claude Console 里看，也可以在那里设每月花费上限。' +
+    '开了复核后，成分表入库会让 ' + AI_REVIEW_LABEL + ' 把同样的照片再读一遍、读数不一致时提醒（每次多花约 3–6 美分，多等十几秒）。' +
+    '成分表没拍清时，会先按照片里的条形码查免费的 Open Food Facts，查不到再让 Claude 联网搜索同款的官方营养表，把没看清的数字补上' +
+    '（联网搜索按次另收费，还要读网页内容，一次约几美分，只在没读全时才用）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
     '<div class="mod"><button class="btn solid" data-act="do-export">导出全部数据</button>' +
     '<div class="note">每周一次。文件会出现在「文件」App 的下载项里，' +
     '打开 OneDrive 把它移到 <b style="font-family:var(--f-num)">健康数据/calorie-tracker/exports/</b>。' +

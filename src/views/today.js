@@ -1,4 +1,4 @@
-import { aiBusy, aiReady } from "../ai.js";
+import { AI, aiBusy, aiReady } from "../ai.js";
 import { BUILD } from "../build.js";
 import { COMBOS, FOOD_LIBRARY, UF_SAME_AS } from "../data/foods.js";
 import { eatenGeneric, searchGeneric } from "../generic.js";
@@ -163,14 +163,16 @@ export function renderAiMod() {
   var el = document.getElementById("ai-mod");
   var h = '<div class="mod"><div class="mod-title">AI 记录</div>';
   if (voiceSt) {
-    h += '<div class="voice-row"><span class="rec-dot"></span><span class="k">' + (voiceSt.t0 ? "录音中" : "正在打开麦克风…") + '</span>' +
+    var heard = voiceSt.final + voiceSt.interim;
+    h += '<div class="voice-row"><span class="rec-dot"></span><span class="k">' + (voiceSt.t0 ? "在听" : "正在打开麦克风…") + '</span>' +
       '<span class="t" id="voice-t">0 秒 / ' + VOICE_MAX_S + '</span></div>' +
+      '<div class="note" id="voice-heard">' + (heard ? esc(heard) : "…") + '</div>' +
       '<div class="ai-btns"><button class="btn solid" data-act="voice-stop">说完了</button>' +
       '<button class="btn plain" data-act="voice-cancel">取消</button></div>' +
-      '<div class="hint">说吃了什么、大概多少，比如「一碗牛肉面，加了个卤蛋，还有半罐可乐」。</div>';
+      '<div class="hint">说吃了什么、大概多少，比如「一碗牛肉面，加了个卤蛋，还有半罐可乐」。浏览器的语音识别先把话转成文字，再交给 AI 估算。</div>';
   } else if (aiReady() && aiBusy) {
     h += '<div class="ai-btns"><button class="btn" disabled>识别中…</button></div>' +
-      '<div class="hint">AI 正在分析，最多约一分钟。</div>';
+      '<div class="hint">AI 正在分析，一般半分钟内；没读全要上网查时会久一些。</div>';
   } else {
     /* 没填密钥也照样显示按钮（点了带去填密钥）：2026-09-28 换网址后密钥没了，按钮整个藏起来，他以为功能被删了 */
     h += '<div class="ai-btns">' +
@@ -182,7 +184,9 @@ export function renderAiMod() {
       '<button class="btn" data-act="ai-meal-text">估算</button></div>' +
       (aiReady()
         ? '<div class="hint">可多选照片（正面＋成分表算同一个）；选好照片才调用 AI；估算先确认再记录。🎤 是说一段话来估算；文字和语音估算的每样东西确认后会存进「我的食物」，下次直接点。</div>'
-        : '<div class="hint" style="color:var(--over)">还没填 AI 密钥（换了网址或清过浏览器数据后要重新填）。点上面任一按钮会带你去「导出」页填。</div>');
+        : AI.oldKey
+          ? '<div class="hint" style="color:var(--over)">AI 已经换成 Claude，原来的 ChatAnywhere 密钥用不了了。点上面任一按钮会带你去「导出」页填 Anthropic 密钥。</div>'
+          : '<div class="hint" style="color:var(--over)">还没填 AI 密钥（换了网址或清过浏览器数据后要重新填）。点上面任一按钮会带你去「导出」页填。</div>');
   }
   el.innerHTML = h + '</div>';
 }

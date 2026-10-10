@@ -13,23 +13,26 @@ An offline-first calorie and macro tracker built for the phone home screen, with
 ## What it does
 
 - **One-tap logging.** Quick-record chips are ranked by recency-weighted frequency (one use in the last 7 days counts about as much as three uses a month ago), with two tap targets per food: the usual portion (a scoop, one piece, one pack) and "last weighed N g". Every log can be undone for a few seconds.
-- **AI recognition, bring your own key.** Photograph a meal, photograph a nutrition label, or type a description. A vision model returns one JSON object (per-100 g kcal, protein, fat, carb, pack size, suggested portions). Nothing is saved until you confirm the name and grams in a review sheet.
-- **Portion options, voice and a generic library.** Meal estimates (photo, text or voice) come back with 2–4 portion sizes per item (small/medium/large bowl, half/full plate) that you tap instead of typing grams. The 🎤 button records up to 30 s, converts it on the phone to 16 kHz mono WAV and sends it to the model as `input_audio`; the review sheet shows what it heard. Search also lists a generic library of 513 everyday foods (rice, chicken, vegetables, fruit, tofu, takeaway dishes…) with USDA SR Legacy values, Chinese names, aliases and typical portions.
-- **Cross-checks on every label the model reads.** An Atwater check (4/4/9 kcal per gram of protein/carb/fat against the printed kcal, flagged above 30% deviation) and a whole-pack check (per-100 g × pack grams against the printed pack kcal, flagged above 12%), which catches the common failure of reading a per-serving column as per-100 g. An optional second model re-reads the same photos and the app diffs the two readings.
+- **AI recognition with Claude, bring your own key.** Photograph a meal, photograph a nutrition label, or type a description. You paste your own Anthropic API key once; the page calls the Claude API straight from the phone. Claude Sonnet 5.5 returns one JSON object (per-100 g kcal, protein, fat, carb, pack size, suggested portions). Nothing is saved until you confirm the name and grams in a review sheet.
+- **Portion options, voice and a generic library.** Meal estimates (photo, text or voice) come back with 2–4 portion sizes per item (small/medium/large bowl, half/full plate) that you tap instead of typing grams. The 🎤 button listens for up to 30 s through the browser's own speech recognition (Web Speech API, Chinese), shows the words as you speak, and sends the transcript as a text estimate (the Claude API does not take audio); the review sheet shows what it heard. Search also lists a generic library of 513 everyday foods (rice, chicken, vegetables, fruit, tofu, takeaway dishes…) with USDA SR Legacy values, Chinese names, aliases and typical portions.
+- **Cross-checks on every label the model reads.** An Atwater check (4/4/9 kcal per gram of protein/carb/fat against the printed kcal, flagged above 30% deviation) and a whole-pack check (per-100 g × pack grams against the printed pack kcal, flagged above 12%), which catches the common failure of reading a per-serving column as per-100 g. When a label is only partly readable, the missing numbers are filled from Open Food Facts by barcode, or else by Claude's web search for the same product's official nutrition table. Optionally, Claude Opus 5.5 re-reads the same photos and the app diffs the two readings.
 - **Daily budget and macros.** Remaining kcal, protein target, carb and fat caps, a training log, a morning-weight anchor, 7/14-day history, and the ability to open any past day to back-fill or edit it.
 - **Weight trend.** Morning weigh-ins as dots under an exponentially smoothed trend line (the Hacker's Diet method, α = 0.1, gaps filled by interpolation), with daily intake bars on a separate panel below sharing the date axis (days not marked complete drawn hollow), target and maintenance reference lines, 2-week / 1-month / all ranges, tap or arrow keys to read any day, and a table view. The trend's 7- and 14-day slope is shown in kg/week against the planned 0.4–0.5.
-- **Nothing leaves the phone** except the photo or text you explicitly send to the model endpoint. Data lives in localStorage; export is a JSON file; storage corruption is detected and the raw data is rescued into the export.
+- **Nothing leaves the phone** except the photo or text you explicitly send to the Claude API, and, when you use 🎤, your voice: the browser's own speech recognition turns it into text (on iPhone on-device when supported, otherwise on Apple's servers; in Chrome on Google's), and only that text goes to Claude. Data lives in localStorage; export is a JSON file; storage corruption is detected and the raw data is rescued into the export.
 
 ## How the AI recognition works
 
 ```
-photo / text ──▶ OpenAI-compatible chat-completions endpoint (model selectable in-app)
-                 system prompt: "output exactly one JSON object" ──▶ parse
-                 ──▶ arithmetic cross-checks (Atwater, whole-pack) ──▶ optional 2nd-model diff
-                 ──▶ review sheet (edit name / grams) ──▶ log entry
+photo / text / speech-to-text
+  ──▶ Claude Messages API (claude-sonnet-5-5, official JS SDK, straight from the browser)
+      structured output: the reply must match a JSON schema ──▶ range checks ──▶ parse
+  ──▶ arithmetic cross-checks (Atwater, whole-pack)
+  ──▶ label not fully read? Open Food Facts by barcode, else Claude web search
+  ──▶ optional: Claude Opus 5.5 re-reads the label, readings diffed
+  ──▶ review sheet (edit name / grams) ──▶ log entry
 ```
 
-The model never writes to the log directly. If the request fails or times out (60 s), the app points you to the manual "estimated entry" path so the meal is still recorded.
+The model never writes to the log directly. If the request fails or times out (60 s per attempt, retried once automatically), the app points you to the manual "estimated entry" path so the meal is still recorded.
 
 ## How the constants are calibrated
 
@@ -42,10 +45,10 @@ The constants ship in the build rather than in localStorage, so a deploy updates
 
 ## Design decisions
 
-- **No framework; plain ES modules, bundled by Vite.** Versions up to 1.17 were a single HTML file with no build step (about 3,100 lines by the end). Version 2.0 split it into modules under `src/` with no change in behaviour: pure logic in `src/lib/` (unit-tested), data the weekly review edits in `src/build.js` and `src/data/`, one module per screen in `src/views/`. The source still runs unbundled from a static server; GitHub Actions tests, builds and deploys to Pages.
+- **No framework; plain ES modules, bundled by Vite.** Versions up to 1.17 were a single HTML file with no build step (about 3,100 lines by the end). Version 2.0 split it into modules under `src/` with no change in behaviour: pure logic in `src/lib/` (unit-tested), data the weekly review edits in `src/build.js` and `src/data/`, one module per screen in `src/views/`. Since 2.3 the official Anthropic SDK is a runtime dependency, so the source is served through Vite (`npm run dev`) rather than straight from a static server; GitHub Actions tests, builds and deploys to Pages.
 - **Offline-first, localStorage only.** No accounts, no server. The first three commits were storage probes to verify that data survives a Pages redeploy and the separate storage container of an iOS home-screen app.
 - **Curated seed library, overlay corrections.** The seed foods (mostly UK supermarket items) carry label-read values that passed the arithmetic cross-check. A user-added food is promoted into the seed library only after two or more uses and a passing check. Corrections and merges are applied as overlays at read time, so entries already stored on the phone are never rewritten.
-- **Model calls kept provider-agnostic.** One request function against an OpenAI-compatible chat-completions endpoint (a proxy by default); the model is a dropdown or free text. Parameter differences between model families (for example, models that reject a custom temperature) are handled in one place.
+- **Claude API through the official SDK, no backend.** Up to 2.2 the app called an OpenAI-compatible proxy with a selectable model; 2.3 moved everything to the Claude API. The key is the user's own and lives only in their browser, so the SDK runs in the page with `dangerouslyAllowBrowser` and no server sits in between. It is split into its own file and loaded on the first AI request, so app start-up does not pay for it and a browser that cannot load it loses only the AI features. Replies are constrained with structured outputs (a JSON schema per task) instead of hoping the model returns clean JSON; the existing range checks and arithmetic cross-checks still run on top. Thinking effort is set per task (`medium` for photos, `low` for text and web search). Web search runs as Claude's server-side tool and is the one call without a schema, because search results carry citations, which structured outputs does not allow.
 
 ## Data sources
 
@@ -89,6 +92,7 @@ The weekly review edits `src/build.js` (calibrated constants) and `src/data/food
 | 2.0 | 2026-10-06 | Split into modules with a Vite build; unit tests for the pure functions; a differential end-to-end test that replays 66 steps against the old and new builds and requires identical DOM, storage and export output; deploys through GitHub Actions |
 | 2.1 | 2026-10-06 | Weight trend chart: smoothed trend line over morning weights, intake bars on a shared date axis, weekly rate vs plan, table view |
 | 2.2 | 2026-10-06 | Portion options on AI meal estimates; voice logging; generic food library (513 foods, USDA SR Legacy) in search |
+| 2.3 | 2026-10-10 | AI moved to the Claude API: Claude Sonnet 5.5 for all recognition with structured outputs, optional Claude Opus 5.5 label review, Claude web search to fill unreadable labels; voice now goes through the browser's speech recognition |
 
 ## What I would do differently
 
