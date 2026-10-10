@@ -1,7 +1,6 @@
-import Anthropic from "@anthropic-ai/sdk";
-
 /* ── Claude API 的纯函数部分（tests/unit/claude.test.js 覆盖）：结构化输出的 schema、
-   照片转内容块、从回复里取文字、错误提示。发请求和界面在 ai.js。 */
+   照片转内容块、从回复里取文字、错误提示。发请求和界面在 ai.js。
+   这里不 import SDK：SDK 按需加载（见 ai.js loadSdk），错误分类要用的 SDK 由调用方传进来。 */
 
 /* 结构化输出（output_config.format）：接口保证回复就是这个结构的 JSON。
    接口要求每个对象都写 additionalProperties: false；数值范围它不管（不支持 minimum/maximum），
@@ -45,9 +44,11 @@ export function replyText(r) {
   return txt;
 }
 
-/* 出错时给人看的一句话：按 SDK 的错误类型分，不去匹配错误文字 */
-export function aiErrText(e, timeoutS) {
-  if (e instanceof Anthropic.APIConnectionTimeoutError) return "超时：等了 " + timeoutS + " 秒没回复，网络慢或服务忙，过会儿再试";
+/* 出错时给人看的一句话：按 SDK 的错误类型分，不去匹配错误文字。
+   Anthropic：SDK 的默认导出（没加载成功时为 null）；waitedS：从发出到失败一共等了几秒（SDK 会自动重试，可能不止一次超时） */
+export function aiErrText(e, waitedS, Anthropic) {
+  if (!Anthropic) return e && e.message ? e.message : String(e);
+  if (e instanceof Anthropic.APIConnectionTimeoutError) return "超时：等了约 " + waitedS + " 秒没回复，网络慢或服务忙，过会儿再试";
   if (e instanceof Anthropic.APIConnectionError) return "连不上 Anthropic：检查一下网络";
   if (e instanceof Anthropic.APIError && e.status) {
     var msg = e.error && e.error.error && e.error.error.message ? String(e.error.error.message).slice(0, 160) : "";

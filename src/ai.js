@@ -1,4 +1,3 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { compareSpecs, validateFoodSpec, webCheck } from "./lib/checks.js";
 import { SCHEMA_LABEL, SCHEMA_MEAL, aiErrText, imageBlock, replyText } from "./lib/claude.js";
 import { OFF_FIELDS, aiParseFood, aiParseMeal, offToSpec, webParse } from "./lib/parse.js";
@@ -82,21 +81,39 @@ export var AI_EFFORT = { photo: "medium", text: "low", web: "low", review: "medi
 var FALLBACK_BETA = "server-side-fallback-2026-07-01";
 var AI_TIMEOUT_MS = 60000, AI_WEB_TIMEOUT_MS = 120000;   /* 联网搜索要搜、要读网页，给长一点 */
 
+/* SDK 按需加载：第一次用 AI 时才下载（单独一个文件，约 200 KB），平时打开应用不用解析它；
+   万一它在这台手机上加载或解析不了，坏的只是 AI，记录、体重、导出照常能用 */
+export var Anthropic = null;
+var sdkLoading = null;
+function loadSdk() {
+  if (!sdkLoading) {
+    sdkLoading = import("@anthropic-ai/sdk").then(function (m) { Anthropic = m.default; return Anthropic; }, function (e) {
+      /* 有的浏览器（Chromium）同一页面里不会重新下载加载失败过的模块，所以提示刷新；清掉以便别的浏览器下次点能重试 */
+      sdkLoading = null;
+      throw new Error("AI 模块没加载成功（网络断了，或者网站刚更新过）：刷新页面再试");
+    });
+  }
+  return sdkLoading;
+}
 var client = null, clientKey = null;
 function claude() {
-  if (!client || clientKey !== AI.key) {
-    /* dangerouslyAllowBrowser：SDK 默认不让在网页里用（怕把站点自己的密钥泄露给访客）；
-       这里的密钥是用户自己的、只在他自己的手机上，正是 BYOK 的用法 */
-    client = new Anthropic({ apiKey: AI.key, baseURL: "https://api.anthropic.com", dangerouslyAllowBrowser: true,
-                             maxRetries: 1, timeout: AI_TIMEOUT_MS });
-    clientKey = AI.key;
-  }
-  return client;
+  return loadSdk().then(function (A) {
+    if (!client || clientKey !== AI.key) {
+      /* dangerouslyAllowBrowser：SDK 默认不让在网页里用（怕把站点自己的密钥泄露给访客）；
+         这里的密钥是用户自己的、只在他自己的手机上，正是 BYOK 的用法 */
+      client = new A({ apiKey: AI.key, baseURL: "https://api.anthropic.com", dangerouslyAllowBrowser: true,
+                       maxRetries: 1, timeout: AI_TIMEOUT_MS });
+      clientKey = AI.key;
+    }
+    return client;
+  });
 }
+/* 从 t0（performance.now()）到现在过了几秒，用在超时提示里 */
+function secsSince(t0) { return Math.round((performance.now() - t0) / 1000); }
 
 /* 一次请求，返回回复里的文字（结构化输出时就是那段 JSON）。
    opts：schema 结构化输出；effort；tools 服务端工具（联网搜索）；timeout 毫秒；retry=false 不自动重试。
-   SDK 默认会对超时、429、5xx、断网自动重试一次（见 claude()），所以最坏要等两倍 timeout。
+   SDK 会对超时、429、5xx、断网自动重试一次（见 claude()），所以最坏要等两倍 timeout（约 2 分钟）。
    联网搜索在服务端循环太久会以 pause_turn 暂停，原样带上已有回复再发一次就能接着做（最多再续 2 次） */
 export function aiRequest(model, sys, userContent, opts) {
   opts = opts || {};
@@ -109,7 +126,7 @@ export function aiRequest(model, sys, userContent, opts) {
     var ro = {};
     if (opts.timeout) ro.timeout = opts.timeout;
     if (opts.retry === false) ro.maxRetries = 0;
-    return claude().beta.messages.create(body, ro).then(function (r) {
+    return claude().then(function (c) { return c.beta.messages.create(body, ro); }).then(function (r) {
       if (r.stop_reason === "pause_turn" && round < 2) return send(messages.concat([{ role: "assistant", content: r.content }]), round + 1);
       return r;
     });
@@ -124,10 +141,11 @@ export function aiChat(sys, userContent, onOk, opts) {
   if (aiBusy) return;
   aiBusy = true;
   renderAiMod();   /* 真正发请求了才显示「识别中」 */
+  var t0 = performance.now();
   aiRequest(AI_MODEL, sys, userContent, opts).then(function (txt) {
     return onOk(txt);
   }).catch(function (e) {
-    alert("AI 识别失败：" + aiErrText(e, AI_TIMEOUT_MS / 1000) + "\n" + (opts.failHint || "可以先用「记一条估计」，回头再补。"));
+    alert("AI 识别失败：" + aiErrText(e, secsSince(t0), Anthropic) + "\n" + (opts.failHint || "可以先用「记一条估计」，回头再补。"));
   }).finally(function () {
     aiBusy = false;
     renderAiMod();
@@ -175,7 +193,8 @@ export function webFill(spec, v) {
   var searchErr = null;
   return webFromBarcode(spec.barcode).then(function (w) {
     if (w) return w;
-    return webFromSearch(spec).catch(function (e) { searchErr = aiErrText(e, AI_WEB_TIMEOUT_MS / 1000); return null; });
+    var t0 = performance.now();
+    return webFromSearch(spec).catch(function (e) { searchErr = aiErrText(e, secsSince(t0), Anthropic); return null; });
   }).then(function (w) {
     if (!w) {
       v.warns.push(why + "，网上也没查到同款" + (searchErr ? "（联网搜索出错：" + searchErr + "）" : "") +
@@ -350,6 +369,7 @@ export function aiPhotosReady(urls) {
       return webFill(spec, v).then(function () {
         if (AI.model2 !== AI_REVIEW_MODEL) { finishAddFood(spec, v.warns, v.oks); return; }
         /* 可选的第二模型复核：同样的照片让 Opus 再读一遍，对比读数 */
+        var t0 = performance.now();
         return aiRequest(AI_REVIEW_MODEL, AI_SYS_LABEL, content, { schema: SCHEMA_LABEL, effort: AI_EFFORT.review }).then(function (txt2) {
           var spec2 = aiParseFood(txt2);
           if (spec2) {
@@ -358,7 +378,7 @@ export function aiPhotosReady(urls) {
           } else v.warns.push("复核模型回复无法解析，未完成复核");
           finishAddFood(spec, v.warns, v.oks);
         }).catch(function (e) {
-          v.warns.push("复核模型调用失败（" + aiErrText(e, AI_TIMEOUT_MS / 1000) + "），未完成复核");
+          v.warns.push("复核模型调用失败（" + aiErrText(e, secsSince(t0), Anthropic) + "），未完成复核");
           finishAddFood(spec, v.warns, v.oks);
         });
       });

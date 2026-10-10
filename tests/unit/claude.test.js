@@ -69,16 +69,19 @@ describe("aiErrText", () => {
   const headers = new Headers();
   const body = (type, message) => ({ type: "error", error: { type, message } });
   it("explains the common API errors by type, with the server's message", () => {
-    expect(aiErrText(Anthropic.APIError.generate(401, body("authentication_error", "invalid x-api-key"), undefined, headers), 60))
+    expect(aiErrText(Anthropic.APIError.generate(401, body("authentication_error", "invalid x-api-key"), undefined, headers), 1, Anthropic))
       .toBe("HTTP 401（密钥无效：去「导出」页重新粘贴 Anthropic 密钥）：invalid x-api-key");
-    expect(aiErrText(Anthropic.APIError.generate(429, body("rate_limit_error", "slow down"), undefined, headers), 60)).toMatch(/^HTTP 429（请求太频繁/);
-    expect(aiErrText(Anthropic.APIError.generate(529, body("overloaded_error", "Overloaded"), undefined, headers), 60)).toMatch(/^HTTP 529（Anthropic 服务繁忙/);
-    expect(aiErrText(Anthropic.APIError.generate(400, body("invalid_request_error", "Your credit balance is too low"), undefined, headers), 60))
+    expect(aiErrText(Anthropic.APIError.generate(429, body("rate_limit_error", "slow down"), undefined, headers), 1, Anthropic)).toMatch(/^HTTP 429（请求太频繁/);
+    expect(aiErrText(Anthropic.APIError.generate(529, body("overloaded_error", "Overloaded"), undefined, headers), 1, Anthropic)).toMatch(/^HTTP 529（Anthropic 服务繁忙/);
+    expect(aiErrText(Anthropic.APIError.generate(400, body("invalid_request_error", "Your credit balance is too low"), undefined, headers), 1, Anthropic))
       .toBe("HTTP 400：Your credit balance is too low");
   });
-  it("tells timeouts and network failures apart", () => {
-    expect(aiErrText(new Anthropic.APIConnectionTimeoutError(), 60)).toMatch(/^超时：等了 60 秒/);
-    expect(aiErrText(new Anthropic.APIConnectionError({ message: "x" }), 60)).toMatch(/^连不上/);
-    expect(aiErrText(new Error("空回复"), 60)).toBe("空回复");
+  it("tells timeouts and network failures apart, quoting the real wait (the SDK retries a timeout once)", () => {
+    expect(aiErrText(new Anthropic.APIConnectionTimeoutError(), 121, Anthropic)).toMatch(/^超时：等了约 121 秒/);
+    expect(aiErrText(new Anthropic.APIConnectionError({ message: "x" }), 3, Anthropic)).toMatch(/^连不上/);
+    expect(aiErrText(new Error("空回复"), 1, Anthropic)).toBe("空回复");
+  });
+  it("falls back to the plain message when the SDK itself failed to load", () => {
+    expect(aiErrText(new Error("AI 模块没加载成功"), 0, null)).toBe("AI 模块没加载成功");
   });
 });

@@ -12,7 +12,8 @@ const AI_KEY = "caltrk7f3a.ai.v1";
 const fail = m => { console.log("FAIL:", m); process.exitCode = 1; };
 
 // Fake SpeechRecognition: interim result, then a final, and the last final arrives on stop() like real browsers.
-// window.__sr.mode: "ok" | "denied" (not-allowed error, no text).
+// window.__sr.mode: "ok"; "denied-webkit" (Safari: an error before start and no end event at all);
+// "denied-chrome" (start, then error, then end); "quiet" (nothing said; stop() ends with "aborted" as iOS does).
 const FAKE_SR = `
 (() => {
   window.__sr = { mode: "ok", text: ["一碗牛肉面", "加一个卤蛋"] };
@@ -21,13 +22,18 @@ const FAKE_SR = `
     start() {
       const cfg = window.__sr; this.cfg = cfg; window.__srLast = this;
       setTimeout(() => {
+        if (cfg.mode === "denied-webkit") { this.onerror({ error: "not-allowed" }); return; }
         this.onstart && this.onstart();
-        if (cfg.mode === "denied") { this.onerror && this.onerror({ error: "not-allowed" }); this.onend && this.onend(); return; }
+        if (cfg.mode === "denied-chrome") { this.onerror({ error: "not-allowed" }); setTimeout(() => this.onend(), 30); return; }
+        if (cfg.mode === "quiet") return;
         setTimeout(() => this.onresult({ results: [mk(cfg.text[0], false)] }), 40);
         setTimeout(() => this.onresult({ results: [mk(cfg.text[0], true), mk(cfg.text[1], false)] }), 100);
       }, 20);
     }
-    stop() { setTimeout(() => { this.onresult({ results: [mk(this.cfg.text[0], true), mk(this.cfg.text[1], true)] }); this.onend && this.onend(); }, 20); }
+    stop() {
+      if (this.cfg.mode === "quiet") { setTimeout(() => { this.onerror({ error: "aborted" }); this.onend(); }, 20); return; }
+      setTimeout(() => { this.onresult({ results: [mk(this.cfg.text[0], true), mk(this.cfg.text[1], true)] }); this.onend && this.onend(); }, 20);
+    }
     abort() { setTimeout(() => this.onend && this.onend(), 10); }
   }
   window.SpeechRecognition = FakeSR;
@@ -115,12 +121,17 @@ const noodles = await userFood(page, "牛肉面");
 console.log("logged:", logged.join(", "), "| saved default portion:", noodles && noodles.default_portion);
 if (!logged.includes("牛肉面:350") || !noodles || noodles.default_portion !== "小碗") fail("voice entry or saved food wrong");
 
-// ── 3. Voice failures: permission denied and no recognizer at all → clear message, no API call ──
-dialogs.length = 0; requests.length = 0;
-await page.evaluate(() => { window.__sr.mode = "denied"; });
-await page.locator('[data-act="ai-voice"]').click();
-await page.waitForTimeout(300);
-if (!dialogs.some(d => /权限/.test(d) && /听写/.test(d)) || requests.length) fail("denied mic: " + dialogs.join(" | "));
+// ── 3. Voice failures → exactly one clear message, back to the normal buttons, no API call ──
+for (const [mode, want] of [["denied-webkit", /权限/], ["denied-chrome", /权限/], ["quiet", /没听到说话/]]) {
+  dialogs.length = 0; requests.length = 0;
+  await page.evaluate(m => { window.__sr.mode = m; }, mode);
+  await page.locator('[data-act="ai-voice"]').click();
+  if (mode === "quiet") { await page.waitForTimeout(150); await page.locator('[data-act="voice-stop"]').click(); }
+  await page.waitForTimeout(400);
+  if (dialogs.length !== 1 || !want.test(dialogs[0]) || !/听写/.test(dialogs[0]) || requests.length) fail(mode + ": " + dialogs.join(" | "));
+  if (await page.locator('[data-act="voice-stop"]').count() || !(await page.locator('[data-act="ai-voice"]').count())) fail(mode + ": voice UI did not reset");
+}
+dialogs.length = 0;
 await page.evaluate(() => { window.SpeechRecognition = undefined; window.webkitSpeechRecognition = undefined; });
 await page.locator('[data-act="ai-voice"]').click();
 await page.waitForTimeout(100);
@@ -180,6 +191,25 @@ if (!/Claude 拒绝了这次请求（general_harms）/.test(d)) fail("refusal: "
 d = await textEstimate({ status: 400, json: { type: "error", error: { type: "invalid_request_error", message: "Your credit balance is too low to access the Anthropic API." } } });
 if (!/HTTP 400：Your credit balance is too low/.test(d)) fail("400: " + d);
 console.log("errors: 401, refusal, 400 explained");
+
+// ── 6. The SDK is a separate, lazily loaded file: if it fails to load, only AI is affected; refreshing (as the message says) fixes it ──
+{
+  dialogs.length = 0; requests.length = 0;
+  let block = true;
+  await page.reload();
+  await page.route(/\/assets\/sdk-[^/]*\.js$/, route => block ? route.abort() : route.continue());
+  if (!(await page.locator(".chip[data-act=\"quick-log\"]").count())) fail("app did not render");
+  await page.locator("#ai-meal-text").fill("番茄炒蛋盖饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForTimeout(500);
+  if (!dialogs.some(d => /AI 模块没加载成功/.test(d)) || requests.length) fail("sdk load failure: " + dialogs.join(" | "));
+  block = false;
+  await page.reload();
+  await page.locator("#ai-meal-text").fill("番茄炒蛋盖饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 }).catch(() => fail("AI still broken after refresh: " + dialogs.join(" | ")));
+  console.log("sdk load failure: explained, app usable, works after refresh");
+}
 
 if (errors.length) fail("page errors: " + errors.join(" | "));
 await browser.close();

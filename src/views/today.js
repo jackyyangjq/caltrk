@@ -169,7 +169,7 @@ export function renderAiMod() {
       '<div class="note" id="voice-heard">' + (heard ? esc(heard) : "…") + '</div>' +
       '<div class="ai-btns"><button class="btn solid" data-act="voice-stop">说完了</button>' +
       '<button class="btn plain" data-act="voice-cancel">取消</button></div>' +
-      '<div class="hint">说吃了什么、大概多少，比如「一碗牛肉面，加了个卤蛋，还有半罐可乐」。手机先把话转成文字，再交给 AI 估算。</div>';
+      '<div class="hint">说吃了什么、大概多少，比如「一碗牛肉面，加了个卤蛋，还有半罐可乐」。浏览器的语音识别先把话转成文字，再交给 AI 估算。</div>';
   } else if (aiReady() && aiBusy) {
     h += '<div class="ai-btns"><button class="btn" disabled>识别中…</button></div>' +
       '<div class="hint">AI 正在分析，一般半分钟内；没读全要上网查时会久一些。</div>';
