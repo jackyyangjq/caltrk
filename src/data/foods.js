@@ -127,7 +127,12 @@ export var FOOD_LIBRARY = [
     note: "Boots 包装标签：每 100 克 207 千卡、蛋白 12、脂肪 5.2、碳水 27；整包 404 千卡。" },
   { id: "tesco-melon-kiwi-strawberry", name: "Tesco 甜瓜猕猴桃草莓水果杯（250g）", per_100g: { kcal: 38, protein: 0.6, fat: 0.4, carb: 7.2 },
     portions: [{ label: "整盒 250g", grams: 250 }, { label: "半盒 125g", grams: 125 }], default_portion: "整盒 250g", confidence: "high",
-    note: "Tesco 官网营养表：每 100 克 38 千卡；标签份量半盒 125g = 47 千卡，整盒约 95 千卡。" }
+    note: "Tesco 官网营养表：每 100 克 38 千卡；标签份量半盒 125g = 47 千卡，整盒约 95 千卡。" },
+  /* 2026-10-11 周报从「我的食物」转正：一周用了 12 次，扫码数据经算术核对（含纤维）完全对得上 */
+  { id: "tesco-finest-wholemeal-seeds-grains", name: "Tesco Finest 全麦籽粒面包", per_100g: { kcal: 260, protein: 11.4, fat: 5.8, carb: 37.0 },
+    portions: [{ label: "一片 40g", grams: 40 }, { label: "两片 80g", grams: 80 }], default_portion: "一片 40g", confidence: "high",
+    barcodes: ["5057753893958"],
+    note: "Open Food Facts（条形码 5057753893958）：每 100 克 260 千卡、蛋白 11.4、脂肪 5.8、碳水 37、纤维 7。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -165,7 +170,11 @@ export var UF_SAME_AS = {
   "uf-mumxjm4x": "uf-mumxk7bc",             /* 巴沙鱼柳扫了两遍，留按生重算、用过的那条 */
   "uf-mutyvlbt": "rosedene-gala-apple",     /* 扫码的 Tesco Gala 苹果，四个数和库里那条一样 */
   "uf-mutyynq5wx8": "tesco-plums-suntrail", /* 文字估算的「李子」，库里已有 Tesco 李子 */
-  "uf-mupagmsc": "boots-steak-onion-sandwich"
+  "uf-mupagmsc": "boots-steak-onion-sandwich",
+  /* 2026-10-11 周报新增 */
+  "uf-muuz1qdo": "tesco-finest-wholemeal-seeds-grains",
+  "uf-muuetrdx": "uf-mv423q8v",             /* 同一款 Finest 厚切西冷，拍照和扫码各入了一次，留扫码那条 */
+  "uf-mv1d3g9x4jb": "uf-muzw4iyka7i"        /* 「食用油（炒菜用）」和「食用油」是同一样，文字估算建了两次 */
 };
 export var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
