@@ -132,7 +132,16 @@ export var FOOD_LIBRARY = [
   { id: "tesco-finest-wholemeal-seeds-grains", name: "Tesco Finest 全麦籽粒面包", per_100g: { kcal: 260, protein: 11.4, fat: 5.8, carb: 37.0 },
     portions: [{ label: "一片 40g", grams: 40 }, { label: "两片 80g", grams: 80 }], default_portion: "一片 40g", confidence: "high",
     barcodes: ["5057753893958"],
-    note: "Open Food Facts（条形码 5057753893958）：每 100 克 260 千卡、蛋白 11.4、脂肪 5.8、碳水 37、纤维 7。" }
+    note: "Open Food Facts（条形码 5057753893958）：每 100 克 260 千卡、蛋白 11.4、脂肪 5.8、碳水 37、纤维 7。" },
+  /* 2026-10-18 周报从「我的食物」转正：两周各用了 12 次和 7 次，扫码数据经算术核对（含纤维）对得上 */
+  { id: "usn-bluelab-whey-choc-caramel", name: "USN BlueLab 巧克力焦糖乳清蛋白粉", per_100g: { kcal: 382, protein: 71.0, fat: 5.8, carb: 7.2 },
+    portions: [{ label: "1 勺 30g", grams: 30 }, { label: "2 勺 60g", grams: 60 }], default_portion: "1 勺 30g", confidence: "high",
+    barcodes: ["6009544910770"],
+    note: "包装标签：每 100 克 382 千卡、蛋白 71、脂肪 5.8、碳水 7.2、纤维 7.1。Open Food Facts 那条写 441 千卡，和它自己的四个数对不上，没采用。" },
+  { id: "jasons-sourdough", name: "Jason's 酸面包", per_100g: { kcal: 255, protein: 9.3, fat: 2.7, carb: 46.5 },
+    portions: [{ label: "一片 65g", grams: 65 }, { label: "半片 32g", grams: 32 }], default_portion: "一片 65g", confidence: "high",
+    barcodes: ["5025125000105"],
+    note: "Open Food Facts（条形码 5025125000105）：每 100 克 255 千卡、蛋白 9.3、脂肪 2.7、碳水 46.5、纤维 3.6；一片 64.5 克。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -174,7 +183,12 @@ export var UF_SAME_AS = {
   /* 2026-10-11 周报新增 */
   "uf-muuz1qdo": "tesco-finest-wholemeal-seeds-grains",
   "uf-muuetrdx": "uf-mv423q8v",             /* 同一款 Finest 厚切西冷，拍照和扫码各入了一次，留扫码那条 */
-  "uf-mv1d3g9x4jb": "uf-muzw4iyka7i"        /* 「食用油（炒菜用）」和「食用油」是同一样，文字估算建了两次 */
+  "uf-mv1d3g9x4jb": "uf-muzw4iyka7i",       /* 「食用油（炒菜用）」和「食用油」是同一样，文字估算建了两次 */
+  /* 2026-10-18 周报新增 */
+  "uf-mv107h5h": "usn-bluelab-whey-choc-caramel",
+  "uf-mv51pjra": "jasons-sourdough",
+  "uf-mv5hz2fv": "uf-mv5i4872grt",          /* 红腰豆罐头一次建了三条，四个数完全一样，留记过流水的那条 */
+  "uf-mv5i02r7": "uf-mv5i4872grt"
 };
 export var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
