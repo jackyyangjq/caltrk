@@ -1,7 +1,7 @@
 import { eatenGeneric, searchGeneric } from "../generic.js";
 import { esc } from "../lib/util.js";
 import { USER_FOODS, allFoods } from "../store.js";
-import { addedCmp, agoLabel, quickToggleBtn, recentCmp, usageStats } from "./today.js";
+import { addedCmp, agoLabel, recentCmp, usageStats } from "./today.js";
 
 
 /* ── 食物库页 ───────────────────────────────────────────────
@@ -15,17 +15,20 @@ export function renderLibrary() {
   var el = document.getElementById("lib-body");
   var q = libQuery.toLowerCase();
   function match(f) { return !q || f.name.toLowerCase().indexOf(q) >= 0; }
+  /* v2.4.1（用户要求）：名字占满一整行、长了就折行，一个字都不省略；「几天前 · 每100g热量」挪到名字下面一行 */
   function row(f, ago) {
-    return '<button class="r-item" data-act="open-food" data-food="' + f.id + '">' +
+    return '<button class="r-item lib-item" data-act="open-food" data-food="' + f.id + '">' +
       '<span class="nm"><i class="dot ' + (f.confidence === "high" ? "hi" : "lo") + '"></i><span>' + esc(f.name) + '</span></span>' +
-      '<span class="kc">' + (ago ? esc(ago) + ' · ' : '') + f.per_100g.kcal + ' /100g</span></button>';
+      '<span class="kc">' + (ago ? esc(ago) + ' · ' : '') + f.per_100g.kcal + ' kcal /100g</span></button>';
   }
   var mineIds = {};
   USER_FOODS.forEach(function (f) { mineIds[f.id] = 1; });
-  /* 每行右边是「快速记录」开关（v2.4）；个人食物再带删除按钮：删的是手机上的条目，已记进流水的不受影响 */
+  /* 个人食物带删除按钮：删的是手机上的条目，已记进流水的不受影响。
+     这一页不放「快速记录」开关（v2.4.1 用户要求：挤占名字）；加入快速记录用搜索结果、份量面板或编辑模式 */
   function line(f, ago) {
-    return '<div class="uf-row">' + row(f, ago) + quickToggleBtn(f.id) +
-      (mineIds[f.id] ? '<button class="uf-del" data-act="del-userfood" data-food="' + f.id + '">删除</button>' : '') + '</div>';
+    if (!mineIds[f.id]) return row(f, ago);
+    return '<div class="uf-row">' + row(f, ago) +
+      '<button class="uf-del" data-act="del-userfood" data-food="' + f.id + '">删除</button></div>';
   }
   var u = usageStats();
   var list = allFoods().filter(match);
