@@ -1,8 +1,7 @@
-import { COMBOS } from "./data/foods.js";
 import { MAX_G, MAX_KCAL, esc, kcalOf, newId, protOf } from "./lib/util.js";
 import { entryTs, setFlash } from "./state.js";
 import { DB, K, foodById, lastGramsOf, persist } from "./store.js";
-import { clearSearch, renderToday } from "./views/today.js";
+import { clearSearch, quickToggleBtn, renderToday } from "./views/today.js";
 
 
 /* ── 弹出面板 ───────────────────────────────────────────── */
@@ -63,6 +62,7 @@ export function openPortionSheet(foodId, replaceId) {
       (f.fix_why ? '<div class="note">✎ 已修正：' + esc(f.fix_why) + '</div>' : '') +
       (entryFixNote(replaceId)) +
       (f.note ? '<div class="note">' + esc(f.note) + '</div>' : '') +
+      quickToggleBtn(f.id, true) +
       (replaceId ? '<button class="btn danger" data-act="delete-entry">删除这条记录</button>' : '') +
     '</div>');
   var gi = document.getElementById("in-grams");
@@ -102,24 +102,6 @@ export function buildEntry(f, portionLabel, grams) {
   };
 }
 
-export function comboKcal(c) {
-  return c.items.reduce(function (a, it) { var f = foodById(it[0]); return a + (f ? kcalOf(f, it[1]) : 0); }, 0);
-}
-export function logCombo(id) {
-  var c = COMBOS.filter(function (x) { return x.id === id; })[0];
-  if (!c) return;
-  var made = [];
-  c.items.forEach(function (it) {
-    var f = foodById(it[0]);
-    if (f) made.push(buildEntry(f, it[1] + " g", it[1]));
-  });
-  if (!made.length) return;
-  made.forEach(function (e) { DB.log.push(e); });
-  setFlash(made[made.length - 1].id);
-  persist(K.log, DB.log);
-  renderToday();
-  showUndoToastMulti(made, c.name);
-}
 export function addEntry(foodId, portionLabel, grams, replaceId) {
   var f = foodById(foodId);
   if (!f || !(grams > 0) || grams > MAX_G) return null;
@@ -227,7 +209,7 @@ export function showUndoToast(entry) {
   document.body.appendChild(toastEl);
   toastTimer = setTimeout(dismissToast, 6000);
 }
-/* 多条一起记（组合、AI 估餐）的撤销条：一键全撤 */
+/* 多条一起记（AI 估餐）的撤销条：一键全撤 */
 export function showUndoToastMulti(entries, label) {
   dismissToast();
   var sum = entries.reduce(function (a, e) { return a + (e.kcal || 0); }, 0);

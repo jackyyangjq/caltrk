@@ -59,16 +59,21 @@ export async function runScenario(browser, baseUrl) {
   await click('[data-act="pick-portion"]'); await snap("pick-portion");
   const last = page.locator('[data-act="quick-log-last"]');
   if (await last.count()) { await last.first().click(); await snap("quick-log-last"); }
-  await click('[data-act="quick-combo"]'); await snap("combo");
-  await click('.toast [data-toast="undo"]'); await snap("combo-undo");
+  // Quick record: edit mode, remove one, pin an auto-filled one, done (assertions live in quick.mjs)
+  await click('[data-act="quick-edit"]'); await snap("quick-edit");
+  await click('[data-act="quick-drop"]'); await snap("quick-drop");
+  await click('[data-act="quick-pin"]'); await snap("quick-pin");
+  await click('[data-act="quick-edit"]'); await snap("quick-done");
 
   await typeIn("#in-search", "tesco"); await snap("search");
+  await click('[data-act="quick-toggle"]'); await snap("search-quick-toggle");
   await click('.r-item[data-act="open-food"]'); await snap("portion-sheet");
   await typeIn("#in-grams", "123"); await snap("grams-preview");
   await click('[data-act="confirm-grams"]'); await snap("confirm-grams");
 
   await typeIn("#in-search", "鸡胸"); await snap("search-generic");
-  await click('.r-sec ~ .r-item[data-act="open-food"]'); await snap("generic-sheet");
+  await click('.r-sec ~ .r-row .r-item[data-act="open-food"]'); await snap("generic-sheet");
+  await click('.sheet [data-act="quick-toggle"]'); await snap("generic-sheet-quick");
   await click('[data-act="pick-portion"]'); await snap("generic-logged");
   await typeIn("#in-search", "奇怪的东西"); await snap("search-miss");
   await click('[data-act="open-guess"]'); await snap("guess-sheet");

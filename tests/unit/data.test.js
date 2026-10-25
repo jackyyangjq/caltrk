@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { BUILD } from "../../src/build.js";
-import { COMBOS, FOOD_LIBRARY, UF_FIX } from "../../src/data/foods.js";
+import { FOOD_LIBRARY, UF_FIX } from "../../src/data/foods.js";
 import { LOG_FIX } from "../../src/data/logfix.js";
 import { applyLogFixesTo } from "../../src/lib/logfix.js";
 
@@ -19,9 +19,6 @@ describe("food library integrity", () => {
   });
   it("overlay fixes keep their default portion valid", () => {
     for (const [id, fx] of Object.entries(UF_FIX)) if (fx.portions) expect(fx.portions.map(p => p.label), id).toContain(fx.default_portion);
-  });
-  it("combos reference real foods", () => {
-    for (const c of COMBOS) for (const [id] of c.items) expect(FOOD_LIBRARY.some(f => f.id === id), id).toBe(true);
   });
 });
 
