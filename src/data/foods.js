@@ -141,7 +141,16 @@ export var FOOD_LIBRARY = [
   { id: "jasons-sourdough", name: "Jason's 酸面包", per_100g: { kcal: 255, protein: 9.3, fat: 2.7, carb: 46.5 },
     portions: [{ label: "一片 65g", grams: 65 }, { label: "半片 32g", grams: 32 }], default_portion: "一片 65g", confidence: "high",
     barcodes: ["5025125000105"],
-    note: "Open Food Facts（条形码 5025125000105）：每 100 克 255 千卡、蛋白 9.3、脂肪 2.7、碳水 46.5、纤维 3.6；一片 64.5 克。" }
+    note: "Open Food Facts（条形码 5025125000105）：每 100 克 255 千卡、蛋白 9.3、脂肪 2.7、碳水 46.5、纤维 3.6；一片 64.5 克。" },
+  /* 2026-10-25 周报从「我的食物」转正：两周各用了 14 次和 7 次，扫码数据经算术核对（含纤维）对得上 */
+  { id: "jaffa-easy-peelers", name: "Jaffa 易剥小柑橘", per_100g: { kcal: 45, protein: 0.7, fat: 0.2, carb: 9.6 },
+    portions: [{ label: "一个约 100g", grams: 100 }, { label: "两个约 200g", grams: 200 }, { label: "整包 600g", grams: 600 }], default_portion: "一个约 100g", confidence: "high",
+    barcodes: ["10008546"],
+    note: "扫码数据：每 100 克 45 千卡、蛋白 0.7、脂肪 0.2、碳水 9.6、纤维 1.2。" },
+  { id: "coop-semi-skimmed-milk", name: "Co-op 半脱脂牛奶", per_100g: { kcal: 50, protein: 3.6, fat: 1.8, carb: 4.8 },
+    portions: [{ label: "一杯 250ml", grams: 250 }, { label: "100ml", grams: 100 }], default_portion: "100ml", confidence: "high",
+    barcodes: ["5000128104494"],
+    note: "扫码数据：每 100 毫升 50 千卡、蛋白 3.6、脂肪 1.8、碳水 4.8，和英国半脱脂奶的标准值一致。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -188,7 +197,10 @@ export var UF_SAME_AS = {
   "uf-mv107h5h": "usn-bluelab-whey-choc-caramel",
   "uf-mv51pjra": "jasons-sourdough",
   "uf-mv5hz2fv": "uf-mv5i4872grt",          /* 红腰豆罐头一次建了三条，四个数完全一样，留记过流水的那条 */
-  "uf-mv5i02r7": "uf-mv5i4872grt"
+  "uf-mv5i02r7": "uf-mv5i4872grt",
+  /* 2026-10-25 周报新增 */
+  "uf-muvpk02q": "jaffa-easy-peelers",
+  "uf-mveuvlxg": "coop-semi-skimmed-milk"
 };
 export var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
