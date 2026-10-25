@@ -1,6 +1,6 @@
 // Quick record (v2.4): the user decides what is in it. Checks first-run seeding from the old auto list,
 // edit mode (remove / pin / hide, chips can't log while editing), auto-fill never bringing back removed foods,
-// the toggles in search results, the food library and the portion sheet, generic foods, merged foods,
+// the toggles in search results and the portion sheet, full names in the food library (no toggle there), generic foods, merged foods,
 // and that the choice survives a reload. Usage: node tests/e2e/quick.mjs <url>
 import fs from "node:fs";
 import os from "node:os";
@@ -28,11 +28,12 @@ async function open(fx) {
 }
 const quick = page => page.evaluate(k => JSON.parse(localStorage.getItem(k)).quick, SETTINGS);
 // What the quick-record block shows: [food id, "pin" | "auto"] in order
-const shown = page => page.$$eval("#quick-body .chips > *", els => els.map(el => {
+const names = {};   // food id → name, remembered from the chips so later steps can search for them
+const shown = async page => (await page.$$eval("#quick-body .chips > *", els => els.map(el => {
   const c = el.matches(".chip") ? el : el.querySelector(".chip");
   const id = (el.querySelector("[data-food]") || el).getAttribute("data-food");
-  return [id, c.classList.contains("auto") ? "auto" : "pin"];
-}));
+  return [id, c.classList.contains("auto") ? "auto" : "pin", c.querySelector(".t").textContent];
+}))).map(([id, kind, name]) => { names[id] = name; return [id, kind]; });
 const logCount = page => page.evaluate(() => JSON.parse(localStorage.getItem("caltrk7f3a.log.v1")).length);
 
 const page = await open(buildFixture());
@@ -85,16 +86,24 @@ const goneName = await page.evaluate(id => {
 }, gone);
 console.log("removed:", gone, goneName || "(library food)");
 
-// 5. Food library page: every row has the toggle; removing there also hides it from auto-fill
+// 5. Food library page has no quick-record toggle and shows every name in full (v2.4.1)
 await page.locator('.tabs [data-tab="library"]').click();
-const libBtn = page.locator(`#lib-body [data-act="quick-toggle"][data-food="${a2[0]}"]`).first();
-if (!/✓/.test(await libBtn.textContent())) fail("library toggle does not show pinned state");
-await libBtn.click();
+if (await page.locator('#lib-body [data-act="quick-toggle"]').count()) fail("library rows still have a quick-record toggle");
+const clipped = await page.$$eval("#lib-body .lib-item .nm span", els => els.filter(e => e.scrollWidth > e.clientWidth + 1 || getComputedStyle(e).textOverflow === "ellipsis" && getComputedStyle(e).whiteSpace === "nowrap").map(e => e.textContent));
+if (clipped.length) fail("library names cut off: " + clipped.slice(0, 3).join(" | "));
+// Remove / re-add through search results instead: removing hides it from auto-fill, re-adding restores it
+await page.locator('.tabs [data-tab="today"]').click();
+async function searchToggle(id) {
+  await page.locator("#in-search").fill(names[id]);
+  await page.locator(`.r-row [data-act="quick-toggle"][data-food="${id}"]`).first().click();
+  await page.locator("#btn-clear").click();
+}
+await searchToggle(a2[0]);
 q = await quick(page);
-if (q.pins.includes(a2[0]) || !q.hidden.includes(a2[0])) fail("library toggle did not remove");
-await page.locator(`#lib-body [data-act="quick-toggle"][data-food="${gone}"]`).first().click();
+if (q.pins.includes(a2[0]) || !q.hidden.includes(a2[0])) fail("search toggle did not remove");
+await searchToggle(gone);
 q = await quick(page);
-if (q.pins[0] !== gone || q.hidden.includes(gone)) fail("re-adding from the library did not restore the removed food");
+if (q.pins[0] !== gone || q.hidden.includes(gone)) fail("re-adding from search did not restore the removed food");
 
 // 6. Portion sheet: the big toggle flips and the quick block follows
 await page.locator('.tabs [data-tab="today"]').click();

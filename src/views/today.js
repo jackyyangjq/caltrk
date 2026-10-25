@@ -268,7 +268,7 @@ function quickChipsHtml() {
     : '<div class="hint">快速记录是空的。点「编辑」→「＋ 添加」，搜到冰箱里有的东西，点右边的「＋ 快速记录」。</div>';
   if (quickEdit) {
     h += '<div class="note">编辑快速记录：「移除」＝冰箱里没有了，自动补位也不会再把它排回来；淡色的是自动补的，「加入」把它固定到前面，「不要」就不再出现。' +
-      '要加别的食物：点「＋ 添加」在上面搜索，点结果右边的「＋ 快速记录」。食物库页、份量面板里也能加入或移出。</div>' +
+      '要加别的食物：点「＋ 添加」在上面搜索，点结果右边的「＋ 快速记录」。份量面板里也能加入或移出。</div>' +
       '<div class="q-bar"><button class="btn plain" data-act="quick-add">＋ 添加</button><button class="btn solid" data-act="quick-edit">完成</button></div>';
   } else {
     h += '<div class="q-bar"><div class="hint">' + (faint ? "前面是你加的（新加的在前），淡色的是按最近常吃自动补的，你加的不满 " + QUICK_N + " 个才补。" : "按最近吃得多的排。") +
