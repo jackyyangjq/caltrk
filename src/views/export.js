@@ -94,6 +94,9 @@ export function importBackup(txt) {
       } else if (k === "barcode_map" && ds[k] && typeof ds[k] === "object") {
         if (!st[k]) st[k] = {};
         Object.keys(ds[k]).forEach(function (b) { if (!st[k][b]) { st[k][b] = ds[k][b]; stN++; } });
+      } else if (k === "quick" && ds[k] && typeof ds[k] === "object" && (!st.quick || st.quick.seeded)) {
+        /* 快速记录：这台手机上还是自动初始化的、没动过，就用备份里他自己挑的 */
+        st.quick = ds[k]; stN++;
       } else if (!(k in st)) { st[k] = ds[k]; stN++; }
     });
   }

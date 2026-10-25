@@ -1,12 +1,12 @@
 import { AI, aiBusy, aiReady } from "../ai.js";
 import { BUILD } from "../build.js";
-import { COMBOS, FOOD_LIBRARY, UF_SAME_AS } from "../data/foods.js";
-import { eatenGeneric, searchGeneric } from "../generic.js";
+import { FOOD_LIBRARY, UF_SAME_AS } from "../data/foods.js";
+import { GENERIC, eatenGeneric, searchGeneric } from "../generic.js";
+import { QUICK_N, autoCount, autoPool, dropQuick, isPinned, normQuick, pinQuick } from "../lib/quick.js";
 import { addedCmpOf, agoLabelAt, rankChips, recentCmpOf, usageStatsOf } from "../lib/ranking.js";
 import { MEAL_ORDER, dateShift, dayLabel, dayTotals, esc, kcalOf, mealOf, nowTs, todayStr, weekdayOf } from "../lib/util.js";
-import { comboKcal } from "../sheets.js";
 import { entriesOfView, flashId, setFlash, syncTopbar, viewDate, viewingToday } from "../state.js";
-import { DB, K, allFoods, dayComplete, entriesOn, lastGramsOf, persist, storeBroken } from "../store.js";
+import { DB, K, allFoods, dayComplete, entriesOn, foodById, lastGramsOf, persist, storeBroken } from "../store.js";
 import { TRAINING_PRESETS, trainingKcal, trainingMin, trainingOfView, trainingOn } from "../training.js";
 import { VOICE_MAX_S, voiceSt } from "../voice.js";
 
@@ -30,12 +30,50 @@ export function chipCandidates(n) {
   var u = usageStats();
   return rankChips(allFoods().concat(eatenGeneric(u)), u, FOOD_LIBRARY, n);
 }
-/* 搜索结果里的一行（食物库、我的食物、通用库共用） */
+/* ── 快速记录选谁（v2.4）：他加的在前、全部显示，不满 QUICK_N 个用常吃的补；规则在 lib/quick.js ──
+   DB.settings.quick 还没有（v2.4 之前的数据）时返回 null，照旧全自动；通用食物库下载完后 initQuick
+   用当时自动排出来的那几个初始化，这样一更新打开还是熟悉的那几个，他再按冰箱里有什么删改。 */
+export var quickEdit = false;
+export function setQuickEdit(v) { quickEdit = v; }
+export function quickState() { return DB.settings.quick ? normQuick(DB.settings.quick, UF_SAME_AS) : null; }
+export function initQuick() {
+  if (DB.settings.quick) return;
+  /* seeded：自动初始化、他还没动过。换手机导入备份时，备份里他自己挑的会盖掉它（见 export.js importBackup） */
+  DB.settings.quick = { pins: chipCandidates(QUICK_N).map(function (f) { return f.id; }), hidden: [], seeded: 1 };
+  persist(K.settings, DB.settings);
+}
+export function quickHas(id) { var q = quickState(); return !!q && isPinned(q, id); }
+/* on=true 加入（放最前）；false 移除（补位也不再选它） */
+export function quickSet(id, on) {
+  initQuick();
+  var q = quickState();
+  DB.settings.quick = on ? pinQuick(q, id) : dropQuick(q, id);
+  persist(K.settings, DB.settings);
+}
+/* 「加入 / 移出快速记录」开关：搜索结果、食物库每行右边用短的，份量面板里用长的（big） */
+function quickToggleText(on, big) {
+  return big ? (on ? "✓ 已在快速记录（点一下移出）" : "＋ 加入快速记录") : (on ? "✓ 快速记录" : "＋ 快速记录");
+}
+export function quickToggleBtn(id, big) {
+  var on = quickHas(id);
+  return '<button class="' + (big ? "btn plain q-tog-big" : "q-tog") + (on ? " on" : "") + '" data-act="quick-toggle" data-food="' + id + '"' +
+    (big ? ' data-big="1"' : '') + ' aria-pressed="' + on + '">' + quickToggleText(on, big) + '</button>';
+}
+/* 切换后就地刷新页面上所有同一食物的开关（食物库不整页重画，免得跳回顶部） */
+export function refreshQuickToggles(id) {
+  var on = quickHas(id);
+  document.querySelectorAll('[data-act="quick-toggle"][data-food="' + id + '"]').forEach(function (b) {
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", String(on));
+    b.textContent = quickToggleText(on, b.hasAttribute("data-big"));
+  });
+}
+/* 搜索结果里的一行（食物库、我的食物、通用库共用），右边带「快速记录」开关 */
 function foodRow(f) {
   var dp = f.portions.find(function (p) { return p.label === f.default_portion; }) || f.portions[0];
-  return '<button class="r-item" data-act="open-food" data-food="' + f.id + '">' +
+  return '<div class="r-row"><button class="r-item" data-act="open-food" data-food="' + f.id + '">' +
     '<span class="nm"><i class="dot ' + (f.confidence === "high" ? "hi" : "lo") + '"></i><span>' + esc(f.name) + '</span></span>' +
-    '<span class="kc">' + esc(dp.label) + ' · ' + kcalOf(f, dp.grams) + '</span></button>';
+    '<span class="kc">' + esc(dp.label) + ' · ' + kcalOf(f, dp.grams) + '</span></button>' + quickToggleBtn(f.id) + '</div>';
 }
 export function bannerDismissedToday(kind) {
   var d = DB.settings.banner_dismiss || {};
@@ -191,6 +229,54 @@ export function renderAiMod() {
   el.innerHTML = h + '</div>';
 }
 export var CHIP_LAST_MIN_KCAL = 25;
+/* 快速记录这一块（没在搜索时）：他加的在前，淡色的是自动补的；编辑模式下食物按钮不能记录（防误点），
+   下面换成「移除」/「加入」「不要」 */
+function quickChipsHtml() {
+  var q = quickState(), pins = [], autos, faint = !!q;
+  if (q) {
+    var u = usageStats();
+    pins = q.pins.map(foodById).filter(Boolean);
+    /* 通用食物库还没下载完时，他加的通用食物暂时找不到：先占着位置，免得补位多出一个又消失 */
+    var held = GENERIC ? pins.length : q.pins.length;
+    var need = autoCount({ pins: new Array(held) });
+    /* need 为 0 时别传给 rankChips：它把 0 当成没传、按默认取 6 个 */
+    autos = need ? rankChips(autoPool(allFoods().concat(eatenGeneric(u)), q), u, FOOD_LIBRARY, need) : [];
+  } else {
+    autos = chipCandidates(QUICK_N);
+  }
+  function chip(f, auto) {
+    var dp = f.portions.find(function (p) { return p.label === f.default_portion; }) || f.portions[0];
+    var cls = "chip" + (auto && faint ? " auto" : "");
+    var inner = '<span class="t">' + esc(f.name) + '</span><span class="kc">' + kcalOf(f, dp.grams) + '</span>';
+    if (quickEdit) {
+      return '<span class="qe"><span class="' + cls + '">' + inner + '</span><span class="qe-acts">' +
+        (auto ? '<button data-act="quick-pin" data-food="' + f.id + '">加入</button><button data-act="quick-drop" data-food="' + f.id + '">不要</button>'
+              : '<button data-act="quick-drop" data-food="' + f.id + '">移除</button>') + '</span></span>';
+    }
+    var main = '<button class="' + cls + '" data-act="quick-log" data-food="' + f.id + '">' + inner + '</button>';
+    /* 他用厨房秤：上次称的克数和常用份量差得明显时（≥ CHIP_LAST_MIN_KCAL），多给一个点法。
+       差几克的不显示——蛋白粉预设 1 勺 30 g、他实际 48 g 这种才值得单独一个按钮 */
+    var lg = lastGramsOf(f.id);
+    if (lg == null || lg === dp.grams) return main;
+    if (Math.abs(kcalOf(f, lg) - kcalOf(f, dp.grams)) < CHIP_LAST_MIN_KCAL) return main;
+    return '<span class="chipwrap">' + main +
+      '<button class="chip lastg' + (auto && faint ? " auto" : "") + '" data-act="quick-log-last" data-food="' + f.id + '" data-g="' + lg + '">' +
+      '上次 ' + lg + ' g <span class="kc">' + kcalOf(f, lg) + '</span></button></span>';
+  }
+  var chips = pins.map(function (f) { return chip(f, false); }).concat(autos.map(function (f) { return chip(f, true); }));
+  var h = chips.length ? '<div class="chips">' + chips.join("") + '</div>'
+    : '<div class="hint">快速记录是空的。点「编辑」→「＋ 添加」，搜到冰箱里有的东西，点右边的「＋ 快速记录」。</div>';
+  if (quickEdit) {
+    h += '<div class="note">编辑快速记录：「移除」＝冰箱里没有了，自动补位也不会再把它排回来；淡色的是自动补的，「加入」把它固定到前面，「不要」就不再出现。' +
+      '要加别的食物：点「＋ 添加」在上面搜索，点结果右边的「＋ 快速记录」。食物库页、份量面板里也能加入或移出。</div>' +
+      '<div class="q-bar"><button class="btn plain" data-act="quick-add">＋ 添加</button><button class="btn solid" data-act="quick-edit">完成</button></div>';
+  } else {
+    h += '<div class="q-bar"><div class="hint">' + (faint ? "前面是你加的（新加的在前），淡色的是按最近常吃自动补的，你加的不满 " + QUICK_N + " 个才补。" : "按最近吃得多的排。") +
+      '点名字＝按常用份量（一勺／一个／一包）记一条；旁边出现「上次 N g」时点它＝按你上次称的克数记（只在两者差 25 kcal 以上时出现）。都能撤销、能改份量。搜索可挑份量或输克数。</div>' +
+      '<button class="btn plain q-edit" data-act="quick-edit">编辑</button></div>';
+  }
+  return h;
+}
 export function renderQuickBody() {
   var el = document.getElementById("quick-body");
   var h = "";
@@ -209,24 +295,7 @@ export function renderQuickBody() {
     if (!hits.length && !gen.length) h += '<div class="r-none">食物库里没有「' + esc(searchQuery) + '」。</div>';
     h += '<button class="r-guess" data-act="open-guess">＋ 先记一条估计（' + esc(searchQuery) + '）</button></div>';
   } else {
-    h += '<div class="chips">' + COMBOS.map(function (c) {
-      return '<button class="chip combo" data-act="quick-combo" data-combo="' + c.id + '">☆ ' + esc(c.name) +
-        ' <span class="kc">' + comboKcal(c) + '</span></button>';
-    }).join("") + chipCandidates(8).map(function (f) {
-      var dp = f.portions.find(function (p) { return p.label === f.default_portion; }) || f.portions[0];
-      var main = '<button class="chip" data-act="quick-log" data-food="' + f.id + '">' +
-        '<span class="t">' + esc(f.name) + '</span>' +
-        '<span class="kc">' + kcalOf(f, dp.grams) + '</span></button>';
-      /* 他用厨房秤：上次称的克数和常用份量差得明显时（≥ CHIP_LAST_MIN_KCAL），多给一个点法。
-         差几克的不显示——蛋白粉预设 1 勺 30 g、他实际 48 g 这种才值得单独一个按钮 */
-      var lg = lastGramsOf(f.id);
-      if (lg == null || lg === dp.grams) return main;
-      if (Math.abs(kcalOf(f, lg) - kcalOf(f, dp.grams)) < CHIP_LAST_MIN_KCAL) return main;
-      return '<span class="chipwrap">' + main +
-        '<button class="chip lastg" data-act="quick-log-last" data-food="' + f.id + '" data-g="' + lg + '">' +
-        '上次 ' + lg + ' g <span class="kc">' + kcalOf(f, lg) + '</span></button></span>';
-    }).join("") + '</div>' +
-    '<div class="hint" style="padding-top:2px">按最近吃得多的排。点名字＝按常用份量（一勺／一个／一包）记一条；旁边出现「上次 N g」时点它＝按你上次称的克数记（只在两者差 25 kcal 以上时出现）。都能撤销、能改份量。☆ 是组合，一键记几样。搜索可挑份量或输克数。</div>';
+    h += quickChipsHtml();
   }
   el.innerHTML = h;
 }

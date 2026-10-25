@@ -2,13 +2,13 @@ import { MEAL_DRAFT, aiBusy, aiEstimateMealText, aiNeedKey, aiPhotoStart, aiRead
 import { GENERIC, loadGeneric } from "./generic.js";
 import { MAX_G, newId, todayStr } from "./lib/util.js";
 import { lookupBarcode, scanClose, scanLiveStart, scanManualGo, scanPhotoStart, scanSave, scanTorch, scanUseFood, scanWarnRefresh, setScanDraft } from "./scan.js";
-import { addEntry, aiEntryPer100, buildEntry, closeSheet, confirmGuess, deleteEntry, elSheet, guessAmount, logCombo, openAiEntrySheet, openGuessSheet, openOrphanSheet, openPortionSheet, setGuessAmount, showUndoToast, showUndoToastMulti } from "./sheets.js";
+import { addEntry, aiEntryPer100, buildEntry, closeSheet, confirmGuess, deleteEntry, elSheet, guessAmount, openAiEntrySheet, openGuessSheet, openOrphanSheet, openPortionSheet, setGuessAmount, showUndoToast, showUndoToastMulti } from "./sheets.js";
 import { REVERT_MIN, entryTs, setFlash, setViewDate, setViewDateRaw, syncTopbar, viewDate, viewingToday } from "./state.js";
 import { DB, K, UF_KEY, USER_FOODS, dayComplete, foodById, persist, reloadDB, setDayComplete, setUserFoods, storeBroken } from "./store.js";
 import { presetOf, setTrainingMin, toggleTraining, trainingKcal, trainingMin, trainingOfView } from "./training.js";
 import { doExport, importInput, renderExport } from "./views/export.js";
 import { renderLibrary } from "./views/library.js";
-import { dismissBanner, histExpanded, renderBanner, renderQuickBody, renderToday, renderTodayBottom, searchQuery, setHistExpanded } from "./views/today.js";
+import { dismissBanner, elSearch, histExpanded, initQuick, quickEdit, quickHas, quickSet, refreshQuickToggles, renderBanner, renderQuickBody, renderToday, renderTodayBottom, searchQuery, setHistExpanded, setQuickEdit } from "./views/today.js";
 import { renderWeight, saveWeight, setWeightCtx, stepKg } from "./views/weight.js";
 import { setTrendRange } from "./views/weightChart.js";
 import { voiceCancel, voiceStart, voiceStop } from "./voice.js";
@@ -16,7 +16,7 @@ import { voiceCancel, voiceStart, voiceStop } from "./voice.js";
 /* ── 入口 ──────────────────────────────────────────────────
    模块地图（v2.0 从单文件 index.html 按原有分节拆出，行为不变）：
      build.js            发布常数（周报校准后改这里）
-     data/foods.js       内置食物库、个人食物覆盖层（UF_SAME_AS / UF_FIX）、常吃组合
+     data/foods.js       内置食物库、个人食物覆盖层（UF_SAME_AS / UF_FIX）
      data/logfix.js      流水逐条更正
      lib/*               纯计算：交叉校验、AI/条形码数据解析、排序、日期、备份合并（tests/unit 覆盖）
      store.js            localStorage 读写、食物查找
@@ -138,7 +138,6 @@ document.addEventListener("click", function (ev) {
     renderTodayBottom();
   }
   else if (act === "hist-toggle") { setHistExpanded(!histExpanded); renderTodayBottom(); }
-  else if (act === "quick-combo") logCombo(b.getAttribute("data-combo"));
   else if (act === "del-userfood") {
     if (b.getAttribute("data-armed")) {
       var ufid = b.getAttribute("data-food");
@@ -184,6 +183,16 @@ document.addEventListener("click", function (ev) {
     if (!aiBusy) aiPhotoStart("label", bcA);
   }
   else if (act === "scan-guess") openGuessSheet("", null);
+  /* 快速记录选谁（v2.4）：编辑模式开关、加入、移除，以及各处的「快速记录」开关 */
+  else if (act === "quick-edit") { if (!quickEdit) initQuick(); setQuickEdit(!quickEdit); renderQuickBody(); }
+  else if (act === "quick-pin" || act === "quick-drop") { quickSet(b.getAttribute("data-food"), act === "quick-pin"); renderQuickBody(); }
+  else if (act === "quick-toggle") {
+    var qf = b.getAttribute("data-food");
+    quickSet(qf, !quickHas(qf));
+    refreshQuickToggles(qf);
+    if (!searchQuery) renderQuickBody();
+  }
+  else if (act === "quick-add") { elSearch.scrollIntoView({ block: "center" }); elSearch.focus(); }
   else if (act === "save-ai-key") saveAiKey();
   else if (act === "ai-label-photo") { if (!aiReady()) aiNeedKey(); else if (!aiBusy) aiPhotoStart("label"); }
   else if (act === "ai-meal-photo") { if (!aiReady()) aiNeedKey(); else if (!aiBusy) aiPhotoStart("meal"); }
@@ -305,10 +314,12 @@ setViewDateRaw(shownDate);           /* 每次打开都从今天开始看 */
 document.getElementById("tb-date").textContent = shownDate;
 switchTab("today");
 /* 通用食物库在后台下载，好了就刷新搜索结果、快速记录和食物库（不动输入框） */
+/* 快速记录的初始内容（v2.4 第一次打开时）要等它：吃过的通用食物也算在当时自动排出来的那几个里 */
 loadGeneric().then(function () {
+  initQuick();
   renderQuickBody();
   if (activeTab() === "library") renderLibrary();
-}, function () {});
+}, function () { initQuick(); renderQuickBody(); });
 
 export function refreshIfNeeded(force) {
   var t = todayStr();

@@ -172,9 +172,25 @@ input { font: inherit; color: inherit; }
 .hrow .hw { font-family: var(--f-num); font-size: 11.5px; color: var(--text-dim); flex: 1; }
 .hrow .hi { flex: none; font-size: 11px; color: var(--text-dim); }
 .hrow .hm { font-size: 11px; color: var(--text-faint); font-family: var(--f-num); }
-.chip.combo { border-color: var(--brass); background: var(--brass-bg); color: var(--brass); }
-.uf-row { display: flex; align-items: center; gap: 6px; }
-.uf-row .r-item { flex: 1; min-width: 0; }
+.uf-row, .r-row { display: flex; align-items: center; gap: 6px; }
+.uf-row .r-item, .r-row .r-item { flex: 1; min-width: 0; }
+/* 「快速记录」开关（搜索结果、食物库每行右边）：没加入是虚线，加入了是实心 */
+.q-tog { flex: none; font-size: 12px; padding: 6px 8px; border-radius: 6px; border: 1px dashed var(--hair); color: var(--text-dim); white-space: nowrap; }
+.q-tog.on { border: 1px solid var(--brass); background: var(--brass-bg); color: var(--brass); }
+.q-tog-big { margin-top: 8px; }
+.q-tog-big.on { border-color: var(--brass); color: var(--brass); }
+/* 快速记录：自动补的淡一点；编辑模式每个食物下面挂按钮 */
+.chip.auto { opacity: .55; border-style: dashed; }
+.q-bar { display: flex; align-items: flex-start; gap: 8px; margin-top: 6px; }
+.q-bar .hint { flex: 1; padding-top: 2px; }
+.q-bar .btn { width: auto; flex: none; padding: 8px 14px; font-size: 13px; }
+.q-bar .btn.solid { margin-left: auto; }
+.qe { display: inline-flex; flex-direction: column; gap: 4px; max-width: 100%; }
+.qe .chip { min-width: 0; }
+.qe-acts { display: flex; gap: 4px; }
+.qe-acts button { flex: 1; text-align: center; font-size: 12px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--hair); color: var(--text-dim); }
+.qe-acts button[data-act="quick-pin"] { border-color: var(--brass); color: var(--brass); }
+.qe-acts button[data-act="quick-drop"] { color: var(--over); }
 .uf-del { flex: none; font-size: 12px; color: var(--over); padding: 6px 8px; border-radius: 6px; }
 .uf-del[data-armed] { background: var(--over); color: var(--card); }
 .rowline { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; }

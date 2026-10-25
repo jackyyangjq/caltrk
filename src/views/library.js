@@ -1,7 +1,7 @@
 import { eatenGeneric, searchGeneric } from "../generic.js";
 import { esc } from "../lib/util.js";
 import { USER_FOODS, allFoods } from "../store.js";
-import { addedCmp, agoLabel, recentCmp, usageStats } from "./today.js";
+import { addedCmp, agoLabel, quickToggleBtn, recentCmp, usageStats } from "./today.js";
 
 
 /* ── 食物库页 ───────────────────────────────────────────────
@@ -22,11 +22,10 @@ export function renderLibrary() {
   }
   var mineIds = {};
   USER_FOODS.forEach(function (f) { mineIds[f.id] = 1; });
-  /* 个人食物带删除按钮：删的是手机上的条目，已记进流水的不受影响 */
+  /* 每行右边是「快速记录」开关（v2.4）；个人食物再带删除按钮：删的是手机上的条目，已记进流水的不受影响 */
   function line(f, ago) {
-    if (!mineIds[f.id]) return row(f, ago);
-    return '<div class="uf-row">' + row(f, ago) +
-      '<button class="uf-del" data-act="del-userfood" data-food="' + f.id + '">删除</button></div>';
+    return '<div class="uf-row">' + row(f, ago) + quickToggleBtn(f.id) +
+      (mineIds[f.id] ? '<button class="uf-del" data-act="del-userfood" data-food="' + f.id + '">删除</button>' : '') + '</div>';
   }
   var u = usageStats();
   var list = allFoods().filter(match);
@@ -50,13 +49,13 @@ export function renderLibrary() {
   }
   if (lib.length) {
     h += '<div class="mod-title" style="padding:14px 0 4px">食物库</div>' +
-      lib.map(function (f) { return row(f, ago(f)); }).join("");
+      lib.map(function (f) { return line(f, ago(f)); }).join("");
   }
   /* 通用食物库只在搜索时列出（约 500 条，平时不占地方） */
   var gen = q ? searchGeneric(libQuery, 30, u).filter(function (f) { return !top[f.id]; }) : [];
   if (gen.length) {
     h += '<div class="mod-title" style="padding:14px 0 4px">通用食物库 · USDA 平均值</div>' +
-      gen.map(function (f) { return row(f, ago(f)); }).join("");
+      gen.map(function (f) { return line(f, ago(f)); }).join("");
   }
   el.innerHTML = h || '<div class="empty">没有匹配的食物。</div>';
 }
