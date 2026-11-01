@@ -150,7 +150,12 @@ export var FOOD_LIBRARY = [
   { id: "coop-semi-skimmed-milk", name: "Co-op 半脱脂牛奶", per_100g: { kcal: 50, protein: 3.6, fat: 1.8, carb: 4.8 },
     portions: [{ label: "一杯 250ml", grams: 250 }, { label: "100ml", grams: 100 }], default_portion: "100ml", confidence: "high",
     barcodes: ["5000128104494"],
-    note: "扫码数据：每 100 毫升 50 千卡、蛋白 3.6、脂肪 1.8、碳水 4.8，和英国半脱脂奶的标准值一致。" }
+    note: "扫码数据：每 100 毫升 50 千卡、蛋白 3.6、脂肪 1.8、碳水 4.8，和英国半脱脂奶的标准值一致。" },
+  /* 2026-11-01 周报从「我的食物」转正：两周用了 8 次，扫码数据经算术核对对得上 */
+  { id: "ms-british-whole-milk", name: "M&S 英国全脂牛奶", per_100g: { kcal: 65, protein: 3.5, fat: 3.7, carb: 4.7 },
+    portions: [{ label: "一杯 250ml", grams: 250 }, { label: "150ml", grams: 150 }, { label: "100ml", grams: 100 }], default_portion: "100ml", confidence: "high",
+    barcodes: ["00348737"],
+    note: "扫码数据：每 100 毫升 65 千卡、蛋白 3.5、脂肪 3.7、碳水 4.7，和英国全脂奶的标准值一致。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -200,7 +205,11 @@ export var UF_SAME_AS = {
   "uf-mv5i02r7": "uf-mv5i4872grt",
   /* 2026-10-25 周报新增 */
   "uf-muvpk02q": "jaffa-easy-peelers",
-  "uf-mveuvlxg": "coop-semi-skimmed-milk"
+  "uf-mveuvlxg": "coop-semi-skimmed-milk",
+  /* 2026-11-01 周报新增 */
+  "uf-mvkoohc5": "ms-british-whole-milk",
+  "uf-mvw8fnrp": "uf-mvw8giqc",             /* 芒果菠萝隔夜燕麦拍了两次，留记过流水的那条 */
+  "uf-mvvh084i": "uf-mvwjzk58"              /* 迷你芝士扭结酥建了两次，数值一样，留用得多的那条 */
 };
 export var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
