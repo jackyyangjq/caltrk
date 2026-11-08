@@ -222,6 +222,27 @@ console.log("errors: 401, refusal, 400 explained");
   console.log("sdk load failure: explained, app usable, works after refresh");
 }
 
+// ── 1b. Old-key user pastes only a ChatAnywhere key (as the warning says) and doesn't touch 「用哪家」 → ChatAnywhere is picked ──
+{
+  const fx = buildFixture();
+  fx[AI_KEY] = JSON.stringify({ claude: 1, oldKey: 1 });
+  const { ctx, page: p1 } = await open(fx);
+  await p1.locator('.tabs [data-tab="export"]').click();
+  await p1.locator("#ca-key-in").fill("sk-ca-only-123456");
+  await p1.locator('[data-act="save-ai-key"]').click();
+  const c1 = await aiCfg(p1);
+  if (c1.provider !== "ca" || c1.oldKey || c1.caKey !== "sk-ca-only-123456") fail("lone ChatAnywhere key did not select ChatAnywhere: " + JSON.stringify(c1));
+  if (!/已启用 · ChatAnywhere/.test(await p1.locator("#view-export").textContent())) fail("status after lone ChatAnywhere key");
+  caRequests.length = 0; requests.length = 0;
+  await p1.locator('.tabs [data-tab="today"]').click();
+  await p1.locator("#ai-meal-text").fill("一碗米饭");
+  await p1.locator('[data-act="ai-meal-text"]').click();
+  await p1.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 });
+  if (requests.length || caRequests.length !== 1) fail("lone ChatAnywhere key: request routing");
+  await ctx.close();
+  console.log("lone ChatAnywhere key: provider switched, request reaches ChatAnywhere");
+}
+
 // ── 7. ChatAnywhere (v2.5): Claude out of credit → this request falls back to ChatAnywhere; or pick ChatAnywhere outright ──
 {
   dialogs.length = 0; requests.length = 0; caRequests.length = 0;
@@ -254,6 +275,15 @@ console.log("errors: 401, refusal, 400 explained");
   const food = await page.evaluate(() => JSON.parse(localStorage.getItem("caltrk7f3a.userfoods.v1")).filter(f => f.name === "Tesco 希腊酸奶").pop());
   if (!food || !/没做 Opus 复核/.test(food.note) || !/网上补/.test(food.note)) fail("label note: " + (food && food.note));
   await page.locator('[data-act="pick-portion"]').first().click();
+  // b2) both fail: the message keeps Claude's reason as well as ChatAnywhere's
+  dialogs.length = 0;
+  caReply = () => ({ status: 401, json: { error: { message: "invalid key" } } });
+  await page.locator("#ai-meal-text").fill("番茄炒蛋盖饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForFunction(() => !document.querySelector("#ai-mod button[disabled]"));
+  await page.waitForTimeout(100);
+  caReply = null;
+  if (!dialogs.some(d => /Claude：HTTP 400：Your credit balance is too low/.test(d) && /自动改用 ChatAnywhere 也失败：ChatAnywhere HTTP 401/.test(d))) fail("double failure: " + dialogs.join(" | "));
   // c) choose ChatAnywhere in settings: Claude is never called; a ChatAnywhere 401 is explained
   reply = null; dialogs.length = 0; requests.length = 0; caRequests.length = 0;
   await page.locator('.tabs [data-tab="export"]').click();

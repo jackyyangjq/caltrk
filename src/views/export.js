@@ -35,7 +35,7 @@ export function renderExport() {
     (storeBroken ? '<div class="note" style="color:var(--over)">⚠️ 检测到存储异常。导出文件里已附带抢救出的原始数据，请尽快导出并联系分析端。</div>' : '') +
     '</div>' +
     '<div class="mod"><div class="mod-title">AI 识别（自带密钥）</div>' +
-    (AI.oldKey && !aiReady() ? '<div class="warnbox">原来的 ChatAnywhere 密钥在换成 Claude 时被清掉了。要用 ChatAnywhere 就把密钥重新贴到下面 ChatAnywhere 那一栏；' +
+    (AI.oldKey && !aiReady() ? '<div class="warnbox">原来的 ChatAnywhere 密钥在换成 Claude 时被清掉了。要用 ChatAnywhere 就把密钥重新贴到下面 ChatAnywhere 那一栏（只填它的话「用哪家」会自动改成 ChatAnywhere）；' +
       '要用 Claude 就去 Claude Console（platform.claude.com）→ API keys 建一个密钥贴到 Claude 那一栏，再点「保存设置」。</div>'
       : aiKeyNudge && !aiReady() ? '<div class="warnbox">先在下面粘贴' + (useCA() ? ' ChatAnywhere 密钥' : ' Anthropic API 密钥（sk-ant- 开头）') + '、点「保存设置」，再回「今日」页拍照或估算。</div>' : '') +
     '<div class="rowline"><span class="k">状态</span><span class="v">' + (!aiReady() ? "未设置"

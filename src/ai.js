@@ -56,18 +56,21 @@ export function saveAiKey() {
   else if (v) {
     if (!/^sk-ant-/.test(v) && !confirm("这个密钥不是 sk-ant- 开头，不像 Anthropic 的 API 密钥（ChatAnywhere 的密钥要贴到下面 ChatAnywhere 那一栏）。仍然保存？")) return;
     AI.key = v;
-    delete AI.oldKey;
   }
   /* ChatAnywhere（v2.5）：密钥、模型、用哪家 */
   var ca = document.getElementById("ca-key-in");
   var cv = ca ? ca.value.trim() : "";
   if (cv === "清除" || cv.toLowerCase() === "clear") delete AI.caKey;
-  else if (cv) { AI.caKey = cv; delete AI.oldKey; }
+  else if (cv) AI.caKey = cv;
   var ms = document.getElementById("ca-model-sel"), mi = document.getElementById("ca-model-in");
   var m = ms ? (ms.value === "__custom" ? (mi ? mi.value.trim() : "") : ms.value) : "";
   if (m && m !== CA_DEFAULT_MODEL) AI.caModel = m; else delete AI.caModel;
   var ps = document.getElementById("ai-provider-sel");
   if (ps) { if (ps.value === "ca") AI.provider = "ca"; else delete AI.provider; }
+  /* 选的那家没密钥、另一家有：自动改成有密钥的那家（只贴了 ChatAnywhere 密钥、没动「用哪家」时，不然 AI 一直用不了） */
+  if (useCA() && !keyOk(AI.caKey) && keyOk(AI.key)) delete AI.provider;
+  else if (!useCA() && !keyOk(AI.key) && keyOk(AI.caKey)) AI.provider = "ca";
+  if (aiReady()) delete AI.oldKey;
   /* 密钥框留空 = 不改密钥，这样单独开关复核不用重贴密钥 */
   var sel = document.getElementById("ai-model2-sel");
   if (sel && sel.value === AI_REVIEW_MODEL) AI.model2 = AI_REVIEW_MODEL; else delete AI.model2;
@@ -177,7 +180,10 @@ export function routed(claudeCall, caCall) {
   return claudeCall().then(function (txt) { return { txt: txt, via: "claude" }; }, function (e) {
     if (!(keyOk(AI.caKey) && Anthropic && e instanceof Anthropic.APIError && e.status)) throw e;
     var why = aiErrText(e, secsSince(t0), Anthropic);
-    return caCall().then(function (txt) { return { txt: txt, via: "ca", fellBack: why }; });
+    return caCall().then(function (txt) { return { txt: txt, via: "ca", fellBack: why }; }, function (e2) {
+      /* 两家都失败：两个原因都告诉他，不然他只看到 ChatAnywhere 的错、不知道 Claude 为什么没用上 */
+      throw new Error("Claude：" + why + "；自动改用 ChatAnywhere 也失败：" + (e2 && e2.message ? e2.message : e2));
+    });
   });
 }
 var fallbackNoted = false;   /* 自动改用 ChatAnywhere 的提示每次打开页面只弹一次 */
