@@ -155,7 +155,15 @@ export var FOOD_LIBRARY = [
   { id: "ms-british-whole-milk", name: "M&S 英国全脂牛奶", per_100g: { kcal: 65, protein: 3.5, fat: 3.7, carb: 4.7 },
     portions: [{ label: "一杯 250ml", grams: 250 }, { label: "150ml", grams: 150 }, { label: "100ml", grams: 100 }], default_portion: "100ml", confidence: "high",
     barcodes: ["00348737"],
-    note: "扫码数据：每 100 毫升 65 千卡、蛋白 3.5、脂肪 3.7、碳水 4.7，和英国全脂奶的标准值一致。" }
+    note: "扫码数据：每 100 毫升 65 千卡、蛋白 3.5、脂肪 3.7、碳水 4.7，和英国全脂奶的标准值一致。" },
+  /* 2026-11-08 周报从「我的食物」转正：两周各用了 10 次和 8 次，数值经算术核对对得上 */
+  { id: "ms-swiss-style-muesli", name: "M&S 瑞士风味什锦麦片", per_100g: { kcal: 367, protein: 10.7, fat: 5.0, carb: 66.3 },
+    portions: [{ label: "一小把 10g", grams: 10 }, { label: "一份 45g", grams: 45 }], default_portion: "一小把 10g", confidence: "high",
+    barcodes: ["29435197"],
+    note: "扫码数据：每 100 克 367 千卡、蛋白 10.7、脂肪 5、碳水 66.3、纤维 7.1。你平时撒 8 到 16 克在酸奶上。" },
+  { id: "tesco-free-range-eggs", name: "Tesco 放养鸡蛋", per_100g: { kcal: 143, protein: 12.6, fat: 9.5, carb: 0.7 },
+    portions: [{ label: "1 个 50g", grams: 50 }, { label: "2 个 100g", grams: 100 }, { label: "3 个 150g", grams: 150 }], default_portion: "2 个 100g", confidence: "high",
+    note: "包装标签：每 100 克 143 千卡、蛋白 12.6、脂肪 9.5、碳水 0.7，和英国鸡蛋的常见标签一致。原个人条目默认「整包」，已改成按个数。" }
 ];
 
 /* ── 个人食物的就地修正（2026-09-12 起没有「已停用」一栏了）──────
@@ -209,7 +217,10 @@ export var UF_SAME_AS = {
   /* 2026-11-01 周报新增 */
   "uf-mvkoohc5": "ms-british-whole-milk",
   "uf-mvw8fnrp": "uf-mvw8giqc",             /* 芒果菠萝隔夜燕麦拍了两次，留记过流水的那条 */
-  "uf-mvvh084i": "uf-mvwjzk58"              /* 迷你芝士扭结酥建了两次，数值一样，留用得多的那条 */
+  "uf-mvvh084i": "uf-mvwjzk58",             /* 迷你芝士扭结酥建了两次，数值一样，留用得多的那条 */
+  /* 2026-11-08 周报新增 */
+  "uf-mvmdvne9": "ms-swiss-style-muesli",
+  "uf-mu865caf": "tesco-free-range-eggs"
 };
 export var UF_FIX = {
   "uf-mtizeexx": { name: "Grissini 意式细面包棒",
