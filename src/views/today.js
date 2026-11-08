@@ -223,7 +223,7 @@ export function renderAiMod() {
       (aiReady()
         ? '<div class="hint">可多选照片（正面＋成分表算同一个）；选好照片才调用 AI；估算先确认再记录。🎤 是说一段话来估算；文字和语音估算的每样东西确认后会存进「我的食物」，下次直接点。</div>'
         : AI.oldKey
-          ? '<div class="hint" style="color:var(--over)">AI 已经换成 Claude，原来的 ChatAnywhere 密钥用不了了。点上面任一按钮会带你去「导出」页填 Anthropic 密钥。</div>'
+          ? '<div class="hint" style="color:var(--over)">原来的 ChatAnywhere 密钥之前被清掉了。点上面任一按钮会带你去「导出」页填密钥（Claude 或 ChatAnywhere 都行）。</div>'
           : '<div class="hint" style="color:var(--over)">还没填 AI 密钥（换了网址或清过浏览器数据后要重新填）。点上面任一按钮会带你去「导出」页填。</div>');
   }
   el.innerHTML = h + '</div>';

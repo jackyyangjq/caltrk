@@ -306,6 +306,11 @@ document.addEventListener("input", function (ev) {
 }, true);
 document.addEventListener("change", function (ev) {
   if (ev.target.hasAttribute && ev.target.hasAttribute("data-tmin")) renderTodayBottom();
+  /* ChatAnywhere 模型下拉选「自定义…」时显示手输框 */
+  if (ev.target.hasAttribute && ev.target.hasAttribute("data-modelsel")) {
+    var ci = document.getElementById(ev.target.getAttribute("data-modelsel"));
+    if (ci) ci.style.display = ev.target.value === "__custom" ? "" : "none";
+  }
 }, true);
 
 /* ── 启动与刷新 ─────────────────────────────────────────── */

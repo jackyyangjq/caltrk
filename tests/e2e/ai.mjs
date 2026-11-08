@@ -42,6 +42,8 @@ const FAKE_SR = `
 const browser = await chromium.launch();
 const errors = [], dialogs = [], requests = [];
 let reply = null;   // (request) => { status, json } ; null = answer by system prompt
+const caRequests = [];
+let caReply = null;  // same, for ChatAnywhere
 
 async function open(fx) {
   const ctx = await browser.newContext();
@@ -57,6 +59,15 @@ async function open(fx) {
     if (r) return route.fulfill({ status: r.status || 200, json: r.json });
     const sys = req.body.system;
     await route.fulfill({ json: claudeReply(/营养数据查找员/.test(sys) ? MOCK.web : /营养标签识别器/.test(sys) ? MOCK.label : MOCK.voice) });
+  });
+  await page.route("https://api.chatanywhere.org/**", async route => {
+    const req = { headers: route.request().headers(), body: route.request().postDataJSON(), url: route.request().url() };
+    caRequests.push(req);
+    const r = caReply && caReply(req);
+    if (r) return route.fulfill({ status: r.status || 200, json: r.json });
+    const sys = req.body.messages[0].content;
+    const content = /营养数据查找员/.test(sys) ? MOCK.web : /营养标签识别器/.test(sys) ? MOCK.label : MOCK.meal;
+    await route.fulfill({ json: { choices: [{ message: { content } }] } });
   });
   await page.route("https://world.openfoodfacts.org/**", route => route.fulfill({ status: 404, json: { status: 0 } }));
   await page.goto(url + "apple-touch-icon.png");
@@ -75,9 +86,9 @@ const userFood = (page, name) => page.evaluate(n => JSON.parse(localStorage.getI
   const cfg = await aiCfg(page);
   console.log("migrated config:", JSON.stringify(cfg));
   if (cfg.key || cfg.model || cfg.model2 || cfg.m26 || cfg.oldKey !== 1 || cfg.claude !== 1) fail("old ChatAnywhere config not migrated");
-  if (!/ChatAnywhere 密钥用不了/.test(await page.locator("#ai-mod").textContent())) fail("today page does not explain the old key");
+  if (!/ChatAnywhere 密钥之前被清掉了/.test(await page.locator("#ai-mod").textContent())) fail("today page does not explain the old key");
   await page.locator('[data-act="ai-meal-photo"]').click();
-  if (!/从 ChatAnywhere 换成 Claude/.test(await page.locator("#view-export").textContent())) fail("export page does not explain the switch");
+  if (!/ChatAnywhere 密钥在换成 Claude 时被清掉了/.test(await page.locator("#view-export").textContent())) fail("export page does not explain the switch");
   await page.locator("#ai-key-in").fill("sk-chatanywhere-again99");   // not sk-ant- → confirm, accepted by the handler
   await page.locator('[data-act="save-ai-key"]').click();
   if (!dialogs.some(d => /不像 Anthropic 的 API 密钥/.test(d))) fail("no warning for a non-Anthropic key");
@@ -209,6 +220,96 @@ console.log("errors: 401, refusal, 400 explained");
   await page.locator('[data-act="ai-meal-text"]').click();
   await page.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 }).catch(() => fail("AI still broken after refresh: " + dialogs.join(" | ")));
   console.log("sdk load failure: explained, app usable, works after refresh");
+}
+
+// ── 1b. Old-key user pastes only a ChatAnywhere key (as the warning says) and doesn't touch 「用哪家」 → ChatAnywhere is picked ──
+{
+  const fx = buildFixture();
+  fx[AI_KEY] = JSON.stringify({ claude: 1, oldKey: 1 });
+  const { ctx, page: p1 } = await open(fx);
+  await p1.locator('.tabs [data-tab="export"]').click();
+  await p1.locator("#ca-key-in").fill("sk-ca-only-123456");
+  await p1.locator('[data-act="save-ai-key"]').click();
+  const c1 = await aiCfg(p1);
+  if (c1.provider !== "ca" || c1.oldKey || c1.caKey !== "sk-ca-only-123456") fail("lone ChatAnywhere key did not select ChatAnywhere: " + JSON.stringify(c1));
+  if (!/已启用 · ChatAnywhere/.test(await p1.locator("#view-export").textContent())) fail("status after lone ChatAnywhere key");
+  caRequests.length = 0; requests.length = 0;
+  await p1.locator('.tabs [data-tab="today"]').click();
+  await p1.locator("#ai-meal-text").fill("一碗米饭");
+  await p1.locator('[data-act="ai-meal-text"]').click();
+  await p1.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 });
+  if (requests.length || caRequests.length !== 1) fail("lone ChatAnywhere key: request routing");
+  await ctx.close();
+  console.log("lone ChatAnywhere key: provider switched, request reaches ChatAnywhere");
+}
+
+// ── 7. ChatAnywhere (v2.5): Claude out of credit → this request falls back to ChatAnywhere; or pick ChatAnywhere outright ──
+{
+  dialogs.length = 0; requests.length = 0; caRequests.length = 0;
+  await page.evaluate(k => { const c = JSON.parse(localStorage.getItem(k)); c.caKey = "sk-ca-test-123456"; c.model2 = "claude-opus-5-5"; localStorage.setItem(k, JSON.stringify(c)); }, AI_KEY);
+  await page.reload();
+  const noCredit = { status: 400, json: { type: "error", error: { type: "invalid_request_error", message: "Your credit balance is too low to access the Anthropic API." } } };
+  reply = () => noCredit;
+  // a) text estimate
+  await page.locator("#ai-meal-text").fill("番茄炒蛋盖饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 }).catch(e => { console.log("dialogs:", dialogs); throw e; });
+  const ca0 = caRequests[0] && caRequests[0].body;
+  if (requests.length !== 1 || caRequests.length !== 1) fail(`fallback: ${requests.length} Claude / ${caRequests.length} ChatAnywhere requests`);
+  if (!ca0 || ca0.model !== "claude-sonnet-5-5" || ca0.messages[0].role !== "system" || !/饮食热量估算器/.test(ca0.messages[0].content)) fail("ChatAnywhere request wrong: " + JSON.stringify(ca0).slice(0, 200));
+  if (caRequests[0].headers.authorization !== "Bearer sk-ca-test-123456") fail("ChatAnywhere key not sent");
+  if (!dialogs.some(d => /credit balance is too low/.test(d) && /已自动改用 ChatAnywhere（claude-sonnet-5-5）/.test(d))) fail("fallback not explained: " + dialogs.join(" | "));
+  await page.mouse.click(200, 20); await page.waitForTimeout(350);
+  // b) label photo: falls back once, then web search goes straight to ChatAnywhere's search model, and no Opus review
+  dialogs.length = 0; requests.length = 0; caRequests.length = 0;
+  let fc = page.waitForEvent("filechooser");
+  await page.locator('[data-act="ai-label-photo"]').click();
+  await (await fc).setFiles([ICON]);
+  await page.waitForSelector('[data-act="pick-portion"]', { timeout: 15000 }).catch(e => { console.log("dialogs:", dialogs); throw e; });
+  const caModels = caRequests.map(r => r.body.model);
+  console.log("fallback label:", requests.length, "Claude request(s); ChatAnywhere:", caModels.join(", "));
+  if (requests.length !== 1 || JSON.stringify(caModels) !== JSON.stringify(["claude-sonnet-5-5", "gpt-4o-mini-search-preview"])) fail("label fallback routing wrong");
+  const img = caRequests[0].body.messages[1].content[0];
+  if (img.type !== "image_url" || !/^data:image\/jpeg;base64,/.test(img.image_url.url)) fail("image not sent as a data-URL image_url");
+  if (dialogs.some(d => /已自动改用/.test(d))) fail("fallback notice shown twice in one session");
+  const food = await page.evaluate(() => JSON.parse(localStorage.getItem("caltrk7f3a.userfoods.v1")).filter(f => f.name === "Tesco 希腊酸奶").pop());
+  if (!food || !/没做 Opus 复核/.test(food.note) || !/网上补/.test(food.note)) fail("label note: " + (food && food.note));
+  await page.locator('[data-act="pick-portion"]').first().click();
+  // b2) both fail: the message keeps Claude's reason as well as ChatAnywhere's
+  dialogs.length = 0;
+  caReply = () => ({ status: 401, json: { error: { message: "invalid key" } } });
+  await page.locator("#ai-meal-text").fill("番茄炒蛋盖饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForFunction(() => !document.querySelector("#ai-mod button[disabled]"));
+  await page.waitForTimeout(100);
+  caReply = null;
+  if (!dialogs.some(d => /Claude：HTTP 400：Your credit balance is too low/.test(d) && /自动改用 ChatAnywhere 也失败：ChatAnywhere HTTP 401/.test(d))) fail("double failure: " + dialogs.join(" | "));
+  // c) choose ChatAnywhere in settings: Claude is never called; a ChatAnywhere 401 is explained
+  reply = null; dialogs.length = 0; requests.length = 0; caRequests.length = 0;
+  await page.locator('.tabs [data-tab="export"]').click();
+  await page.locator("#ai-provider-sel").selectOption("ca");
+  await page.locator("#ca-model-sel").selectOption("__custom");
+  if (!(await page.locator("#ca-model-in").isVisible())) fail("custom model box not shown");
+  await page.locator("#ca-model-in").fill("gemini-3.8-flash-custom");
+  await page.locator('[data-act="save-ai-key"]').click();
+  const cfg = await aiCfg(page);
+  if (cfg.provider !== "ca" || cfg.caModel !== "gemini-3.8-flash-custom" || cfg.caKey !== "sk-ca-test-123456") fail("settings not saved: " + JSON.stringify(cfg));
+  if (!/已启用 · ChatAnywhere · gemini-3\.8-flash-custom/.test(await page.locator("#view-export").textContent())) fail("status row");
+  await page.locator('.tabs [data-tab="today"]').click();
+  await page.locator("#ai-meal-text").fill("一碗米饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForSelector('[data-act="meal-confirm"]', { timeout: 15000 });
+  if (requests.length || caRequests.length !== 1 || caRequests[0].body.model !== "gemini-3.8-flash-custom") fail("provider=ca routing wrong");
+  await page.mouse.click(200, 20); await page.waitForTimeout(350);
+  caReply = () => ({ status: 401, json: { error: { message: "invalid key" } } });
+  dialogs.length = 0;
+  await page.locator("#ai-meal-text").fill("一碗米饭");
+  await page.locator('[data-act="ai-meal-text"]').click();
+  await page.waitForFunction(() => !document.querySelector("#ai-mod button[disabled]"));
+  await page.waitForTimeout(100);
+  caReply = null;
+  if (!dialogs.some(d => /ChatAnywhere HTTP 401（ChatAnywhere 密钥无效/.test(d))) fail("CA 401: " + dialogs.join(" | "));
+  console.log("ChatAnywhere: fallback, label routing, manual choice and errors ok");
 }
 
 if (errors.length) fail("page errors: " + errors.join(" | "));

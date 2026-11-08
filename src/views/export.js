@@ -1,7 +1,8 @@
-import { AI, AI_MODEL_LABEL, AI_REVIEW_LABEL, AI_REVIEW_MODEL, aiKeyNudge, aiReady } from "../ai.js";
+import { AI, AI_MODEL_LABEL, AI_REVIEW_LABEL, AI_REVIEW_MODEL, aiKeyNudge, aiReady, caModel, useCA } from "../ai.js";
+import { CA_MODEL_OPTS } from "../lib/chatanywhere.js";
 import { BUILD } from "../build.js";
 import { mergeMissing } from "../lib/backup.js";
-import { nowTs, todayStr } from "../lib/util.js";
+import { esc, nowTs, todayStr } from "../lib/util.js";
 import { VIEWS, activeTab } from "../main.js";
 import { DB, K, UF_KEY, USER_FOODS, loadArr, persist, reloadDB, setUserFoods, storeBroken } from "../store.js";
 import { daysSinceExport, renderBanner } from "./today.js";
@@ -9,6 +10,15 @@ import { daysSinceExport, renderBanner } from "./today.js";
 
 /* ── 导出页 ─────────────────────────────────────────────── */
 var FIELD_ST = 'style="width:100%;margin:8px 0 0;padding:10px;border:1px solid var(--hair);border-radius:8px;background:var(--card);color:inherit;font-size:14px"';
+/* ChatAnywhere 模型下拉（v2.5）：选「自定义…」时显示手输框（main.js 的 change 监听） */
+function caModelSel() {
+  var cur = caModel(), inList = CA_MODEL_OPTS.some(function (o) { return o[0] === cur; });
+  var h = '<select id="ca-model-sel" data-modelsel="ca-model-in" ' + FIELD_ST + '>' + CA_MODEL_OPTS.map(function (o) {
+    return '<option value="' + o[0] + '"' + (o[0] === cur ? " selected" : "") + '>' + esc(o[1]) + '</option>';
+  }).join("") + '<option value="__custom"' + (inList ? "" : " selected") + '>自定义…</option></select>';
+  return h + '<input id="ca-model-in" type="text" autocomplete="off" placeholder="自定义模型名（以 ChatAnywhere 支持为准）" value="' +
+    (inList ? "" : esc(cur)) + '" ' + FIELD_ST.slice(0, -1) + (inList ? ';display:none"' : '"') + '>';
+}
 export function renderExport() {
   var el = document.getElementById("view-export");
   var completeDays = DB.days.filter(function (d) { return d.complete; }).length;
@@ -24,24 +34,36 @@ export function renderExport() {
       (lastConfirm ? lastConfirm + (ds > 0 ? "（" + ds + " 天前）" : "") : "从未") + '</span></div>' +
     (storeBroken ? '<div class="note" style="color:var(--over)">⚠️ 检测到存储异常。导出文件里已附带抢救出的原始数据，请尽快导出并联系分析端。</div>' : '') +
     '</div>' +
-    '<div class="mod"><div class="mod-title">AI 识别（Claude，自带密钥）</div>' +
-    (AI.oldKey && !aiReady() ? '<div class="warnbox">AI 已经从 ChatAnywhere 换成 Claude，原来的密钥在这里用不了，已经清掉。' +
-      '去 Claude Console（platform.claude.com）→ API keys 建一个密钥，贴到下面、点「保存设置」。</div>'
-      : aiKeyNudge && !aiReady() ? '<div class="warnbox">先在下面粘贴 Anthropic API 密钥（sk-ant- 开头）、点「保存设置」，再回「今日」页拍照或估算。</div>' : '') +
-    '<div class="rowline"><span class="k">状态</span><span class="v">' +
-      (aiReady() ? "已启用 · " + AI_MODEL_LABEL + (AI.model2 === AI_REVIEW_MODEL ? " ＋ " + AI_REVIEW_LABEL + " 复核" : "") : "未设置") + '</span></div>' +
+    '<div class="mod"><div class="mod-title">AI 识别（自带密钥）</div>' +
+    (AI.oldKey && !aiReady() ? '<div class="warnbox">原来的 ChatAnywhere 密钥在换成 Claude 时被清掉了。要用 ChatAnywhere 就把密钥重新贴到下面 ChatAnywhere 那一栏（只填它的话「用哪家」会自动改成 ChatAnywhere）；' +
+      '要用 Claude 就去 Claude Console（platform.claude.com）→ API keys 建一个密钥贴到 Claude 那一栏，再点「保存设置」。</div>'
+      : aiKeyNudge && !aiReady() ? '<div class="warnbox">先在下面粘贴' + (useCA() ? ' ChatAnywhere 密钥' : ' Anthropic API 密钥（sk-ant- 开头）') + '、点「保存设置」，再回「今日」页拍照或估算。</div>' : '') +
+    '<div class="rowline"><span class="k">状态</span><span class="v">' + (!aiReady() ? "未设置"
+      : useCA() ? "已启用 · ChatAnywhere · " + esc(caModel())
+      : "已启用 · " + AI_MODEL_LABEL + (AI.model2 === AI_REVIEW_MODEL ? " ＋ " + AI_REVIEW_LABEL + " 复核" : "") +
+        (AI.caKey ? "；没额度时自动改用 ChatAnywhere" : "")) + '</span></div>' +
+    '<div class="rowline" style="margin-top:10px"><span class="k">用哪家</span></div>' +
+    '<select id="ai-provider-sel" ' + FIELD_ST + '>' +
+      '<option value="claude"' + (useCA() ? "" : " selected") + '>Claude 官方（默认）</option>' +
+      '<option value="ca"' + (useCA() ? " selected" : "") + '>ChatAnywhere</option>' +
+    '</select>' +
+    '<div class="mod-title" style="padding:16px 0 0">Claude 官方 · 密钥' + (AI.key ? "已填" : "未填") + '</div>' +
     '<input id="ai-key-in" type="password" autocomplete="off" placeholder="粘贴 Anthropic 密钥（留空=不改；输「清除」=删掉）" ' + FIELD_ST + '>' +
-    '<div class="rowline" style="margin-top:10px"><span class="k">成分表复核（可选）</span></div>' +
+    '<div class="rowline" style="margin-top:10px"><span class="k">成分表复核（可选，只在用 Claude 时）</span></div>' +
     '<select id="ai-model2-sel" ' + FIELD_ST + '>' +
       '<option value=""' + (AI.model2 === AI_REVIEW_MODEL ? "" : " selected") + '>不启用（默认）</option>' +
       '<option value="' + AI_REVIEW_MODEL + '"' + (AI.model2 === AI_REVIEW_MODEL ? " selected" : "") + '>' + AI_REVIEW_LABEL + ' 再读一遍</option>' +
     '</select>' +
+    '<div class="mod-title" style="padding:16px 0 0">ChatAnywhere · 密钥' + (AI.caKey ? "已填" : "未填") + '</div>' +
+    '<input id="ca-key-in" type="password" autocomplete="off" placeholder="粘贴 ChatAnywhere 密钥（留空=不改；输「清除」=删掉）" ' + FIELD_ST + '>' +
+    '<div class="rowline" style="margin-top:10px"><span class="k">ChatAnywhere 模型</span></div>' +
+    caModelSel() +
     '<button class="btn solid" data-act="save-ai-key" style="margin-top:10px">保存设置</button>' +
-    '<div class="note">密钥只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 Anthropic（api.anthropic.com）。' +
-    '拍照、文字和语音估算都用 ' + AI_MODEL_LABEL + '，一次约 1–3 美分；花了多少、还剩多少在 Claude Console 里看，也可以在那里设每月花费上限。' +
-    '开了复核后，成分表入库会让 ' + AI_REVIEW_LABEL + ' 把同样的照片再读一遍、读数不一致时提醒（每次多花约 3–6 美分，多等十几秒）。' +
-    '成分表没拍清时，会先按照片里的条形码查免费的 Open Food Facts，查不到再让 Claude 联网搜索同款的官方营养表，把没看清的数字补上' +
-    '（联网搜索按次另收费，还要读网页内容，一次约几美分，只在没读全时才用）。另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
+    '<div class="note">两个密钥都只存在这台手机的浏览器里：不进导出文件、不进代码仓库，页面从手机直连 Anthropic（api.anthropic.com）或 ChatAnywhere（api.chatanywhere.org）。' +
+    '选「Claude 官方」时，Claude 报错（比如当月额度用完、到了花费上限）而 ChatAnywhere 密钥也填了，这一次会自动改用 ChatAnywhere 完成并提示你；额度长期用完的话直接选 ChatAnywhere，省掉每次先试 Claude。' +
+    '用 Claude 时一次识别约 1–3 美分，花了多少在 Claude Console 里看。开了复核后，成分表入库会让 ' + AI_REVIEW_LABEL + ' 把同样的照片再读一遍、读数不一致时提醒（每次多花约 3–6 美分）；走 ChatAnywhere 的那次不复核。' +
+    '成分表没拍清时，会先按照片里的条形码查免费的 Open Food Facts，查不到再联网搜索同款的官方营养表（用 Claude 时用 Claude 的联网搜索，用 ChatAnywhere 时用它的搜索模型），把没看清的数字补上。' +
+    '另外每次入库都自动做免费的算术交叉验证（整包热量 vs 每100g×重量、热量 vs 碳蛋脂）。</div></div>' +
     '<div class="mod"><button class="btn solid" data-act="do-export">导出全部数据</button>' +
     '<div class="note">每周一次。文件会出现在「文件」App 的下载项里，' +
     '打开 OneDrive 把它移到 <b style="font-family:var(--f-num)">健康数据/calorie-tracker/exports/</b>。' +
