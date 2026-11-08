@@ -1,4 +1,5 @@
 import { compareSpecs, validateFoodSpec, webCheck } from "./lib/checks.js";
+import { CA_BASE, CA_DEFAULT_MODEL, CA_SEARCH_MODEL, caBody, caHttpError, caReplyText } from "./lib/chatanywhere.js";
 import { SCHEMA_LABEL, SCHEMA_MEAL, aiErrText, imageBlock, replyText } from "./lib/claude.js";
 import { OFF_FIELDS, aiParseFood, aiParseMeal, offToSpec, webParse } from "./lib/parse.js";
 import { MAX_G, esc, normName, todayStr } from "./lib/util.js";
@@ -12,7 +13,11 @@ import { renderAiMod } from "./views/today.js";
    仅保存在用户自己设备的浏览器存储中；页面用官方 SDK 从浏览器直连 api.anthropic.com，
    密钥不写入代码仓库、不包含在导出文件里，也不经过任何中间人）──────
    2026-10-10 v2.3（用户要求）：从 ChatAnywhere（OpenAI 兼容中转）整体换成 Claude API。
-   识别、估算、联网补查都用 Sonnet 5.5；成分表可选用 Opus 5.5 再读一遍复核。 */
+   识别、估算、联网补查都用 Sonnet 5.5；成分表可选用 Opus 5.5 再读一遍复核。
+   2026-11-08 v2.5（用户要求，Claude 当月额度用完了）：ChatAnywhere 接回来当第二家。
+   「导出」页选用哪家（AI.provider = "claude" | "ca"）；选 Claude 时如果 Claude 报 HTTP 错误（额度不足、
+   到上限、密钥失效等）而 ChatAnywhere 密钥也填了，这一次自动改用 ChatAnywhere 完成。
+   ChatAnywhere 不支持结构化输出约束，照旧靠提示词「只输出 JSON」+ lib/parse.js 的容错解析。 */
 export var AI_CFG_STORE = "caltrk7f3a.ai.v1";
 export var AI_MODEL = "claude-sonnet-5-5";
 export var AI_MODEL_LABEL = "Claude Sonnet 5.5";
@@ -29,13 +34,17 @@ if (!AI.claude) {
   persist(AI_CFG_STORE, AI);
 }
 
-export function aiReady() { return !!(AI.key && AI.key.length > 8); }
+export function useCA() { return AI.provider === "ca"; }
+export function caModel() { return AI.caModel || CA_DEFAULT_MODEL; }
+function keyOk(k) { return !!(k && k.length > 8); }
+/* 选的那家有密钥才算能用（选 Claude 时 ChatAnywhere 的密钥只用来兜底） */
+export function aiReady() { return keyOk(useCA() ? AI.caKey : AI.key); }
 /* 没密钥时点 AI 按钮：跳到「导出」页的密钥框，并在那里显示一行提示 */
 export var aiKeyNudge = false;
 export function aiNeedKey() {
   aiKeyNudge = true;
   switchTab("export");
-  var inp = document.getElementById("ai-key-in");
+  var inp = document.getElementById(useCA() ? "ca-key-in" : "ai-key-in");
   if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus(); }
 }
 
@@ -45,10 +54,20 @@ export function saveAiKey() {
   var v = inp.value.trim();
   if (v === "清除" || v.toLowerCase() === "clear") delete AI.key;
   else if (v) {
-    if (!/^sk-ant-/.test(v) && !confirm("这个密钥不是 sk-ant- 开头，不像 Anthropic 的 API 密钥（ChatAnywhere 的密钥在这里用不了）。仍然保存？")) return;
+    if (!/^sk-ant-/.test(v) && !confirm("这个密钥不是 sk-ant- 开头，不像 Anthropic 的 API 密钥（ChatAnywhere 的密钥要贴到下面 ChatAnywhere 那一栏）。仍然保存？")) return;
     AI.key = v;
     delete AI.oldKey;
   }
+  /* ChatAnywhere（v2.5）：密钥、模型、用哪家 */
+  var ca = document.getElementById("ca-key-in");
+  var cv = ca ? ca.value.trim() : "";
+  if (cv === "清除" || cv.toLowerCase() === "clear") delete AI.caKey;
+  else if (cv) { AI.caKey = cv; delete AI.oldKey; }
+  var ms = document.getElementById("ca-model-sel"), mi = document.getElementById("ca-model-in");
+  var m = ms ? (ms.value === "__custom" ? (mi ? mi.value.trim() : "") : ms.value) : "";
+  if (m && m !== CA_DEFAULT_MODEL) AI.caModel = m; else delete AI.caModel;
+  var ps = document.getElementById("ai-provider-sel");
+  if (ps) { if (ps.value === "ca") AI.provider = "ca"; else delete AI.provider; }
   /* 密钥框留空 = 不改密钥，这样单独开关复核不用重贴密钥 */
   var sel = document.getElementById("ai-model2-sel");
   if (sel && sel.value === AI_REVIEW_MODEL) AI.model2 = AI_REVIEW_MODEL; else delete AI.model2;
@@ -133,17 +152,52 @@ export function aiRequest(model, sys, userContent, opts) {
   }
   return send([{ role: "user", content: userContent }], 0).then(replyText);
 }
+/* ChatAnywhere 的一次请求（chat-completions），返回回复文字。内容按 Claude 格式传进来，在 caBody 里换格式 */
+export function caRequest(model, sys, userContent, timeoutMs) {
+  var ctrl = ("AbortController" in window) ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, timeoutMs || AI_TIMEOUT_MS) : null;
+  return fetch(CA_BASE + "/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + AI.caKey },
+    signal: ctrl ? ctrl.signal : undefined,
+    body: JSON.stringify(caBody(model, sys, userContent))
+  }).then(function (r) {
+    if (!r.ok) return r.text().then(function (t) { throw caHttpError(r.status, t); }, function () { throw caHttpError(r.status); });
+    return r.json();
+  }, function (e) {
+    throw new Error(e && e.name === "AbortError" ? "ChatAnywhere 超时：" + Math.round((timeoutMs || AI_TIMEOUT_MS) / 1000) + " 秒没回复" : "连不上 ChatAnywhere：检查一下网络");
+  }).then(caReplyText).finally(function () { if (timer) clearTimeout(timer); });
+}
+/* 选哪家发：选了 ChatAnywhere 就直接发；选 Claude 时，Claude 回了 HTTP 错误（额度不足、到上限、密钥失效……）
+   且 ChatAnywhere 密钥也有，就改用 ChatAnywhere 再发一次。超时、断网、Claude 拒答不切（换一家也多半一样）。
+   返回 { txt, via: "claude" | "ca", fellBack: Claude 那次的错误说明 } */
+export function routed(claudeCall, caCall) {
+  if (useCA()) return caCall().then(function (txt) { return { txt: txt, via: "ca" }; });
+  var t0 = performance.now();
+  return claudeCall().then(function (txt) { return { txt: txt, via: "claude" }; }, function (e) {
+    if (!(keyOk(AI.caKey) && Anthropic && e instanceof Anthropic.APIError && e.status)) throw e;
+    var why = aiErrText(e, secsSince(t0), Anthropic);
+    return caCall().then(function (txt) { return { txt: txt, via: "ca", fellBack: why }; });
+  });
+}
+var fallbackNoted = false;   /* 自动改用 ChatAnywhere 的提示每次打开页面只弹一次 */
 export var aiBusy = false;
-/* onOk 可以返回 Promise（比如复核模型的第二次调用），「识别中」会一直显示到全部完成。
-   opts 同 aiRequest，另有 failHint：失败提示里加的一句 */
+/* onOk(txt, res) 可以返回 Promise（比如复核模型的第二次调用），「识别中」会一直显示到全部完成；
+   res.via 是这次实际用的哪家。opts 同 aiRequest，另有 failHint：失败提示里加的一句 */
 export function aiChat(sys, userContent, onOk, opts) {
   opts = opts || {};
   if (aiBusy) return;
   aiBusy = true;
   renderAiMod();   /* 真正发请求了才显示「识别中」 */
   var t0 = performance.now();
-  aiRequest(AI_MODEL, sys, userContent, opts).then(function (txt) {
-    return onOk(txt);
+  routed(function () { return aiRequest(AI_MODEL, sys, userContent, opts); },
+         function () { return caRequest(caModel(), sys, userContent); }).then(function (res) {
+    if (res.fellBack && !fallbackNoted) {
+      fallbackNoted = true;
+      alert("Claude 这次没调通（" + res.fellBack + "），已自动改用 ChatAnywhere（" + caModel() + "）完成。\n" +
+        "Claude 额度用完的话，可以去「导出」页直接选 ChatAnywhere，省掉每次先试 Claude。");
+    }
+    return onOk(res.txt, res);
   }).catch(function (e) {
     alert("AI 识别失败：" + aiErrText(e, secsSince(t0), Anthropic) + "\n" + (opts.failHint || "可以先用「记一条估计」，回头再补。"));
   }).finally(function () {
@@ -175,14 +229,20 @@ export function webFromBarcode(code) {
     return { per_100g: sp.per_100g, fiber: sp.extra.fiber || 0, src: "Open Food Facts 条形码 " + code + "（" + sp.name + "）" };
   }).catch(function () { return null; });
 }
-export function webFromSearch(spec) {
+/* via：这次识别实际用的哪家。识别已经落到 ChatAnywhere（选了它，或 Claude 没额度自动切过去）就直接用
+   ChatAnywhere 的联网搜索模型，不再先试一次 Claude */
+export function webFromSearch(spec, via) {
   var q = "商品：" + (spec.search || spec.name) + "\n中文名：" + spec.name +
     (spec.pack_grams ? "\n规格：" + spec.pack_grams + "g" : "") +
     (spec.unread.indexOf("kcal") < 0 ? "\n标签上读到每100克 " + spec.per_100g.kcal + " 千卡（可用来确认是不是同一款）" : "");
-  return aiRequest(AI_MODEL, AI_SYS_WEB, q, { tools: AI_WEB_TOOLS, effort: AI_EFFORT.web, timeout: AI_WEB_TIMEOUT_MS, retry: false }).then(webParse);
+  function viaCA() { return caRequest(CA_SEARCH_MODEL, AI_SYS_WEB, q, AI_WEB_TIMEOUT_MS); }
+  var p = via === "ca" ? viaCA() : routed(function () {
+    return aiRequest(AI_MODEL, AI_SYS_WEB, q, { tools: AI_WEB_TOOLS, effort: AI_EFFORT.web, timeout: AI_WEB_TIMEOUT_MS, retry: false });
+  }, viaCA).then(function (res) { return res.txt; });
+  return p.then(webParse);
 }
 /* 返回 Promise；会直接改 spec 和 v（warns/oks） */
-export function webFill(spec, v) {
+export function webFill(spec, v, via) {
   /* 页面原有的自检只抓差 30% 以上的大错；决定要不要上网查时收紧到 15%（看串行把饱和脂肪当脂肪，常常只差 20-30%） */
   var p0 = spec.per_100g, calc0 = 4 * p0.protein + 9 * p0.fat + 4 * p0.carb;
   var badRead = v.warns.length > 0 || (p0.kcal >= 40 && Math.abs(calc0 - p0.kcal) > Math.max(15, p0.kcal * 0.15));
@@ -194,7 +254,7 @@ export function webFill(spec, v) {
   return webFromBarcode(spec.barcode).then(function (w) {
     if (w) return w;
     var t0 = performance.now();
-    return webFromSearch(spec).catch(function (e) { searchErr = aiErrText(e, secsSince(t0), Anthropic); return null; });
+    return webFromSearch(spec, via).catch(function (e) { searchErr = aiErrText(e, secsSince(t0), Anthropic); return null; });
   }).then(function (w) {
     if (!w) {
       v.warns.push(why + "，网上也没查到同款" + (searchErr ? "（联网搜索出错：" + searchErr + "）" : "") +
@@ -361,13 +421,15 @@ export function aiPhotosReady(urls) {
   var content = urls.map(imageBlock);
   if (aiMode === "label") {
     content.push({ type: "text", text: "识别这个食物（" + urls.length + " 张照片为同一食物），按系统要求输出 JSON。" });
-    aiChat(AI_SYS_LABEL, content, function (txt) {
+    aiChat(AI_SYS_LABEL, content, function (txt, res) {
       var spec = aiParseFood(txt);
       if (!spec) { alert("AI 回复解析失败，换张更清楚的照片试试。"); return; }
       var v = validateFoodSpec(spec);
       /* 没读全或读数自相矛盾 → 先上网补，再（可选）复核 */
-      return webFill(spec, v).then(function () {
+      return webFill(spec, v, res.via).then(function () {
         if (AI.model2 !== AI_REVIEW_MODEL) { finishAddFood(spec, v.warns, v.oks); return; }
+        /* 复核用的是 Claude Opus：这次走的是 ChatAnywhere（Claude 没额度或选了它）就不复核，免得再报一次错 */
+        if (res.via !== "claude") { v.oks.push("这次用的是 ChatAnywhere，没做 Opus 复核"); finishAddFood(spec, v.warns, v.oks); return; }
         /* 可选的第二模型复核：同样的照片让 Opus 再读一遍，对比读数 */
         var t0 = performance.now();
         return aiRequest(AI_REVIEW_MODEL, AI_SYS_LABEL, content, { schema: SCHEMA_LABEL, effort: AI_EFFORT.review }).then(function (txt2) {
