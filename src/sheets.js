@@ -209,6 +209,45 @@ export function showUndoToast(entry) {
   document.body.appendChild(toastEl);
   toastTimer = setTimeout(dismissToast, 6000);
 }
+/* 一条提示（不打断操作）：msg 可带一个按钮 action = { label, run }，几秒后自己消失 */
+export function showInfoToast(msg, action, ms) {
+  dismissToast();
+  toastEl = document.createElement("div");
+  toastEl.className = "toast info";
+  toastEl.innerHTML = '<span class="msg">' + esc(msg) + '</span>' +
+    (action ? '<button data-toast="act">' + esc(action.label) + '</button>' : '') + '<button data-toast="x" aria-label="关闭">✕</button>';
+  toastEl.addEventListener("click", function (ev) {
+    var b = ev.target.closest("[data-toast]");
+    if (!b) return;
+    var kind = b.getAttribute("data-toast");
+    dismissToast();
+    if (kind === "act" && action) action.run();
+  });
+  document.body.appendChild(toastEl);
+  toastTimer = setTimeout(dismissToast, ms || 7000);
+}
+/* ── 相册打不开（v2.5.1）──────────────────────────────────
+   「Unable to Load Photos / 无法载入照片」是 iPhone 系统的照片选择器自己报的：它在网页之外运行，
+   出错时一张照片都没交给网页，网页也收不到错误，只会收到一个「取消」。所以网页修不了它，
+   能做的是：选择器空手关掉时提示一句，点开告诉他马上能用的办法（同一个菜单里的「拍照」「选取文件」）
+   和让相册恢复的步骤。真的只是点了取消也会看到这句提示，所以不用弹窗、几秒后自己消失。 */
+export function showPickerHelp() {
+  showInfoToast("没选到照片", { label: "相册打不开？", run: openPickerHelpSheet }, 6000);
+}
+export function openPickerHelpSheet() {
+  openSheet(
+    '<div class="sheet-h"><div class="nm">相册打不开（Unable to Load Photos）怎么办</div>' +
+    '<div class="meta">这是 iPhone 系统的照片选择器报的错，网页收不到照片，也没法替你修好它</div></div>' +
+    '<div class="sheet-b">' +
+      '<div class="mod-title">现在就能用</div>' +
+      '<div class="note">再点一次按钮，在弹出的菜单里选「拍照」直接拍，或者选「选取文件」从「文件」App 里挑（相册里的照片可以先存到「文件」）。</div>' +
+      '<div class="mod-title" style="padding-top:10px">让相册恢复（按顺序试）</div>' +
+      '<div class="note">1. 重启 iPhone。<br>2. 关掉低电量模式和低数据模式，连上信号好的网络。<br>' +
+      '3. 设置 → 照片：改成「下载并保留原片」，或者等 iCloud 照片同步完。<br>4. 腾出几 GB 存储空间。<br>5. 更新到最新的 iOS。</div>' +
+      '<div class="note">如果备忘录、邮件里插入照片也报同样的错，就是手机这边的问题，和这个应用无关。</div>' +
+      '<button class="btn plain" data-act="close-sheet" style="margin-top:8px">知道了</button>' +
+    '</div>');
+}
 /* 多条一起记（AI 估餐）的撤销条：一键全撤 */
 export function showUndoToastMulti(entries, label) {
   dismissToast();

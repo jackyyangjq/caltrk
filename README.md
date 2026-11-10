@@ -97,6 +97,7 @@ The weekly review edits `src/build.js` (calibrated constants) and `src/data/food
 | 2.0 | 2026-10-06 | Split into modules with a Vite build; unit tests for the pure functions; a differential end-to-end test that replays 66 steps against the old and new builds and requires identical DOM, storage and export output; deploys through GitHub Actions |
 | 2.1 | 2026-10-06 | Weight trend chart: smoothed trend line over morning weights, intake bars on a shared date axis, weekly rate vs plan, table view |
 | 2.2 | 2026-10-06 | Portion options on AI meal estimates; voice logging; generic food library (513 foods, USDA SR Legacy) in search |
+| 2.5.1 | 2026-11-10 | When the iOS photo picker closes without a photo (e.g. its own "Unable to Load Photos" error, which never reaches the page), a hint leads to what to do; empty or unreadable photos are skipped with a clear message instead of failing silently |
 | 2.5 | 2026-11-08 | ChatAnywhere back as a second AI provider: pick it on the settings page, or stay on Claude and fall back to it automatically when Claude runs out of credit |
 | 2.4.1 | 2026-10-25 | Food library rows show each name in full (wrapping if long) with the numbers underneath; no quick-record toggle there |
 | 2.4 | 2026-10-25 | Quick record holds the foods you choose (add/remove from search, the portion sheet or an edit mode), topped up to 8 with frequent foods you haven't removed; combos removed |
