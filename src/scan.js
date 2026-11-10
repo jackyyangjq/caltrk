@@ -3,7 +3,7 @@ import { FOOD_LIBRARY, UF_SAME_AS } from "./data/foods.js";
 import { scanChecks } from "./lib/checks.js";
 import { OFF_FIELDS, gtinValid, normBarcode, offName, offToSpec, scanTokens } from "./lib/parse.js";
 import { esc, todayStr } from "./lib/util.js";
-import { elSheet, openPortionSheet, openSheet } from "./sheets.js";
+import { elSheet, openPortionSheet, openSheet, showPickerHelp } from "./sheets.js";
 import { DB, K, UF_KEY, USER_FOODS, allFoods, foodById, persist } from "./store.js";
 
 /* ── 条形码（v1.15.0）─────────────────────────────────────
@@ -140,14 +140,18 @@ export function scanClose() {
 /* ── 扫法二：拍一张照片识别（相册里现成的也行）── */
 export var scanInput = document.createElement("input");
 scanInput.type = "file"; scanInput.accept = "image/*"; scanInput.style.display = "none";
+scanInput.id = "scan-photo-in";
 document.body.appendChild(scanInput);
+/* 选择器空手关掉（取消，或系统相册报错）：提示一句，见 sheets.js showPickerHelp */
+scanInput.addEventListener("cancel", showPickerHelp);
 export function scanPhotoStart() {
   scanInput.value = "";
   scanInput.click();
 }
 scanInput.addEventListener("change", function () {
   var file = scanInput.files && scanInput.files[0];
-  if (!file) return;
+  if (!file) { showPickerHelp(); return; }
+  if (!(file.size > 0)) { openScanFailSheet("照片是空的（可能还在 iCloud 里没下载下来）。"); return; }
   openSheet('<div class="sheet-h"><div class="nm">正在识别条形码…</div>' +
     '<div class="meta">第一次用要先下载识别组件（约 1 MB）</div></div><div class="sheet-b" data-bcwait="photo"></div>');
   var url = URL.createObjectURL(file);

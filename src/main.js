@@ -166,6 +166,7 @@ document.addEventListener("click", function (ev) {
     closeSheet();
     renderToday();
   }
+  else if (act === "close-sheet") closeSheet();
   else if (act === "scan-live") { closeSheet(); scanLiveStart(); }
   else if (act === "scan-photo") { closeSheet(); scanPhotoStart(); }
   else if (act === "scan-to-photo") { scanClose(); scanPhotoStart(); }

@@ -412,6 +412,9 @@ input { font: inherit; color: inherit; }
 }
 .toast .msg { font-family: var(--f-label); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .toast .msg b { font-family: var(--f-num); font-weight: 600; }
+/* 纯提示条（v2.5.1）：文字可以折行 */
+.toast.info .msg { white-space: normal; }
+.toast.info button[data-toast="x"] { color: var(--text-faint); }
 .toast button { font-family: var(--f-label); font-size: 13px; font-weight: 700; color: var(--brass); flex: none; padding: 2px 4px; }
 
 .tabs {

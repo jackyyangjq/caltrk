@@ -4,7 +4,7 @@ import { SCHEMA_LABEL, SCHEMA_MEAL, aiErrText, imageBlock, replyText } from "./l
 import { OFF_FIELDS, aiParseFood, aiParseMeal, offToSpec, webParse } from "./lib/parse.js";
 import { MAX_G, esc, normName, todayStr } from "./lib/util.js";
 import { switchTab } from "./main.js";
-import { openPortionSheet, openSheet } from "./sheets.js";
+import { openPickerHelpSheet, openPortionSheet, openSheet, showInfoToast, showPickerHelp } from "./sheets.js";
 import { UF_KEY, USER_FOODS, allFoods, loadObj, persist, ufView } from "./store.js";
 import { renderExport } from "./views/export.js";
 import { renderAiMod } from "./views/today.js";
@@ -394,6 +394,7 @@ export var aiMode = "label";
 export var aiBarcode = null;
 export var aiInput = document.createElement("input");
 aiInput.type = "file"; aiInput.accept = "image/*"; aiInput.multiple = true; aiInput.style.display = "none";
+aiInput.id = "ai-photo-in";
 document.body.appendChild(aiInput);
 export function aiPhotoStart(mode, barcode) {
   aiMode = mode;
@@ -401,25 +402,44 @@ export function aiPhotoStart(mode, barcode) {
   aiInput.value = "";
   aiInput.click();
 }
+/* 一张照片 → 长边缩到 1280 的 JPEG dataURL；读不出来给 null。
+   v2.5.1：0 字节的文件直接算失败；解码 PHOTO_TIMEOUT_MS 还没好也算失败（iCloud 原片下载卡住时不会一直等）；
+   每张只结算一次 */
+var PHOTO_TIMEOUT_MS = 20000;
+export function photoToDataUrl(file) {
+  return new Promise(function (ok) {
+    if (!file || !(file.size > 0)) { ok(null); return; }
+    var url = URL.createObjectURL(file), img = new Image(), done = false;
+    var timer = setTimeout(function () { end(null); }, PHOTO_TIMEOUT_MS);
+    function end(v) { if (done) return; done = true; clearTimeout(timer); URL.revokeObjectURL(url); ok(v); }
+    img.onload = function () {
+      try {
+        var mx = 1280, sc = Math.min(1, mx / Math.max(img.width, img.height));
+        var cv = document.createElement("canvas");
+        cv.width = Math.round(img.width * sc); cv.height = Math.round(img.height * sc);
+        cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+        end(cv.toDataURL("image/jpeg", 0.85));
+      } catch (e) { end(null); }
+    };
+    img.onerror = function () { end(null); };
+    img.src = url;
+  });
+}
+/* 选择器空手关掉（点了取消，或者系统相册报「Unable to Load Photos」——网页分不出这两种）：提示一句，见 sheets.js */
+aiInput.addEventListener("cancel", showPickerHelp);
 aiInput.addEventListener("change", function () {
   var files = Array.prototype.slice.call(aiInput.files || []).slice(0, 4);
-  if (!files.length) return;
-  var urls = [], done = 0;
-  files.forEach(function (file, idx) {
-    var url = URL.createObjectURL(file);
-    var img = new Image();
-    function fin() { if (++done === files.length) aiPhotosReady(urls.filter(Boolean)); }
-    img.onload = function () {
-      var mx = 1280, sc = Math.min(1, mx / Math.max(img.width, img.height));
-      var cv = document.createElement("canvas");
-      cv.width = Math.round(img.width * sc); cv.height = Math.round(img.height * sc);
-      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
-      URL.revokeObjectURL(url);
-      urls[idx] = cv.toDataURL("image/jpeg", 0.85);
-      fin();
-    };
-    img.onerror = function () { URL.revokeObjectURL(url); fin(); };
-    img.src = url;
+  if (!files.length) { showPickerHelp(); return; }
+  Promise.all(files.map(photoToDataUrl)).then(function (all) {
+    var urls = all.filter(Boolean);
+    if (!urls.length) {
+      alert("选的照片一张都没读出来。\n可能是照片还在 iCloud 里没下载下来，或者格式这台手机解不开。" +
+        "可以改用「拍照」直接拍；相册一直有问题的话，看看接下来弹出的「相册打不开怎么办」。");
+      openPickerHelpSheet();
+      return;
+    }
+    if (urls.length < files.length) showInfoToast(files.length + " 张里有 " + (files.length - urls.length) + " 张没读出来，用剩下的 " + urls.length + " 张识别", null, 6000);
+    aiPhotosReady(urls);
   });
 });
 export function aiPhotosReady(urls) {
